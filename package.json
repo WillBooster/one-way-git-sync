@@ -29,6 +29,8 @@
   },
   "prettier": "@willbooster/prettier-config",
   "dependencies": {
+    "fs-extra": "10.0.0",
+    "simple-git": "2.41.1",
     "yargs": "17.0.1"
   },
   "devDependencies": {
@@ -43,6 +45,7 @@
     "@rollup/plugin-commonjs": "19.0.1",
     "@rollup/plugin-node-resolve": "13.0.2",
     "@types/eslint": "^7",
+    "@types/fs-extra": "9.0.12",
     "@types/micromatch": "^4",
     "@types/yargs": "^17",
     "@typescript-eslint/eslint-plugin": "4.28.4",
