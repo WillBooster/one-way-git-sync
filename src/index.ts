@@ -13,7 +13,7 @@ const ignoreNames = ['.git', 'node_modules'];
 
 interface Settings {
   dest: string;
-  src: string;
+  prefix: string;
   dry?: boolean;
   force?: boolean;
 }
@@ -26,11 +26,11 @@ export async function cli(argv: string[]): Promise<void> {
       describe: 'A URL of a destination git repository',
       demand: true,
     },
-    src: {
+    prefix: {
       type: 'string',
-      alias: 's',
-      describe: 'A URL of a source git repository',
-      demand: true,
+      alias: 'p',
+      describe: `A prefix of a commit hash used to generate a commit message.
+                 The typical value is like "https://github.com/WillBooster/one-way-git-sync/commits/"`,
     },
     dry: {
       type: 'boolean',
@@ -91,7 +91,7 @@ async function main(settings: Settings): Promise<void> {
   }
   await dstGit.add('-A');
 
-  const title = `sync ${version} (${path.join(settings.src, latestHash)})`;
+  const title = `sync ${version} (${settings.prefix || ''}${latestHash})`;
   const body = srcLog.all.map((l) => `* ${l.message}`).join('\n\n');
   try {
     await dstGit.commit(`${title}\n\n${body}`);
