@@ -5,7 +5,7 @@
     "git",
     "sync"
   ],
-  "repository": "git@github.com:WillBooster/gen-i18n-ts.git",
+  "repository": "git@github.com:WillBooster/one-way-git-sync.git",
   "license": "Apache-2.0",
   "author": "WillBooster Inc.",
   "bin": "./bin/index.js",
