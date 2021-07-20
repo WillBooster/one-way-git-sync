@@ -13,7 +13,7 @@ const ignoreNames = ['.git', 'node_modules'];
 
 interface Settings {
   dest: string;
-  prefix: string;
+  prefix?: string;
   dry?: boolean;
   force?: boolean;
 }
