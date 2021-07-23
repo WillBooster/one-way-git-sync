@@ -1890,7 +1890,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/micromatch@npm:^4":
+"@types/micromatch@npm:4.0.2":
   version: 4.0.2
   resolution: "@types/micromatch@npm:4.0.2"
   dependencies:
@@ -1950,7 +1950,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semantic-release@npm:^17":
+"@types/semantic-release@npm:17.2.1":
   version: 17.2.1
   resolution: "@types/semantic-release@npm:17.2.1"
   dependencies:
@@ -1966,7 +1966,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/yargs@npm:^17":
+"@types/yargs@npm:17.0.2":
   version: 17.0.2
   resolution: "@types/yargs@npm:17.0.2"
   dependencies:
@@ -6259,9 +6259,9 @@ fsevents@~2.3.2:
     "@rollup/plugin-node-resolve": 13.0.2
     "@types/eslint": ^7
     "@types/fs-extra": 9.0.12
-    "@types/micromatch": ^4
-    "@types/semantic-release": ^17
-    "@types/yargs": ^17
+    "@types/micromatch": 4.0.2
+    "@types/semantic-release": 17.2.1
+    "@types/yargs": 17.0.2
     "@typescript-eslint/eslint-plugin": 4.28.4
     "@typescript-eslint/parser": 4.28.4
     "@willbooster/eslint-config-ts": 6.3.0
