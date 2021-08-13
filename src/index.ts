@@ -45,7 +45,8 @@ export async function cli(argv: string[]): Promise<void> {
 }
 
 async function main(settings: Settings): Promise<void> {
-  const version = child_process.execSync('git describe --tags --always').toString().trim();
+  // e.g. `--abbrev=0` changes `v1.31.5-2-gcdde507` to `v1.31.5`
+  const version = child_process.execSync('git describe --tags --always --abbrev=0').toString().trim();
   if (!/^v\d/.test(version)) {
     console.error('Please run on the `vX.X.X` tag.');
     process.exit(1);
