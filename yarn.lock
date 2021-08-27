@@ -3086,10 +3086,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:3.16.2":
-  version: 3.16.2
-  resolution: "core-js@npm:3.16.2"
-  checksum: f48b988ab6d144aad1a7c09a73174946f797ec050b4566dee9bf0227560296cdd0f714b37f0ee065303eccf0e7fb8115ccca52ab3e80db12e0dcc20a88219483
+"core-js@npm:3.16.3":
+  version: 3.16.3
+  resolution: "core-js@npm:3.16.3"
+  checksum: f44f73655b3e24a8b0c66d2cdf71549c07d90d63548081bb869e09661f57c5f68b84adf3a169023bda1861f0561159b75acc6d533e5e96fca4f24e88634276ff
   languageName: node
   linkType: hard
 
@@ -6333,7 +6333,7 @@ fsevents@~2.3.2:
     babel-plugin-transform-remove-console: 6.9.4
     babel-plugin-unassert: 3.1.0
     babel-preset-power-assert: 3.0.0
-    core-js: 3.16.2
+    core-js: 3.16.3
     eslint: 7.32.0
     eslint-config-prettier: 8.3.0
     eslint-import-resolver-node: 0.3.6
@@ -6345,12 +6345,12 @@ fsevents@~2.3.2:
     pinst: 2.1.6
     power-assert: 1.6.1
     prettier: 2.3.2
-    rollup: 2.56.2
+    rollup: 2.56.3
     rollup-plugin-node-externals: 2.2.0
     semantic-release: 17.4.5
-    simple-git: 2.44.0
+    simple-git: 2.45.0
     sort-package-json: 1.50.0
-    typescript: 4.3.5
+    typescript: 4.4.2
     yargs: 17.1.1
   bin:
     one-way-git-sync: ./bin/index.js
@@ -7358,9 +7358,9 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"rollup@npm:2.56.2":
-  version: 2.56.2
-  resolution: "rollup@npm:2.56.2"
+"rollup@npm:2.56.3":
+  version: 2.56.3
+  resolution: "rollup@npm:2.56.3"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -7368,7 +7368,7 @@ fsevents@~2.3.2:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 4e8e13c5c43147de142ae2f294f775b1cc567d2f5c196b28a37482d886fb0cabef769c18e427ab0180f5929b8422b27a7664a5e4586be38651871c62e333b8ee
+  checksum: e4c5a6e871f0340f18fc795cbb6b76bfbc5827580c443a7c4f5d9f9b1fec8c3d1553dae5e45bd7fc9dea4de56e01c244b1583f8f08f401d2ba81f5eb3ff83101
   languageName: node
   linkType: hard
 
@@ -7571,14 +7571,14 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"simple-git@npm:2.44.0":
-  version: 2.44.0
-  resolution: "simple-git@npm:2.44.0"
+"simple-git@npm:2.45.0":
+  version: 2.45.0
+  resolution: "simple-git@npm:2.45.0"
   dependencies:
     "@kwsites/file-exists": ^1.1.1
     "@kwsites/promise-deferred": ^1.1.1
     debug: ^4.3.1
-  checksum: 273c914b47d3aa4db25f1ef1cc60a284dab07614b16dd30f15d17a1a983440d97e46e6cbf7a3e81d21e51bf8f99888ab8b7166ba1f29cc7db583e098ee3e01d3
+  checksum: 8c30773052c34f3d72ae8d01dafddacbdb2cd93da3023c38fac0bc2b3fa3c5a1ddb3d8c51ae93b10abe0176e11dae2c5426eb77869738e1a81aecd8ed8edab76
   languageName: node
   linkType: hard
 
@@ -8267,23 +8267,23 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-typescript@4.3.5:
-  version: 4.3.5
-  resolution: "typescript@npm:4.3.5"
+typescript@4.4.2:
+  version: 4.4.2
+  resolution: "typescript@npm:4.4.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: bab033b5e2b0790dd35b77fd005df976ef80b8d84fd2c6e63cc31808151875beae9216e5a315fe7068e8499905c3c354248fe83272cdfc13b7705635f0c66c97
+  checksum: 194e08e9d1971d667d6fd1a0554616b7022312a2319d70e81a64e502a265992061ee7817ed9a69b52bbabe7a9b85e7938cb8c11c433e40a516b277f8c4dacd51
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.3.5#~builtin<compat/typescript>":
-  version: 4.3.5
-  resolution: "typescript@patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"
+"typescript@patch:typescript@4.4.2#~builtin<compat/typescript>":
+  version: 4.4.2
+  resolution: "typescript@patch:typescript@npm%3A4.4.2#~builtin<compat/typescript>::version=4.4.2&hash=d8b4e7"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: bc2c4fdf0f1557fdafe4ef74848c72ebd9c8c60829568248f869121aea2bb20e16649a252431d0acb185ec118143be22bed73d08f64379557810d82756afedde
+  checksum: 11d6ab6e868117908c388401e2ac06d503c5c8709115ab80ee69a1a6352c1f98471d1e595636bfe6a2d6b20b03a44df6bb2d3d198cea97c0c328968cd18d2b70
   languageName: node
   linkType: hard
 
