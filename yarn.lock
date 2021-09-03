@@ -3335,10 +3335,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:3.16.3":
-  version: 3.16.3
-  resolution: "core-js@npm:3.16.3"
-  checksum: f44f73655b3e24a8b0c66d2cdf71549c07d90d63548081bb869e09661f57c5f68b84adf3a169023bda1861f0561159b75acc6d533e5e96fca4f24e88634276ff
+"core-js@npm:3.17.2":
+  version: 3.17.2
+  resolution: "core-js@npm:3.17.2"
+  checksum: 54df8d467bc59ff65f9db3764a486f102605483c7c2b0bad8d83171bfcfa3e0e38197a7349f072249cc07d3b140e92c655b4ce08315206dcfae0e4c3b744f378
   languageName: node
   linkType: hard
 
@@ -6593,7 +6593,7 @@ fsevents@~2.3.2:
     babel-plugin-transform-remove-console: 6.9.4
     babel-plugin-unassert: 3.1.0
     babel-preset-power-assert: 3.0.0
-    core-js: 3.16.3
+    core-js: 3.17.2
     eslint: 7.32.0
     eslint-config-prettier: 8.3.0
     eslint-import-resolver-node: 0.3.6
