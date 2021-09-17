@@ -1991,12 +1991,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semantic-release@npm:17.2.1":
-  version: 17.2.1
-  resolution: "@types/semantic-release@npm:17.2.1"
+"@types/semantic-release@npm:17.2.2":
+  version: 17.2.2
+  resolution: "@types/semantic-release@npm:17.2.2"
   dependencies:
     "@types/node": "*"
-  checksum: fc6e9c24eb958cf2cb6968b1a36ff97ed3799ea28e0c40eb4d8464d7c8c1036fbbcd92679a2efa0b27193a4fc3e7445daf9b969b80835a75353b3e59ae2d8997
+  checksum: d8d79649da38704afbaac3072e6f5c2ed6e9d21006ac7d84f40941f54139525d76cc6ffe1f08697721a3f2e096c6d3599b97006b352dfc4e9aafd8c13171e381
   languageName: node
   linkType: hard
 
@@ -6384,7 +6384,7 @@ fsevents@~2.3.2:
     "@types/eslint": 7.28.0
     "@types/fs-extra": 9.0.12
     "@types/micromatch": 4.0.2
-    "@types/semantic-release": 17.2.1
+    "@types/semantic-release": 17.2.2
     "@types/yargs": 17.0.2
     "@typescript-eslint/eslint-plugin": 4.31.0
     "@typescript-eslint/parser": 4.31.0
@@ -6405,7 +6405,7 @@ fsevents@~2.3.2:
     micromatch: 4.0.4
     pinst: 2.1.6
     power-assert: 1.6.1
-    prettier: 2.4.0
+    prettier: 2.4.1
     rollup: 2.56.3
     rollup-plugin-node-externals: 2.2.0
     semantic-release: 17.4.7
@@ -6916,12 +6916,12 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"prettier@npm:2.4.0":
-  version: 2.4.0
-  resolution: "prettier@npm:2.4.0"
+"prettier@npm:2.4.1":
+  version: 2.4.1
+  resolution: "prettier@npm:2.4.1"
   bin:
     prettier: bin-prettier.js
-  checksum: ac1bf07566dad5f58469e6d8a954bd5c0f833935597deb00330e9f673e14e4cf81e07dee7eff5776c0edebe11358d199f332d9940be40c8b455516034e553ce0
+  checksum: cc6830588b401b0d742862fe9c46bc9118204fb307c3abe0e49e95b35ed23629573807ffdf9cdd65289c252a0bb51fc0171437f6626ee36378dea80f0ee80b91
   languageName: node
   linkType: hard
 
