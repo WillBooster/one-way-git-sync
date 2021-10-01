@@ -3104,10 +3104,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:3.18.0, core-js@npm:^3.16.0":
-  version: 3.18.0
-  resolution: "core-js@npm:3.18.0"
-  checksum: 192c345eb0c8b9d582ebed798cf124e00cd8241303c3c801987563f8ebb8cb991e2ff91494c258752014c29d5515070d2c0a862687401c7d7e1e2f96f8980d42
+"core-js@npm:3.18.1":
+  version: 3.18.1
+  resolution: "core-js@npm:3.18.1"
+  checksum: 89cac0fe657df722d10b0e658ee76af12a614c0a75fe3fb11e87c2e3f27f6d7e609e3bf40748da5d8feb055b0535766a583ff1d1ac89dba57105f6f1ad64dc21
   languageName: node
   linkType: hard
 
@@ -3115,6 +3115,13 @@ __metadata:
   version: 2.6.12
   resolution: "core-js@npm:2.6.12"
   checksum: 44fa9934a85f8c78d61e0c8b7b22436330471ffe59ec5076fe7f324d6e8cf7f824b14b1c81ca73608b13bdb0fef035bd820989bf059767ad6fa13123bb8bd016
+  languageName: node
+  linkType: hard
+
+"core-js@npm:^3.16.0":
+  version: 3.18.0
+  resolution: "core-js@npm:3.18.0"
+  checksum: 192c345eb0c8b9d582ebed798cf124e00cd8241303c3c801987563f8ebb8cb991e2ff91494c258752014c29d5515070d2c0a862687401c7d7e1e2f96f8980d42
   languageName: node
   linkType: hard
 
@@ -4513,12 +4520,12 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"husky@npm:7.0.1":
-  version: 7.0.1
-  resolution: "husky@npm:7.0.1"
+"husky@npm:7.0.2":
+  version: 7.0.2
+  resolution: "husky@npm:7.0.2"
   bin:
     husky: lib/bin.js
-  checksum: b2ea1460f1126ed7161779b1b89f7ec8ae66fb6723e0e9fd47c522f454f4a2ea7e31a21d6ce2eb5d32e9837d232fb0245783425c109df0adab53668f8c8d8fc8
+  checksum: 2ccfe6ddc51dc05ae8ea1e2fbb893344e93a813e00c595d6b5f5e704b7b998d6b0e2adda7c57f99b5e46a60dc07c7d860269a2ea91661c6bacef0eca8e0b8e96
   languageName: node
   linkType: hard
 
@@ -6373,25 +6380,25 @@ fsevents@~2.3.2:
     babel-plugin-transform-remove-console: 6.9.4
     babel-plugin-unassert: 3.1.0
     babel-preset-power-assert: 3.0.0
-    core-js: 3.18.0
+    core-js: 3.18.1
     eslint: 7.32.0
     eslint-config-prettier: 8.3.0
     eslint-import-resolver-node: 0.3.6
     eslint-plugin-import: 2.24.2
     fs-extra: 10.0.0
-    husky: 7.0.1
+    husky: 7.0.2
     lint-staged: 11.1.2
     micromatch: 4.0.4
     pinst: 2.1.6
     power-assert: 1.6.1
     prettier: 2.4.1
-    rollup: 2.57.0
+    rollup: 2.58.0
     rollup-plugin-node-externals: 2.2.0
     semantic-release: 17.4.7
-    simple-git: 2.45.1
+    simple-git: 2.46.0
     sort-package-json: 1.52.0
     typescript: 4.4.3
-    yargs: 17.2.0
+    yargs: 17.2.1
   bin:
     one-way-git-sync: ./bin/index.js
   languageName: unknown
@@ -7398,9 +7405,9 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"rollup@npm:2.57.0":
-  version: 2.57.0
-  resolution: "rollup@npm:2.57.0"
+"rollup@npm:2.58.0":
+  version: 2.58.0
+  resolution: "rollup@npm:2.58.0"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -7408,7 +7415,7 @@ fsevents@~2.3.2:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 72427487d1f956ac1431b0db7a88ea542475630c9f0cc279a2f6be68138107bff00506d49d189780f77f189a17dcf83ee7be712a58145a6a910a3e23deb5f85d
+  checksum: a5e5642f2b1e239e3698eeee93b19d905e55e3012c63978cebc71e76c0a4eb2de5cff06a2a80d68bf87fe6869c57647cccc335daba280a5449a9214abdeca247
   languageName: node
   linkType: hard
 
@@ -7611,14 +7618,14 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"simple-git@npm:2.45.1":
-  version: 2.45.1
-  resolution: "simple-git@npm:2.45.1"
+"simple-git@npm:2.46.0":
+  version: 2.46.0
+  resolution: "simple-git@npm:2.46.0"
   dependencies:
     "@kwsites/file-exists": ^1.1.1
     "@kwsites/promise-deferred": ^1.1.1
     debug: ^4.3.1
-  checksum: 9ab6c1ca8f62d8646c5f2e7de856a21e0ac8a68e5ba040999446949af92e64323f52c2b91fc0d8d98a120d997fd892fa66b000b34ce21dc762ab28d00e9de4c8
+  checksum: 46a60a80c9d733718f6352e66024b065ba5a2f6e58eec3747bcb8b01166146dd94af5be5e315ef74e5a53f57bf95ea5cea4324fcfe62ae2f937f0ee72aaaa64b
   languageName: node
   linkType: hard
 
@@ -8677,9 +8684,9 @@ typescript@4.4.3:
   languageName: node
   linkType: hard
 
-"yargs@npm:17.2.0":
-  version: 17.2.0
-  resolution: "yargs@npm:17.2.0"
+"yargs@npm:17.2.1":
+  version: 17.2.1
+  resolution: "yargs@npm:17.2.1"
   dependencies:
     cliui: ^7.0.2
     escalade: ^3.1.1
@@ -8688,7 +8695,7 @@ typescript@4.4.3:
     string-width: ^4.2.0
     y18n: ^5.0.5
     yargs-parser: ^20.2.2
-  checksum: 7904ae4cb54c956ed4e2e0920417958e339c0e5305b6f7385a66afd5101a79dc83b38af856064a7dd1fd8458dc442936ee19e53b621349d410f7abebf2769772
+  checksum: 451aac46f82da776f436018feed0244bc0e7b4355f7e397bcb53d34c691b177c0d71db3dda9653760e1bc240254d8b763a252ff918ef9e235a8d202e2909c4eb
   languageName: node
   linkType: hard
 
