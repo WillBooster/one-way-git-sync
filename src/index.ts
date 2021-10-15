@@ -70,7 +70,8 @@ async function main(settings: Settings): Promise<void> {
 
   let srcLog: LogResult;
   try {
-    srcLog = await srcGit.log({ from, to: 'HEAD' });
+    // '--first-parent' hides children commits of merge commits
+    srcLog = await srcGit.log({ from, to: 'HEAD', '--first-parent': undefined });
   } catch (e) {
     console.error('Failed to get source commit history:', e);
     process.exit(1);
