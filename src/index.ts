@@ -4,7 +4,7 @@ import path from 'path';
 
 import fse from 'fs-extra';
 import simpleGit, { SimpleGit } from 'simple-git';
-import { LogResult } from 'simple-git/typings/response';
+import type { LogResult } from 'simple-git/typings/response';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
 
