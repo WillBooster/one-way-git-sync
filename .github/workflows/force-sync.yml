@@ -1,0 +1,43 @@
+name: Force to Sync
+
+on:
+  workflow_dispatch:
+
+jobs:
+  force-sync:
+    if: ${{ github.repository == 'WillBooster/one-way-git-sync' }}
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Read version files
+        run: |
+          echo "NODE_VERSION=$(cat .node-version)" >> $GITHUB_ENV
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Show environment information
+        run: |
+          echo "node: $(node -v)"
+          echo "yarn: $(yarn -v)"
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache yarn dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - run: yarn install --frozen-lockfile
+      - run: |
+          git config --global user.email "bot@willbooster.com"
+          git config --global user.name "WillBooster Inc."
+      - run: |
+          yarn one-way-git-sync --force \
+            -d https://WillBooster-bot:${GITHUB_TOKEN}@github.com/WillBooster/sample-ofone-way-git-sync \
+            -p https://github.com/WillBooster/one-way-git-sync/commits/
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_FOR_TEST }}
