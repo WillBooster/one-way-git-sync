@@ -6,7 +6,7 @@ on:
 jobs:
   force-sync:
     if: ${{ github.repository == 'WillBooster/one-way-git-sync' }}
-    runs-on: self-hosted
+    runs-on: ubutnu
     steps:
       - uses: actions/checkout@v2
         with:
