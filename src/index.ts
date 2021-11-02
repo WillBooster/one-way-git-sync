@@ -58,7 +58,6 @@ async function main(settings: InferredOptionTypes<typeof builder>): Promise<void
   console.log('Cloned a destination repo.');
 
   const dstGit: SimpleGit = simpleGit(SYNC_DIR_PATH);
-
   const dstLog = await dstGit.log();
 
   const from = extractCommitHash(dstLog);
