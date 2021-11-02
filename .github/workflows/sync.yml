@@ -37,7 +37,7 @@ jobs:
           git config --global user.email "bot@willbooster.com"
           git config --global user.name "WillBooster Inc."
       - run: |
-          yarn one-way-git-sync \
+          yarn start \
             -d https://WillBooster-bot:${GITHUB_TOKEN}@github.com/WillBooster/sample-ofone-way-git-sync \
             -p https://github.com/WillBooster/one-way-git-sync/commits/
         env:

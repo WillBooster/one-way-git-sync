@@ -12,7 +12,7 @@ const plugins = [
 ];
 
 export default {
-  input: 'src/index.ts',
+  input: 'src/cli.ts',
   output: [
     {
       file: 'dist/index.js',
