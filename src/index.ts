@@ -6,58 +6,27 @@ import fse from 'fs-extra';
 import simpleGit, { SimpleGit } from 'simple-git';
 import type { LogResult } from 'simple-git/typings/response';
 import { InferredOptionTypes } from 'yargs';
-import { hideBin } from 'yargs/helpers';
-import yargs from 'yargs/yargs';
+
+import { yargsOptions } from './yargsOptions';
 
 const SYNC_DIR_PATH = '../sync-git-repo';
 const ignoreNames = ['.git', 'node_modules'];
 
-const builder = {
-  dest: {
-    type: 'string',
-    alias: 'd',
-    describe: 'A URL of a destination git repository',
-    demand: true,
-  },
-  prefix: {
-    type: 'string',
-    alias: 'p',
-    describe: `A prefix of a commit hash used to generate a commit message.
-                 The typical value is like "https://github.com/WillBooster/one-way-git-sync/commits/"`,
-  },
-  tag: {
-    type: 'boolean',
-    alias: 't',
-    describe: 'Create version+hash tag (e.g. v1.31.5-2-gcdde507). This should be a unique tag.',
-  },
-  'tag-version': {
-    type: 'boolean',
-    alias: 'tv',
-    describe: 'Create version tag (e.g. v1.31.5). This may be a non-unique tag.',
-  },
-  dry: {
-    type: 'boolean',
-    describe: 'Enable dry-run mode',
-  },
-  force: {
-    type: 'boolean',
-    describe: 'Force to overwrite the destination git repository',
-  },
-} as const;
-
-export async function cli(argv: string[]): Promise<void> {
-  const parsed = await yargs(hideBin(argv)).options(builder).argv;
-  await main(parsed);
-}
-
-async function main(settings: InferredOptionTypes<typeof builder>): Promise<void> {
+export async function main(opts: InferredOptionTypes<typeof yargsOptions>): Promise<void> {
   const srcGit: SimpleGit = simpleGit();
 
   await fsp.rm(SYNC_DIR_PATH, { recursive: true, force: true });
-  await srcGit.clone(settings.dest, SYNC_DIR_PATH, settings.force ? undefined : { '--depth': 1 });
+  await srcGit.clone(opts.dest, SYNC_DIR_PATH, opts.force ? undefined : { '--depth': 1 });
   console.log('Cloned a destination repo.');
 
   const dstGit: SimpleGit = simpleGit(SYNC_DIR_PATH);
+  if (opts.branch) {
+    try {
+      await dstGit.checkout(opts.branch);
+    } catch (_) {
+      await dstGit.checkoutLocalBranch(opts.branch);
+    }
+  }
   const dstLog = await dstGit.log();
 
   const from = extractCommitHash(dstLog);
@@ -92,10 +61,14 @@ async function main(settings: InferredOptionTypes<typeof builder>): Promise<void
   }
   await dstGit.add('-A');
 
-  // e.g. `--abbrev=0` changes `v1.31.5-2-gcdde507` to `v1.31.5`
-  const describeCommand = `git describe --tags --always ${settings['tag-version'] ? '--abbrev=0' : ''}`;
-  const version = child_process.execSync(describeCommand).toString().trim();
-  const title = `sync ${version} (${settings.prefix || ''}${latestHash})`;
+  let srcTag = '';
+  if (opts['tag-hash'] || opts['tag-version']) {
+    // e.g. `--abbrev=0` changes `v1.31.5-2-gcdde507` to `v1.31.5`
+    const describeCommand = `git describe --tags --always ${opts['tag-version'] ? '--abbrev=0' : ''}`;
+    srcTag = child_process.execSync(describeCommand).toString().trim();
+  }
+  const link = `${opts.prefix || ''}${latestHash}`;
+  const title = srcTag ? `sync ${srcTag} (${link})` : `sync ${link}`;
   const body = srcLog.all.map((l) => `* ${l.message}`).join('\n\n');
   try {
     await dstGit.commit(`${title}\n\n${body}`);
@@ -106,25 +79,25 @@ async function main(settings: InferredOptionTypes<typeof builder>): Promise<void
     process.exit(1);
   }
 
-  const shouldCreateTag = settings.tag || settings['tag-version'];
-  if (shouldCreateTag) {
+  const destTag = srcTag || opts.tag;
+  if (destTag) {
     try {
-      await dstGit.addTag(version);
-      console.log(`Created a tag: ${version}`);
+      await dstGit.addTag(destTag);
+      console.log(`Created a tag: ${destTag}`);
     } catch (e) {
       console.error('Failed to commit changes:', e);
       process.exit(1);
     }
   }
 
-  if (settings.dry) {
+  if (opts.dry) {
     console.log('Finished dry run');
     process.exit(0);
   }
 
   try {
     await dstGit.push();
-    if (shouldCreateTag) {
+    if (destTag) {
       await dstGit.push({ '--tags': null });
     }
   } catch (e) {

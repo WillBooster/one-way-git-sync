@@ -1,3 +1,3 @@
-import { cli } from './index';
+import { cli } from './cli';
 
 cli(process.argv).then();
