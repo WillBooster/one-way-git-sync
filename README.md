@@ -57,7 +57,7 @@ The sample commands are as follows:
 
 ## Example Repository and Example GitHub Actions Workflows
 
-[sample-of-one-way-git-sync](https://github.com/WillBooster/sample-of-one-way-git-sync) is an example synchronized repository.
-[release.yml](.github/workflows/release.yml) workflow releases a new npm package and add a tag automatically in this repository using `semantic-release`.
-When a new version is released, [sync.yml](.github/workflows/sync.yml) workflow synchronizes `sample-of-one-way-git-sync` repository using `one-way-git-sync`.
-We can manually trigger [force-sync.yml](.github/workflows/force-sync.yml) workflow which forces synchronizing `sample-of-one-way-git-sync` repository.
+- [sample-of-one-way-git-sync](https://github.com/WillBooster/sample-of-one-way-git-sync): an example synchronized repository.
+- [release.yml](.github/workflows/release.yml): releases a new npm package and add a tag automatically in this repository using `semantic-release`.
+- [sync.yml](.github/workflows/sync.yml): it synchronizes `sample-of-one-way-git-sync` repository using `one-way-git-sync` when a new version is released.
+- [force-sync.yml](.github/workflows/force-sync.yml): we can manually trigger this workflow which forces synchronizing `sample-of-one-way-git-sync` repository.
