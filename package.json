@@ -1,6 +1,6 @@
 {
   "name": "one-way-git-sync",
-  "description": "A tool for synchronizing git repos unidirectionally.",
+  "description": "A tool for synchronizing a destination git repository with a source git repository SAFELY.",
   "keywords": [
     "git",
     "sync"
@@ -31,6 +31,7 @@
   "dependencies": {
     "fs-extra": "10.0.0",
     "simple-git": "2.47.0",
+    "winston": "3.3.3",
     "yargs": "17.2.1"
   },
   "devDependencies": {

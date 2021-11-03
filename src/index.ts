@@ -7,19 +7,29 @@ import simpleGit, { SimpleGit } from 'simple-git';
 import type { LogResult } from 'simple-git/typings/response';
 import { InferredOptionTypes } from 'yargs';
 
+import { logger } from './logger';
 import { yargsOptions } from './yargsOptions';
 
-const SYNC_DIR_PATH = '../sync-git-repo';
+const syncDirPath = path.join('node_modules', '.temp', 'sync-git-repo');
 const ignoreNames = ['.git', 'node_modules'];
 
-export async function main(opts: InferredOptionTypes<typeof yargsOptions>): Promise<void> {
-  const srcGit: SimpleGit = simpleGit();
+export async function sync(opts: InferredOptionTypes<typeof yargsOptions>, init: boolean): Promise<void> {
+  await fsp.mkdir(syncDirPath, { recursive: true });
+  const dirPath = await fsp.mkdtemp(path.join(syncDirPath, 'repo-'));
+  const ret = await syncCore(dirPath, opts, init);
+  await fsp.rm(dirPath, { recursive: true, force: true });
+  process.exit(ret ? 0 : 1);
+}
 
-  await fsp.rm(SYNC_DIR_PATH, { recursive: true, force: true });
-  await srcGit.clone(opts.dest, SYNC_DIR_PATH, opts.force ? undefined : { '--depth': 1 });
-  console.log('Cloned a destination repo.');
+async function syncCore(
+  destRepoPath: string,
+  opts: InferredOptionTypes<typeof yargsOptions>,
+  init: boolean
+): Promise<boolean> {
+  await simpleGit().clone(opts.dest, destRepoPath, opts.force ? undefined : { '--depth': 1 });
+  logger.verbose('Cloned a destination repo');
 
-  const dstGit: SimpleGit = simpleGit(SYNC_DIR_PATH);
+  const dstGit: SimpleGit = simpleGit(destRepoPath);
   if (opts.branch) {
     try {
       await dstGit.checkout(opts.branch);
@@ -29,35 +39,40 @@ export async function main(opts: InferredOptionTypes<typeof yargsOptions>): Prom
   }
   const dstLog = await dstGit.log();
 
-  const from = extractCommitHash(dstLog);
-  if (!from) {
-    console.error('No valid commit in destination repo.');
-    process.exit(1);
+  let from: string | undefined;
+  if (!init) {
+    from = extractCommitHash(dstLog);
+    if (!from) {
+      logger.error('No valid commit in destination repo');
+      return false;
+    }
+    logger.verbose(`Extracted a valid commit: ${from}`);
   }
-  console.log(`Extracted a valid commit: ${from}`);
 
+  const srcGit: SimpleGit = simpleGit();
   let srcLog: LogResult;
   try {
     // '--first-parent' hides children commits of merge commits
-    srcLog = await srcGit.log({ from, to: 'HEAD', '--first-parent': undefined });
+    srcLog = await srcGit.log(from ? { from, to: 'HEAD', '--first-parent': undefined } : undefined);
   } catch (e) {
-    console.error('Failed to get source commit history:', e);
-    process.exit(1);
+    logger.error('Failed to get source commit history:', e);
+    return false;
   }
 
   const latestHash = srcLog.latest?.hash;
   if (!latestHash) {
-    console.log('No synchronizable commit.');
-    process.exit(0);
+    logger.info('No synchronizable commit');
+    return true;
   }
 
-  for (const name of await fsp.readdir(SYNC_DIR_PATH)) {
-    if (ignoreNames.includes(name)) continue;
-    await fsp.rm(path.join(SYNC_DIR_PATH, name), { recursive: true, force: true });
+  const [destFiles, srcFiles] = await Promise.all([fsp.readdir(destRepoPath), fsp.readdir('.')]);
+  for (const destFile of destFiles) {
+    if (ignoreNames.includes(destFile)) continue;
+    await fsp.rm(path.join(destRepoPath, destFile), { recursive: true, force: true });
   }
-  for (const name of await fsp.readdir('.')) {
-    if (ignoreNames.includes(name)) continue;
-    fse.copySync(name, path.join(SYNC_DIR_PATH, name));
+  for (const srcFile of srcFiles) {
+    if (ignoreNames.includes(srcFile)) continue;
+    fse.copySync(srcFile, path.join(destRepoPath, srcFile));
   }
   await dstGit.add('-A');
 
@@ -69,30 +84,32 @@ export async function main(opts: InferredOptionTypes<typeof yargsOptions>): Prom
   }
   const link = `${opts.prefix || ''}${latestHash}`;
   const title = srcTag ? `sync ${srcTag} (${link})` : `sync ${link}`;
-  const body = srcLog.all.map((l) => `* ${l.message}`).join('\n\n');
+  const body = init
+    ? `Initialize one-way-git-sync by replacing all the files with those of ${opts.dest}`
+    : srcLog.all.map((l) => `* ${l.message}`).join('\n\n');
   try {
     await dstGit.commit(`${title}\n\n${body}`);
-    console.log(`Created a commit: ${title}`);
-    console.log(`${body}`);
+    logger.verbose(`Created a commit: ${title}`);
+    logger.verbose(`  with body: ${body}`);
   } catch (e) {
-    console.error('Failed to commit changes:', e);
-    process.exit(1);
+    logger.error('Failed to commit changes:', e);
+    return false;
   }
 
   const destTag = srcTag || opts.tag;
   if (destTag) {
     try {
       await dstGit.addTag(destTag);
-      console.log(`Created a tag: ${destTag}`);
+      logger.verbose(`Created a tag: ${destTag}`);
     } catch (e) {
-      console.error('Failed to commit changes:', e);
-      process.exit(1);
+      logger.error('Failed to commit changes:', e);
+      return false;
     }
   }
 
   if (opts.dry) {
-    console.log('Finished dry run');
-    process.exit(0);
+    logger.verbose('Finished dry run');
+    return true;
   }
 
   try {
@@ -101,18 +118,18 @@ export async function main(opts: InferredOptionTypes<typeof yargsOptions>): Prom
       await dstGit.push({ '--tags': null });
     }
   } catch (e) {
-    console.error('Failed to push a commit:', e);
-    process.exit(1);
+    logger.error('Failed to push a commit:', e);
+    return false;
   }
 
-  console.log('Pushed');
-  process.exit(0);
+  logger.verbose('Pushed a commit');
+  return true;
 }
 
-function extractCommitHash(logResult: LogResult): string | null {
+function extractCommitHash(logResult: LogResult): string | undefined {
   if (logResult.all.length === 0) {
-    console.error('No commit history.');
-    return null;
+    logger.error('No commit history');
+    return;
   }
 
   for (const log of logResult.all) {
@@ -121,6 +138,6 @@ function extractCommitHash(logResult: LogResult): string | null {
       return words[words.length - 1];
     }
   }
-  console.error('No sync commit: ', logResult.all[0]);
-  return null;
+  logger.error('No sync commit: ', logResult.all[0]);
+  return;
 }

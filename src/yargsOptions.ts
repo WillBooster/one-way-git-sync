@@ -37,4 +37,9 @@ export const yargsOptions = {
     type: 'boolean',
     describe: 'Force to overwrite the destination git repository.',
   },
+  verbose: {
+    type: 'boolean',
+    alias: 'v',
+    describe: 'Show details logs.',
+  },
 } as const;
