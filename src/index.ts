@@ -82,7 +82,11 @@ async function syncCore(
     const describeCommand = `git describe --tags --always ${opts['tag-version'] ? '--abbrev=0' : ''}`;
     srcTag = child_process.execSync(describeCommand).toString().trim();
   }
-  const link = `${opts.prefix || ''}${latestHash}`;
+  let prefix = opts.prefix ?? '';
+  if (prefix && !prefix.endsWith('/')) {
+    prefix += '/';
+  }
+  const link = `${prefix}${latestHash}`;
   const title = srcTag ? `sync ${srcTag} (${link})` : `sync ${link}`;
   const body = init
     ? `Initialize one-way-git-sync by replacing all the files with those of ${opts.dest}`

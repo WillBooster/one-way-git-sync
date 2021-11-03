@@ -8,8 +8,8 @@ export const yargsOptions = {
   prefix: {
     type: 'string',
     alias: 'p',
-    describe: `A prefix of a commit hash used to generate a commit message.
-                 The typical value is like "https://github.com/WillBooster/one-way-git-sync/commits/"`,
+    describe: `A prefix of a commit hash used to generate a commit title, e.g. 'sync <prefix>/<hash>'.
+               A typical value is like 'https://github.com/WillBooster/one-way-git-sync/commits'`,
   },
   branch: {
     type: 'string',
