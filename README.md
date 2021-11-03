@@ -40,12 +40,12 @@ yarn one-way-git-sync \
 ### How to Deal with Conflicts
 
 If the last commit in the dest repo isn't a sync commit and if it is not first time,
-the dest repo probably has a commit which doesn't exist in the src repo.
-You need to merge such commits in the src repo manually at first,
+the dest repo probably has some commits (`conflict commits`) which don't exist in the src repo.
+You need to merge conflict commits in the src repo manually at first,
 then, you need to force synchronizing the dest repo with the src repo.
 The sample commands are as follows:
 
-1. `yarn one-way-git-sync` fails and you noticed there exists a conflict (i.e. an unaware commit in `sample-of-one-way-git-sync`)
+1. `yarn one-way-git-sync` fails then you notice there exist conflict commits
 2. `cd one-way-git-sync`
 3. `git remote add upstream https://github.com/WillBooster/sample-of-one-way-git-sync`
 4. `git merge --allow-unrelated-histories upstream/main`
