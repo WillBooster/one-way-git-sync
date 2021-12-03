@@ -79,5 +79,5 @@
   "engines": {
     "node": ">=14"
   },
-  "packageManager": "yarn@3.2.0-rc.6"
+  "packageManager": "yarn@3.2.0-rc.7"
 }
