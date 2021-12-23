@@ -18,13 +18,13 @@
     "cleanup": "yarn format && yarn lint-fix",
     "format": "sort-package-json && yarn prettify",
     "postinstall": "husky install",
-    "lint": "eslint --color \"./{src,__tests__}/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint --color \"./{src,__tests__}/**/*.{cjs,js,jsx,mjs,ts,tsx}\"",
     "lint-fix": "yarn lint --fix",
     "prepublishOnly": "pinst --disable",
-    "prettify": "prettier --color --write \"**/{.*/,}*.{css,htm,html,js,json,json5,jsx,md,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\"",
+    "prettify": "prettier --color --write \"**/{.*/,}*.{cjs,css,htm,html,js,json,json5,jsx,md,mjs,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\"",
     "postpublish": "pinst --enable",
-    "start": "yarn && babel-node -x .js,.jsx,.es6,.es,.ts -- src/start.ts",
-    "start-prod": "yarn && yarn build && yarn one-way-git-sync",
+    "start": "babel-node -x .js,.jsx,.es6,.es,.ts -- src/start.ts",
+    "start-prod": "yarn build && yarn one-way-git-sync",
     "typecheck": "tsc --noEmit --Pretty"
   },
   "prettier": "@willbooster/prettier-config",
@@ -50,8 +50,8 @@
     "@types/micromatch": "4.0.2",
     "@types/semantic-release": "17.2.3",
     "@types/yargs": "17.0.7",
-    "@typescript-eslint/eslint-plugin": "5.7.0",
-    "@typescript-eslint/parser": "5.7.0",
+    "@typescript-eslint/eslint-plugin": "5.8.0",
+    "@typescript-eslint/parser": "5.8.0",
     "@willbooster/eslint-config-ts": "6.5.0",
     "@willbooster/prettier-config": "6.5.0",
     "@willbooster/renovate-config": "6.5.0",
@@ -79,5 +79,5 @@
   "engines": {
     "node": ">=14"
   },
-  "packageManager": "yarn@3.2.0-rc.8"
+  "packageManager": "yarn@3.1.1"
 }
