@@ -25,6 +25,9 @@ yarn one-way-git-sync init \
   -p https://github.com/WillBooster/one-way-git-sync/commits/
 ```
 
+If you have no permission to modify `https://github.com/WillBooster/sample-of-one-way-git-sync`,
+you have to
+
 ### Usual Usage
 
 If the last commit in the dest repo is a sync commit,
