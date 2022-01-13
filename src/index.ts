@@ -26,10 +26,12 @@ async function syncCore(
   opts: InferredOptionTypes<typeof yargsOptions>,
   init: boolean
 ): Promise<boolean> {
-  const cloneOpts: Record<string, any> = opts.force ? {} : { '--depth': 1 };
+  const cloneOpts: Record<string, any> = { '--single-branch': undefined };
+  if (!opts.force) {
+    cloneOpts['--depth'] = 1;
+  }
   if (opts.branch) {
     cloneOpts['--branch'] = opts.branch;
-    cloneOpts['--single-branch'] = undefined;
   }
   await simpleGit().clone(opts.dest, destRepoPath, cloneOpts);
   logger.verbose(`Cloned a destination repo on ${destRepoPath}`);
