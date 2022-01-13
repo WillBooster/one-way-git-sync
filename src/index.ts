@@ -26,17 +26,17 @@ async function syncCore(
   opts: InferredOptionTypes<typeof yargsOptions>,
   init: boolean
 ): Promise<boolean> {
-  await simpleGit().clone(opts.dest, destRepoPath, opts.force ? undefined : { '--depth': 1 });
-  logger.verbose('Cloned a destination repo');
+  const cloneOpts: Record<string, any> = { '--single-branch': undefined };
+  if (!opts.force) {
+    cloneOpts['--depth'] = 1;
+  }
+  if (opts.branch) {
+    cloneOpts['--branch'] = opts.branch;
+  }
+  await simpleGit().clone(opts.dest, destRepoPath, cloneOpts);
+  logger.verbose(`Cloned a destination repo on ${destRepoPath}`);
 
   const dstGit: SimpleGit = simpleGit(destRepoPath);
-  if (opts.branch) {
-    try {
-      await dstGit.checkout(opts.branch);
-    } catch (_) {
-      await dstGit.checkoutLocalBranch(opts.branch);
-    }
-  }
   const dstLog = await dstGit.log();
 
   let from: string | undefined;
@@ -55,7 +55,7 @@ async function syncCore(
     // '--first-parent' hides children commits of merge commits
     srcLog = await srcGit.log(from ? { from, to: 'HEAD', '--first-parent': undefined } : undefined);
   } catch (e) {
-    logger.error('Failed to get source commit history:', e);
+    logger.error(`Failed to get source commit history: ${(e as Error).stack}`);
     return false;
   }
 
@@ -96,7 +96,7 @@ async function syncCore(
     logger.verbose(`Created a commit: ${title}`);
     logger.verbose(`  with body: ${body}`);
   } catch (e) {
-    logger.error('Failed to commit changes:', e);
+    logger.error(`Failed to commit changes: ${(e as Error).stack}\`);`);
     return false;
   }
 
@@ -106,7 +106,7 @@ async function syncCore(
       await dstGit.addTag(destTag);
       logger.verbose(`Created a tag: ${destTag}`);
     } catch (e) {
-      logger.error('Failed to commit changes:', e);
+      logger.error(`Failed to commit changes: ${(e as Error).stack}\`);`);
       return false;
     }
   }
@@ -122,11 +122,11 @@ async function syncCore(
       await dstGit.push({ '--tags': null });
     }
   } catch (e) {
-    logger.error('Failed to push a commit:', e);
+    logger.error(`Failed to push the commit: ${(e as Error).stack}`);
     return false;
   }
 
-  logger.verbose('Pushed a commit');
+  logger.verbose('Pushed the commit');
   return true;
 }
 
@@ -142,6 +142,6 @@ function extractCommitHash(logResult: LogResult): string | undefined {
       return words[words.length - 1];
     }
   }
-  logger.error('No sync commit: ', logResult.all[0]);
+  logger.error(`No sync commit: ${logResult.all[0].message}`);
   return;
 }
