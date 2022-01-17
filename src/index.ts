@@ -11,7 +11,7 @@ import { logger } from './logger';
 import { yargsOptions } from './yargsOptions';
 
 const syncDirPath = path.join('node_modules', '.temp', 'sync-git-repo');
-const ignoreNames = ['.git', 'node_modules'];
+const ignoreNames = ['.git', '.github', 'node_modules'];
 
 export async function sync(opts: InferredOptionTypes<typeof yargsOptions>, init: boolean): Promise<void> {
   await fsp.mkdir(syncDirPath, { recursive: true });
