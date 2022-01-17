@@ -6,7 +6,7 @@ on:
 
 jobs:
   sync:
-    uses: WillBooster/reusable-workflows/.github/workflows/test.yml@main
+    uses: WillBooster/reusable-workflows/.github/workflows/sync.yml@main
     with:
       non_self_hosted: true
       sync_params_without_dest: 'sync -v --tag-version -p https://github.com/WillBooster/one-way-git-sync/commits/'
