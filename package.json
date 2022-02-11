@@ -35,7 +35,7 @@
     "yargs": "17.3.1"
   },
   "devDependencies": {
-    "@babel/core": "7.17.0",
+    "@babel/core": "7.17.2",
     "@babel/helper-plugin-utils": "7.16.7",
     "@babel/node": "7.16.8",
     "@babel/plugin-proposal-class-properties": "7.16.7",
@@ -50,8 +50,8 @@
     "@types/micromatch": "4.0.2",
     "@types/semantic-release": "17.2.3",
     "@types/yargs": "17.0.8",
-    "@typescript-eslint/eslint-plugin": "5.10.2",
-    "@typescript-eslint/parser": "5.10.2",
+    "@typescript-eslint/eslint-plugin": "5.11.0",
+    "@typescript-eslint/parser": "5.11.0",
     "@willbooster/eslint-config-ts": "6.5.0",
     "@willbooster/prettier-config": "6.5.0",
     "@willbooster/renovate-config": "6.5.0",
@@ -70,7 +70,7 @@
     "pinst": "2.1.6",
     "power-assert": "1.6.1",
     "prettier": "2.5.1",
-    "rollup": "2.67.0",
+    "rollup": "2.67.2",
     "rollup-plugin-node-externals": "3.1.2",
     "semantic-release": "18.0.1",
     "sort-package-json": "1.54.0",
@@ -79,5 +79,5 @@
   "engines": {
     "node": ">=14"
   },
-  "packageManager": "yarn@3.2.0-rc.13"
+  "packageManager": "yarn@3.2.0-rc.14"
 }
