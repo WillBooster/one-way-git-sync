@@ -23,6 +23,7 @@
     "prepublishOnly": "pinst --disable",
     "prettify": "prettier --color --write \"**/{.*/,}*.{cjs,css,htm,html,js,json,json5,jsx,md,mjs,scss,ts,tsx,vue,yaml,yml}\" \"!**/test-fixtures/**\"",
     "postpublish": "pinst --enable",
+    "release": "yarn build && semantic-release",
     "start": "babel-node -x .js,.jsx,.es6,.es,.ts -- src/start.ts",
     "start-prod": "yarn build && yarn one-way-git-sync",
     "typecheck": "tsc --noEmit --Pretty"
