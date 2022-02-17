@@ -3,8 +3,8 @@ import fsp from 'fs/promises';
 import path from 'path';
 
 import fse from 'fs-extra';
+import type { LogResult } from 'simple-git';
 import simpleGit, { SimpleGit } from 'simple-git';
-import type { LogResult } from 'simple-git/typings/response';
 import { InferredOptionTypes } from 'yargs';
 
 import { logger } from './logger';
