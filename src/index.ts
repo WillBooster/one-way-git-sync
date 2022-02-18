@@ -40,7 +40,7 @@ async function syncCore(
 
     delete cloneOpts['--single-branch'];
     await simpleGit().clone(opts.dest, destRepoPath, cloneOpts);
-    simpleGit(destRepoPath).checkout(['-B', opts.branch] as TaskOptions);
+    simpleGit(destRepoPath).checkout(['-b', opts.branch] as TaskOptions);
   }
   logger.verbose(`Cloned a destination repo on ${destRepoPath}`);
 
