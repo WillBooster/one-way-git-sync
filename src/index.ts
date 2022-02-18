@@ -39,7 +39,6 @@ async function syncCore(
     if (!init) throw e;
 
     delete cloneOpts['--single-branch'];
-    delete cloneOpts['--branch'];
     await simpleGit().clone(opts.dest, destRepoPath, cloneOpts);
     simpleGit(destRepoPath).checkout(['-B', opts.branch] as TaskOptions);
   }
