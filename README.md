@@ -14,8 +14,8 @@ It provides three features:
 
 ### Initial Usage
 
-Since `one-way-git-sync` finds a sync commit from the commit history of the dest repo,
-you need to run `init` subcommand to add an initial sync commit
+Because `one-way-git-sync` finds a sync commit from the commit history of the dest repo,
+you need to run `init` subcommand to add an initial sync commit to the dest repo
 by replacing all the files of the dest repo with those of src repo at first.
 The sample command is as follows:
 
@@ -28,7 +28,7 @@ yarn one-way-git-sync init \
 ### Usual Usage
 
 If the last commit in the dest repo is a sync commit,
-`one-way-git-sync` safely synchronize the dest repo with the src repo.
+`one-way-git-sync` safely synchronizes the dest repo with the src repo.
 The sample command is as follows:
 
 ```
