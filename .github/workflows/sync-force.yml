@@ -10,4 +10,4 @@ jobs:
       non_self_hosted: true
       sync_params_without_dest: 'init -v --tag-version -p https://github.com/WillBooster/one-way-git-sync/commits/'
     secrets:
-      DEST_GIT_URL: https://oauth2:${{ secrets.PAT_FOR_TEST }}@github.com/WillBooster/sample-of-one-way-git-sync
+      DEST_GIT_URL: https://oauth2:${{ secrets.PUBLIC_GH_BOT_PAT }}@github.com/WillBooster/sample-of-one-way-git-sync
