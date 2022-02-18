@@ -3,7 +3,7 @@ import fsp from 'fs/promises';
 import path from 'path';
 
 import fse from 'fs-extra';
-import type { LogResult } from 'simple-git';
+import type { LogResult, TaskOptions } from 'simple-git';
 import simpleGit, { SimpleGit } from 'simple-git';
 import { InferredOptionTypes } from 'yargs';
 
@@ -33,7 +33,16 @@ async function syncCore(
   if (opts.branch) {
     cloneOpts['--branch'] = opts.branch;
   }
-  await simpleGit().clone(opts.dest, destRepoPath, cloneOpts);
+  try {
+    await simpleGit().clone(opts.dest, destRepoPath, cloneOpts);
+  } catch (e) {
+    if (!init) throw e;
+
+    delete cloneOpts['--single-branch'];
+    delete cloneOpts['--branch'];
+    await simpleGit().clone(opts.dest, destRepoPath, cloneOpts);
+    simpleGit(destRepoPath).checkout(['-B', opts.branch] as TaskOptions);
+  }
   logger.verbose(`Cloned a destination repo on ${destRepoPath}`);
 
   const dstGit: SimpleGit = simpleGit(destRepoPath);
