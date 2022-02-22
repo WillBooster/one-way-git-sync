@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "fs-extra": "10.0.0",
+    "micromatch": "4.0.4",
     "simple-git": "3.2.6",
     "winston": "3.6.0",
     "yargs": "17.3.1"
@@ -70,7 +71,6 @@
     "eslint-plugin-sort-destructure-keys": "1.4.0",
     "husky": "7.0.4",
     "lint-staged": "12.3.4",
-    "micromatch": "4.0.4",
     "pinst": "3.0.0",
     "prettier": "2.5.1",
     "rollup": "2.67.3",
