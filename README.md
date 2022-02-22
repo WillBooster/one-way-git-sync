@@ -20,13 +20,14 @@ by replacing all the files of the dest repo with those of src repo at first.
 The sample command is as follows:
 
 ```
-yarn one-way-git-sync init \
-  -d https://github.com/WillBooster/sample-of-one-way-git-sync \
+yarn dlx one-way-git-sync init \
+  -d git@github.com:WillBooster/sample-of-one-way-git-sync.git \
   -p https://github.com/WillBooster/one-way-git-sync/commits/
 ```
 
-If you have no permission to modify `https://github.com/WillBooster/sample-of-one-way-git-sync`,
-you have to
+If you have no permission to write `git@github.com:WillBooster/sample-of-one-way-git-sync.git`,
+please try `https://oauth2:<GitHub Personal Access Token>@github.com/WillBooster/sample-of-one-way-git-sync.git`.
+`<GitHub Personal Access Token>` should be like `ghp_...Gnm61dm4rh`.
 
 ### Usual Usage
 
@@ -35,8 +36,8 @@ If the last commit in the dest repo is a sync commit,
 The sample command is as follows:
 
 ```
-yarn one-way-git-sync \
-  -d https://github.com/WillBooster/sample-of-one-way-git-sync \
+yarn dlx one-way-git-sync \
+  -d git@github.com:WillBooster/sample-of-one-way-git-sync.git \
   -p https://github.com/WillBooster/one-way-git-sync/commits/
 ```
 
@@ -50,11 +51,11 @@ The sample commands are as follows:
 
 1. `yarn one-way-git-sync` fails then you notice there exist conflict commits
 2. `cd one-way-git-sync`
-3. `git remote add upstream https://github.com/WillBooster/sample-of-one-way-git-sync`
+3. `git remote add upstream git@github.com:WillBooster/sample-of-one-way-git-sync.git`
 4. `git merge --allow-unrelated-histories upstream/main`
 5. ```
-   yarn one-way-git-sync --force \
-     -d https://github.com/WillBooster/sample-of-one-way-git-sync \
+   yarn dlx one-way-git-sync --force \
+     -d git@github.com:WillBooster/sample-of-one-way-git-sync.git \
      -p https://github.com/WillBooster/one-way-git-sync/commits/
    ```
 
