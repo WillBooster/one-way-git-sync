@@ -8,8 +8,7 @@
         "bugfixes": true
       }
     ],
-    "@babel/typescript",
-    "power-assert"
+    "@babel/typescript"
   ],
   "plugins": ["@babel/proposal-class-properties", "@babel/proposal-numeric-separator"],
   "env": {
@@ -20,8 +19,7 @@
           {
             "exclude": ["error", "info", "warn"]
           }
-        ],
-        "babel-plugin-unassert"
+        ]
       ]
     }
   }

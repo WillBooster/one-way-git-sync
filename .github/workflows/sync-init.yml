@@ -1,14 +1,13 @@
-name: Sync
+name: Initialize to Sync
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
 
 jobs:
-  sync:
+  sync-init:
     uses: WillBooster/reusable-workflows/.github/workflows/sync.yml@main
     with:
       non_self_hosted: true
-      sync_params_without_dest: 'sync -v --tag-version -p https://github.com/WillBooster/one-way-git-sync/commits/'
+      sync_params_without_dest: 'sync -v --tag-version --force -p https://github.com/WillBooster/one-way-git-sync/commits/'
     secrets:
       DEST_GIT_URL: https://oauth2:${{ secrets.PUBLIC_GH_BOT_PAT }}@github.com/WillBooster/sample-of-one-way-git-sync

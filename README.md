@@ -14,8 +14,8 @@ It provides three features:
 
 ### Initial Usage
 
-Since `one-way-git-sync` finds a sync commit from the commit history of the dest repo,
-you need to run `init` subcommand to add an initial sync commit
+Because `one-way-git-sync` finds a sync commit from the commit history of the dest repo,
+you need to run `init` subcommand to add an initial sync commit to the dest repo
 by replacing all the files of the dest repo with those of src repo at first.
 The sample command is as follows:
 
@@ -31,7 +31,7 @@ you have to
 ### Usual Usage
 
 If the last commit in the dest repo is a sync commit,
-`one-way-git-sync` safely synchronize the dest repo with the src repo.
+`one-way-git-sync` safely synchronizes the dest repo with the src repo.
 The sample command is as follows:
 
 ```
@@ -63,4 +63,4 @@ The sample commands are as follows:
 - [sample-of-one-way-git-sync](https://github.com/WillBooster/sample-of-one-way-git-sync): an example synchronized repository.
 - [release.yml](.github/workflows/release.yml): releases a new npm package and add a tag automatically in this repository using `semantic-release`.
 - [sync.yml](.github/workflows/sync.yml): it synchronizes `sample-of-one-way-git-sync` repository using `one-way-git-sync` when a new version is released.
-- [force-sync.yml](.github/workflows/force-sync.yml): we can manually trigger this workflow which forces synchronizing `sample-of-one-way-git-sync` repository.
+- [force-sync.yml](.github/workflows/sync-force.yml): we can manually trigger this workflow which forces synchronizing `sample-of-one-way-git-sync` repository.
