@@ -34,7 +34,8 @@ export const yargsOptions = {
     alias: 'i',
     describe: `Exclude the files whose path matches one of the given patterns.
                The patterns are processed by micromatch (https://github.com/micromatch/micromatch).
-               You may specify the option multiple times. Default value is ['.git', 'node_modules']`,
+               You may specify the option multiple times. Default value is ['.git', '.github', 'node_modules']`,
+    default: ['.git', '.github', 'node_modules'],
   },
   dry: {
     type: 'boolean',
