@@ -8,6 +8,7 @@ import type { LogResult, TaskOptions } from 'simple-git';
 import simpleGit, { SimpleGit } from 'simple-git';
 import { InferredOptionTypes } from 'yargs';
 
+import { getGitHubCommitsUrl } from './gitHub';
 import { logger } from './logger';
 import { yargsOptions } from './yargsOptions';
 
@@ -88,7 +89,7 @@ async function syncCore(
     const describeCommand = `git describe --tags --always ${opts['tag-version'] ? '--abbrev=0' : ''}`;
     srcTag = child_process.execSync(describeCommand).toString().trim();
   }
-  let prefix = opts.prefix ?? '';
+  let prefix = opts.prefix ?? (await getGitHubCommitsUrl(srcGit)) ?? '';
   if (prefix && !prefix.endsWith('/')) {
     prefix += '/';
   }
