@@ -5,6 +5,6 @@ jobs:
   sync-force:
     uses: WillBooster/reusable-workflows/.github/workflows/sync.yml@main
     with:
-      sync_params_without_dest: 'init -v --tag-version -p https://github.com/WillBooster/one-way-git-sync/commits/'
+      sync_params_without_dest: '--force -v --tag-version'
     secrets:
       DEST_GIT_URL: https://oauth2:${{ secrets.PUBLIC_GH_BOT_PAT }}@github.com/WillBooster/sample-of-one-way-git-sync
