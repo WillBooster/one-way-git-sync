@@ -33,11 +33,11 @@
     "npm/chalk": "^4.1.2"
   },
   "dependencies": {
-    "fs-extra": "10.0.1",
+    "fs-extra": "10.1.0",
     "micromatch": "4.0.5",
-    "simple-git": "3.5.0",
+    "simple-git": "3.7.1",
     "winston": "3.7.2",
-    "yargs": "17.4.0"
+    "yargs": "17.4.1"
   },
   "devDependencies": {
     "@types/eslint": "8.4.1",
@@ -45,13 +45,13 @@
     "@types/micromatch": "4.0.2",
     "@types/semantic-release": "17.2.3",
     "@types/yargs": "17.0.10",
-    "@typescript-eslint/eslint-plugin": "5.20.0",
-    "@typescript-eslint/parser": "5.20.0",
+    "@typescript-eslint/eslint-plugin": "5.21.0",
+    "@typescript-eslint/parser": "5.21.0",
     "@willbooster/eslint-config-ts": "9.0.0",
     "@willbooster/prettier-config": "9.0.0",
     "@willbooster/renovate-config": "9.2.0",
     "conventional-changelog-conventionalcommits": "4.6.3",
-    "esbuild": "0.14.34",
+    "esbuild": "0.14.38",
     "esbuild-register": "3.3.2",
     "eslint": "8.14.0",
     "eslint-config-prettier": "8.5.0",
@@ -60,14 +60,14 @@
     "eslint-plugin-sort-class-members": "1.14.1",
     "eslint-plugin-sort-destructure-keys": "1.4.0",
     "husky": "7.0.4",
-    "lint-staged": "12.4.0",
+    "lint-staged": "12.4.1",
     "pinst": "3.0.0",
     "prettier": "2.6.2",
     "semantic-release": "19.0.2",
     "sort-package-json": "1.55.0",
-    "typescript": "4.6.3"
+    "typescript": "4.6.4"
   },
-  "packageManager": "yarn@4.0.0-rc.2",
+  "packageManager": "yarn@4.0.0-rc.3",
   "engines": {
     "node": ">=14"
   }
