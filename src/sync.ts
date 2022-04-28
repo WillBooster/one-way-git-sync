@@ -33,6 +33,7 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
   try {
     await simpleGit().clone(opts.dest, destRepoPath, cloneOpts);
   } catch (e) {
+    delete cloneOpts['--branch'];
     delete cloneOpts['--single-branch'];
     await simpleGit().clone(opts.dest, destRepoPath, cloneOpts);
     simpleGit(destRepoPath).checkout(['-b', opts.branch] as TaskOptions);
