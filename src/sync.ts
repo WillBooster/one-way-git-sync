@@ -118,7 +118,11 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
   }
 
   try {
-    await dstGit.push({ '--set-upstream': null });
+    if (opts.branch) {
+      await dstGit.push('origin', opts.branch);
+    } else {
+      await dstGit.push();
+    }
     if (destTag) {
       await dstGit.push({ '--tags': null });
     }
