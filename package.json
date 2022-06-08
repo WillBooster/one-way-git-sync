@@ -60,7 +60,7 @@
     "eslint-plugin-sort-class-members": "1.14.1",
     "eslint-plugin-sort-destructure-keys": "1.4.0",
     "husky": "7.0.4",
-    "lint-staged": "12.4.1",
+    "lint-staged": "13.0.1",
     "pinst": "3.0.0",
     "prettier": "2.6.2",
     "semantic-release": "19.0.2",
