@@ -37,7 +37,7 @@
     "micromatch": "4.0.5",
     "simple-git": "3.14.1",
     "winston": "3.8.2",
-    "yargs": "17.5.1"
+    "yargs": "17.6.0"
   },
   "devDependencies": {
     "@types/eslint": "8.4.6",
@@ -45,8 +45,8 @@
     "@types/micromatch": "4.0.2",
     "@types/semantic-release": "17.2.4",
     "@types/yargs": "17.0.13",
-    "@typescript-eslint/eslint-plugin": "5.38.1",
-    "@typescript-eslint/parser": "5.38.1",
+    "@typescript-eslint/eslint-plugin": "5.39.0",
+    "@typescript-eslint/parser": "5.39.0",
     "@willbooster/eslint-config-ts": "9.2.1",
     "@willbooster/prettier-config": "9.1.1",
     "@willbooster/renovate-config": "9.4.1",
