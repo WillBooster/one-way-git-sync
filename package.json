@@ -40,13 +40,13 @@
     "yargs": "17.6.0"
   },
   "devDependencies": {
-    "@types/eslint": "8.4.7",
+    "@types/eslint": "8.4.8",
     "@types/fs-extra": "9.0.13",
     "@types/micromatch": "4.0.2",
     "@types/semantic-release": "17.2.4",
     "@types/yargs": "17.0.13",
-    "@typescript-eslint/eslint-plugin": "5.40.1",
-    "@typescript-eslint/parser": "5.40.1",
+    "@typescript-eslint/eslint-plugin": "5.41.0",
+    "@typescript-eslint/parser": "5.41.0",
     "@willbooster/eslint-config-ts": "9.2.1",
     "@willbooster/prettier-config": "9.1.1",
     "@willbooster/renovate-config": "9.4.1",
