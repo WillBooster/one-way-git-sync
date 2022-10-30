@@ -89,13 +89,13 @@ __metadata:
   linkType: hard
 
 "@humanwhocodes/config-array@npm:^0.11.6":
-  version: 0.11.6
-  resolution: "@humanwhocodes/config-array@npm:0.11.6"
+  version: 0.11.7
+  resolution: "@humanwhocodes/config-array@npm:0.11.7"
   dependencies:
     "@humanwhocodes/object-schema": "npm:^1.2.1"
     debug: "npm:^4.1.1"
-    minimatch: "npm:^3.0.4"
-  checksum: e261b7b486429dbb6d8c1524173d6d89550842d003b5b3bd92c035cb6ca54fa91854bffe70720a21605ba5096dd19974ed88fecba2aa2c596915b7047837c7a3
+    minimatch: "npm:^3.0.5"
+  checksum: 36b949c975774cd6ce2e06651066bfdac549398a9b677b7e85005c520fd6ab2e313964a0cf5f0df39f50ee1e45be20867f6d79ae71a7428b509cbd7a1ddd07c2
   languageName: node
   linkType: hard
 
@@ -338,11 +338,9 @@ __metadata:
   linkType: hard
 
 "@npmcli/promise-spawn@npm:*":
-  version: 4.0.0
-  resolution: "@npmcli/promise-spawn@npm:4.0.0"
-  dependencies:
-    infer-owner: "npm:^1.0.4"
-  checksum: ef55a5fa42603942c0d0e5ce0b0db9573a6aed3518188426eed156d7c78cb97155b59770398c6c332d40a819d4aa3386c99e3356528015c1be64c05294d068b5
+  version: 5.0.0
+  resolution: "@npmcli/promise-spawn@npm:5.0.0"
+  checksum: 0e40d0a2fe5c58b59b7b5a4b8d3b5beaaaf11fb1bf17eec1d989efc7bbfdf5f7d3e4b05f1c047639d45d2094883eaa66c524e74212f431e03b0110b47ca436e4
   languageName: node
   linkType: hard
 
@@ -705,9 +703,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 18.11.3
-  resolution: "@types/node@npm:18.11.3"
-  checksum: a5764e83c872478f994bbc93807640db0d1ed6da7e9d55d18a9610691a89f169722414d480c44388550945b3c16a838f5e3e94de28207cc0616f12dba70edb96
+  version: 18.11.7
+  resolution: "@types/node@npm:18.11.7"
+  checksum: 1756caf0177b764ca8153e7a5d58a2f70466105f5cd64933b40f0f390a0f53167f87898ef6e9e1da4b5ceb00468fca457fe174abd87b3b5b5a0ccc8aba38787a
   languageName: node
   linkType: hard
 
@@ -742,9 +740,9 @@ __metadata:
   linkType: hard
 
 "@types/semver@npm:^7.3.12":
-  version: 7.3.12
-  resolution: "@types/semver@npm:7.3.12"
-  checksum: 35ae8150669b266e91d64c514415e69eabedb4d969aa61056b21028d9f35fdb856d745274d163a8c3a72650cd9abbfd78e878a28b79f41894da585a7d7c8229c
+  version: 7.3.13
+  resolution: "@types/semver@npm:7.3.13"
+  checksum: a76156ff60ddbd17bf2120c09dca3cd8ac7db4f8d8c69614a9ebc5202f05d1044def7fd8cf77415f7284ea8edfa1092b6e04dac07dc17c94762904c69dd2c85b
   languageName: node
   linkType: hard
 
@@ -946,11 +944,11 @@ __metadata:
   linkType: hard
 
 "acorn@npm:^8.8.0":
-  version: 8.8.0
-  resolution: "acorn@npm:8.8.0"
+  version: 8.8.1
+  resolution: "acorn@npm:8.8.1"
   bin:
     acorn: bin/acorn
-  checksum: 15b10fb381a8a0394a718eba147e120b9d1ae6ed087e61612ee5fda94f98182e5fcd78ef6725c027dc3c5677ce920617c14c359d7777e8ef6a058d2ba113f81f
+  checksum: f8a84cf59173c5c07cb6b8097c716370f799244189b23d58358eadf9729e0d62660bc11339e03f08517fa33d1ef4b69b84b0bdebe0c0d783acaa8d2c44a66345
   languageName: node
   linkType: hard
 
@@ -1742,12 +1740,12 @@ __metadata:
   linkType: hard
 
 "decamelize-keys@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "decamelize-keys@npm:1.1.0"
+  version: 1.1.1
+  resolution: "decamelize-keys@npm:1.1.1"
   dependencies:
     decamelize: "npm:^1.1.0"
     map-obj: "npm:^1.0.0"
-  checksum: 20d7f2e96144b1aecea50ed0a9a91fbb6f7e97fd50972ad9214a1ba3b53fa44b1023ca54a9d3ef7583bc98958ee685b53b306ec1d93cd420300b71a42a90b8db
+  checksum: 418779f9192411684973fc02bba8a77375af0bed3fed87f2ae9e56d04b7598605e0892960251299419a36f01f2f0f909cfae9ebd6fb625907ef4253a77ead461
   languageName: node
   linkType: hard
 
@@ -3113,11 +3111,11 @@ __metadata:
   linkType: hard
 
 "hosted-git-info@npm:^5.0.0, hosted-git-info@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "hosted-git-info@npm:5.1.0"
+  version: 5.2.1
+  resolution: "hosted-git-info@npm:5.2.1"
   dependencies:
     lru-cache: "npm:^7.5.1"
-  checksum: 48ec0e57865f4686fc293d4c64377d704a1fe3480dc5b01e45d651082c89e9d5ffd2bf94f974c56089ffa85e09dd50fedcd5a4f7a4d33d22fc9b9fea933d2d26
+  checksum: 479756f48473747fad111f980b00014dd50b8fd142cb7975396d731c201f23697d4335a317a604f1f3266cb5a1ea6dbb1fea9da3ff04428913afda92052dc14d
   languageName: node
   linkType: hard
 
@@ -4226,7 +4224,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^3.0.4, minimatch@npm:^3.1.1, minimatch@npm:^3.1.2":
+"minimatch@npm:^3.0.5, minimatch@npm:^3.1.1, minimatch@npm:^3.1.2":
   version: 3.1.2
   resolution: "minimatch@npm:3.1.2"
   dependencies:
@@ -6427,11 +6425,11 @@ __metadata:
   linkType: hard
 
 "uglify-js@npm:^3.1.4":
-  version: 3.17.3
-  resolution: "uglify-js@npm:3.17.3"
+  version: 3.17.4
+  resolution: "uglify-js@npm:3.17.4"
   bin:
     uglifyjs: bin/uglifyjs
-  checksum: 8707c6aae1ff5c36318332a370459d6172941c78f386d851803e1bdf7485990a36c1071334b0ee552fec15db8b0ab5d9844fbd70abcc591cb1bbb9cc071429e1
+  checksum: d7f8092c29f9edb176389a495147cb5e6aeaebcc701d8ce92640c4df42de723dc4502d6c4789c8572277aea01e222f13588cfa210b205323abfaa74b0af2557b
   languageName: node
   linkType: hard
 
