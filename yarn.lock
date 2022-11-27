@@ -1942,12 +1942,12 @@ __metadata:
   linkType: hard
 
 "enhanced-resolve@npm:^5.10.0":
-  version: 5.10.0
-  resolution: "enhanced-resolve@npm:5.10.0"
+  version: 5.12.0
+  resolution: "enhanced-resolve@npm:5.12.0"
   dependencies:
     graceful-fs: "npm:^4.2.4"
     tapable: "npm:^2.2.0"
-  checksum: 97f2cb6318920931b84ea1209b220b7f0324581eef434f16c1df95d1997a4bbd80cceabd6be81465cf450060dee84b265d317ac23276369756b2d8a3ca68e9d6
+  checksum: 37c59d96743be343aa8cf32540745675175125b105d0b9a4f72cfc9e8a5218e17139304a7e56e289f5795feb4d3b342345242f4d7c4d9f7df0e16aa1a8eede3e
   languageName: node
   linkType: hard
 
@@ -2918,11 +2918,11 @@ __metadata:
   linkType: hard
 
 "globals@npm:^13.15.0":
-  version: 13.17.0
-  resolution: "globals@npm:13.17.0"
+  version: 13.18.0
+  resolution: "globals@npm:13.18.0"
   dependencies:
     type-fest: "npm:^0.20.2"
-  checksum: 663e415f2ea22909f3336e1575a585c1b0976de186bb46e3a3dcd526a0390d836d27351c10be370396581b198351f5e108b77a3c906424391dcbd836825825e3
+  checksum: 6f892694a2be6ac05dfb6ae4b6955ec5ad4fe6d02c5de7481a4e7ea8519b43702775cb9022348a8c859c35bff81bdf768c76570cfd9b98c0d3759a1cc4b979f3
   languageName: node
   linkType: hard
 
@@ -3611,9 +3611,9 @@ __metadata:
   linkType: hard
 
 "js-sdsl@npm:^4.1.4":
-  version: 4.1.5
-  resolution: "js-sdsl@npm:4.1.5"
-  checksum: dafad5531a0a7a345a8ec5d83b16c8daf068893a90db8e718cf857b25878d87bbb08eee44bae309c4967dea3f2bd1aecaa8f107cf5c5c09d1579a671f1a14ed5
+  version: 4.2.0
+  resolution: "js-sdsl@npm:4.2.0"
+  checksum: 74ea285cb5f76087c4d6f4f959ddb889d6232d16160f86cfb5d538d59b7cf5cfb9966d9cd6603b2d3646804c1372700ae1feafbed1b5d13b5f779618d1285d49
   languageName: node
   linkType: hard
 
@@ -4131,11 +4131,11 @@ __metadata:
   linkType: hard
 
 "marked@npm:^4.0.10":
-  version: 4.2.2
-  resolution: "marked@npm:4.2.2"
+  version: 4.2.3
+  resolution: "marked@npm:4.2.3"
   bin:
     marked: bin/marked.js
-  checksum: 03d68d73414bf7b5c4acc2b54a554f28979f1aaddbe74fb1d453b8d3d616f8f6a33f63ce61ac62024faf44488bc337d4d9cef76a3d974fb871d9194912f9d572
+  checksum: eef338852a04728a8f5cc987877edad94cab26e1f8c9d7991f422790c1758671387cda124d312a4be6a014073563698d22060211fe4d1926f9a7440545ae69ae
   languageName: node
   linkType: hard
 
@@ -4310,11 +4310,11 @@ __metadata:
   linkType: hard
 
 "minipass@npm:^3.0.0, minipass@npm:^3.1.1, minipass@npm:^3.1.6":
-  version: 3.3.5
-  resolution: "minipass@npm:3.3.5"
+  version: 3.3.6
+  resolution: "minipass@npm:3.3.6"
   dependencies:
     yallist: "npm:^4.0.0"
-  checksum: 54b7be3d5d111832afcb7cc2bcb9e1bd21c3701731d1cd6dd91d673b7658f0c01bd52887764cf08f5dafe9a94abd7ce8fc800a2afe2bc19207bd83daac5ee052
+  checksum: 9704cf677a05e82174c1a0765260f877ce3b4f09858b6c80a07a38a41ff661a2913a482f82faa73b89fc23ee3bcc4cff04d7e8ce6951de4fc2c2108d360b6f1f
   languageName: node
   linkType: hard
 
@@ -5199,12 +5199,12 @@ __metadata:
   linkType: hard
 
 "postcss-selector-parser@npm:^6.0.10":
-  version: 6.0.10
-  resolution: "postcss-selector-parser@npm:6.0.10"
+  version: 6.0.11
+  resolution: "postcss-selector-parser@npm:6.0.11"
   dependencies:
     cssesc: "npm:^3.0.0"
     util-deprecate: "npm:^1.0.2"
-  checksum: 7ab7cbeba12343c9b8034c556a8e463ec13adbcc891eb8c51bb8f97d65b6bcb5dcd641df7b30014241e3f2435e3f6fbdf3229a8bdd25c14d88df24cb19e8e864
+  checksum: 7bee200415c2a0b35e41add91cded19209d746be9b2ab7c7b877cbac4358cda4e5dd19d3559544abfc7d87ff8824dcb5619657ac326973f323d0bda2cee0f1a8
   languageName: node
   linkType: hard
 
