@@ -1,6 +1,6 @@
-import child_process from 'child_process';
-import fsp from 'fs/promises';
-import path from 'path';
+import child_process from 'node:child_process';
+import fsp from 'node:fs/promises';
+import path from 'node:path';
 
 import fse from 'fs-extra';
 import micromatch from 'micromatch';
@@ -32,7 +32,7 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
   }
   try {
     await simpleGit().clone(opts.dest, destRepoPath, cloneOpts);
-  } catch (e) {
+  } catch {
     delete cloneOpts['--branch'];
     delete cloneOpts['--single-branch'];
     await simpleGit().clone(opts.dest, destRepoPath, cloneOpts);
@@ -57,8 +57,8 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
   try {
     // '--first-parent' hides children commits of merge commits
     srcLog = await srcGit.log(from ? { from, to: 'HEAD', '--first-parent': undefined } : undefined);
-  } catch (e) {
-    logger.error(`Failed to get source commit history: ${(e as Error).stack}`);
+  } catch (error) {
+    logger.error(`Failed to get source commit history: ${(error as Error).stack}`);
     return false;
   }
 
@@ -96,8 +96,8 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
     await dstGit.commit(`${title}\n\n${body}`);
     logger.verbose(`Created a commit: ${title}`);
     logger.verbose(`  with body: ${body}`);
-  } catch (e) {
-    logger.error(`Failed to commit changes: ${(e as Error).stack}\`);`);
+  } catch (error) {
+    logger.error(`Failed to commit changes: ${(error as Error).stack}\`);`);
     return false;
   }
 
@@ -106,8 +106,8 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
     try {
       await dstGit.addTag(destTag);
       logger.verbose(`Created a tag: ${destTag}`);
-    } catch (e) {
-      logger.error(`Failed to commit changes: ${(e as Error).stack}\`);`);
+    } catch (error) {
+      logger.error(`Failed to commit changes: ${(error as Error).stack}\`);`);
       return false;
     }
   }
@@ -118,16 +118,12 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
   }
 
   try {
-    if (opts.branch) {
-      await dstGit.push('origin', opts.branch);
-    } else {
-      await dstGit.push();
-    }
+    await (opts.branch ? dstGit.push('origin', opts.branch) : dstGit.push());
     if (destTag) {
       await dstGit.push({ '--tags': null });
     }
-  } catch (e) {
-    logger.error(`Failed to push the commit: ${(e as Error).stack}`);
+  } catch (error) {
+    logger.error(`Failed to push the commit: ${(error as Error).stack}`);
     return false;
   }
 
@@ -143,7 +139,7 @@ function extractCommitHash(logResult: LogResult): [string, string] | [] {
 
   for (const log of logResult.all) {
     const [head, ...words] = log.message.replace(/[()]/g, '').split(/[\s/]/);
-    if (head === 'sync' && words.length) {
+    if (head === 'sync' && words.length > 0) {
       return [log.message, words[words.length - 1]];
     }
   }
