@@ -33,7 +33,7 @@
     "npm/chalk": "^4.1.2"
   },
   "dependencies": {
-    "fs-extra": "10.1.0",
+    "fs-extra": "11.1.0",
     "micromatch": "4.0.5",
     "simple-git": "3.15.1",
     "winston": "3.8.2",
