@@ -858,12 +858,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semantic-release@npm:17.2.5":
-  version: 17.2.5
-  resolution: "@types/semantic-release@npm:17.2.5"
+"@types/semantic-release@npm:20.0.0":
+  version: 20.0.0
+  resolution: "@types/semantic-release@npm:20.0.0"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 267ac16f61d47bd0e34129d05f3badf843a5c5e1588dd0ebe00da617b3dd46d846b5eef1e9c238b8ed3d93e5bbd18da9d621b0f229311461866913ac5014b44a
+  checksum: 63c4d8f3a796a6c28a06743d2aae9bb336f0e23120b14445060e837439c7abcdeb24cd510c287068cd0c10a32c5db8f824bef9e595be5982ea50fc31f72d1a23
   languageName: node
   linkType: hard
 
@@ -4975,7 +4975,7 @@ __metadata:
     "@types/eslint": "npm:8.4.10"
     "@types/fs-extra": "npm:9.0.13"
     "@types/micromatch": "npm:4.0.2"
-    "@types/semantic-release": "npm:17.2.5"
+    "@types/semantic-release": "npm:20.0.0"
     "@types/yargs": "npm:17.0.19"
     "@typescript-eslint/eslint-plugin": "npm:5.48.1"
     "@typescript-eslint/parser": "npm:5.48.1"
