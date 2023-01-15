@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@types/eslint": "8.4.10",
-    "@types/fs-extra": "9.0.13",
+    "@types/fs-extra": "11.0.1",
     "@types/micromatch": "4.0.2",
     "@types/semantic-release": "20.0.0",
     "@types/yargs": "17.0.19",
