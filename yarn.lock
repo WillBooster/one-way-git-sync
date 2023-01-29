@@ -547,13 +547,13 @@ __metadata:
   linkType: hard
 
 "@octokit/endpoint@npm:^7.0.0":
-  version: 7.0.4
-  resolution: "@octokit/endpoint@npm:7.0.4"
+  version: 7.0.5
+  resolution: "@octokit/endpoint@npm:7.0.5"
   dependencies:
     "@octokit/types": "npm:^9.0.0"
     is-plain-object: "npm:^5.0.0"
     universal-user-agent: "npm:^6.0.0"
-  checksum: 3df56ad8f5fc5c5d4105d168e1338661523d08cd2adf10174d0bf25b93acab6d248dfb671f583cb4348502a71f7342bcb8bab79e144c87421f6a8a3183ecab6f
+  checksum: 16bfc1b5d102a16f94b51ea63ab1955c58af81b35d175a684d451ce509e046fd300ce0ec7e652e1db9baa7da912d7c32e1f371f61092272d8bc9b133bdcd78f1
   languageName: node
   linkType: hard
 
@@ -1095,11 +1095,11 @@ __metadata:
   linkType: hard
 
 "acorn@npm:^8.8.0":
-  version: 8.8.1
-  resolution: "acorn@npm:8.8.1"
+  version: 8.8.2
+  resolution: "acorn@npm:8.8.2"
   bin:
     acorn: bin/acorn
-  checksum: f8a84cf59173c5c07cb6b8097c716370f799244189b23d58358eadf9729e0d62660bc11339e03f08517fa33d1ef4b69b84b0bdebe0c0d783acaa8d2c44a66345
+  checksum: 5a47325f0aa08202080cb167d5b8103720d8a1d199f57988afa48bdfbc3c9973270b00e38c2c874240a49929625beaaae8c4ec683f5272b5f07f1119a457e5d0
   languageName: node
   linkType: hard
 
@@ -3052,11 +3052,11 @@ __metadata:
   linkType: hard
 
 "globals@npm:^13.19.0":
-  version: 13.19.0
-  resolution: "globals@npm:13.19.0"
+  version: 13.20.0
+  resolution: "globals@npm:13.20.0"
   dependencies:
     type-fest: "npm:^0.20.2"
-  checksum: 3f3d6606b78da1731d7a2837e75c5e941e7db414ca4a5ad90e456f771b68552095214457295f88a2b1580cd60b430c72020a3e10e39be1093c55c9331b5889ce
+  checksum: 1ba80ad03f29b8ca83b066c9d9ae305e7f0ee46164de36efac286fc3a58efc48986d688bf1f427f164f2a65bb1bdfa53beb8c56ae3092be255fc097bdcab1f1a
   languageName: node
   linkType: hard
 
@@ -3269,9 +3269,9 @@ __metadata:
   linkType: hard
 
 "http-cache-semantics@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "http-cache-semantics@npm:4.1.0"
-  checksum: ccfe23dd2729bc564ab419330e0c4646a1247e8dd728a4a6b3ab427b5243d2e0afea0c6fe690ff9ead43d02bd84cc5240e996543c4c87866f272e26e40540acd
+  version: 4.1.1
+  resolution: "http-cache-semantics@npm:4.1.1"
+  checksum: 7b4d86f99fb3f07b6a49219420ebdffa077ee99bc5fe1df1f353b84c3d321c767a083a48291afb2fc34a627661b6d54c80a927639a7be9e0c43e8c4f921816bd
   languageName: node
   linkType: hard
 
@@ -6474,12 +6474,12 @@ __metadata:
   linkType: hard
 
 "synckit@npm:^0.8.4":
-  version: 0.8.4
-  resolution: "synckit@npm:0.8.4"
+  version: 0.8.5
+  resolution: "synckit@npm:0.8.5"
   dependencies:
     "@pkgr/utils": "npm:^2.3.1"
-    tslib: "npm:^2.4.0"
-  checksum: 4e48556558263008c05df5f747b20b34ba919d7b41dda61e0756d3a7e26ade65b1b2c30e2772f8a5782fac01a6973d6bb5cd9d5636c8f04f61a1bded9e9feea7
+    tslib: "npm:^2.5.0"
+  checksum: 4f8cad99ececb0f22d91780c9882d1ef51fd551051cbd53f4674876771007e3b0ed6adcf17622a9bca8f9f8b16f49d91c4cc37d25888bc9d7ab3470e496bc4a6
   languageName: node
   linkType: hard
 
@@ -6651,10 +6651,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.1.0, tslib@npm:^2.4.0":
-  version: 2.4.1
-  resolution: "tslib@npm:2.4.1"
-  checksum: a739a21e3ff059e62c7c3c0845333fbc9c081bcc91e015f2d246a31eeaf1fb0e29b10c0913c7d22f692b3203bb469fd60ca5288aa4f27d351a969df2d0714899
+"tslib@npm:^2.1.0, tslib@npm:^2.4.0, tslib@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "tslib@npm:2.5.0"
+  checksum: 5a6ee935f56cd653af29de928483acbab7323f964b053e98b6b318abc69431fb0e4f660c4f4a396e2e93852510bef25eeb9f1d951d060b2d7bcc313811e5da6f
   languageName: node
   linkType: hard
 
