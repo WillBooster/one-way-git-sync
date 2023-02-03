@@ -793,13 +793,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:8.4.10":
-  version: 8.4.10
-  resolution: "@types/eslint@npm:8.4.10"
+"@types/eslint@npm:8.21.0":
+  version: 8.21.0
+  resolution: "@types/eslint@npm:8.21.0"
   dependencies:
     "@types/estree": "npm:*"
     "@types/json-schema": "npm:*"
-  checksum: 459bcef9a9b7994668c32f853285bea5004dfce293511cf4a9596bdd00ee345a978e96bb82c773c2b03c486847f17194c2fcf36900ee3532549fecd7680f5fc1
+  checksum: ddb802f77b1a850666704019704588c0e3e1a5971865dc56a87b2722f3d5aa7290ccfff39ba59d7a13ee7c1c93150470029343e51b198a22d1596237fb9e5b95
   languageName: node
   linkType: hard
 
@@ -880,12 +880,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semantic-release@npm:20.0.0":
-  version: 20.0.0
-  resolution: "@types/semantic-release@npm:20.0.0"
+"@types/semantic-release@npm:20.0.1":
+  version: 20.0.1
+  resolution: "@types/semantic-release@npm:20.0.1"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 63c4d8f3a796a6c28a06743d2aae9bb336f0e23120b14445060e837439c7abcdeb24cd510c287068cd0c10a32c5db8f824bef9e595be5982ea50fc31f72d1a23
+  checksum: 2b3f88a74f7226bef2200732d531f2cc93a8b1a40ea3a9cca47accd69c2761bdb4191cfa9cba2307550557dce458bd14f3d39c5ffb2287302818e67fa5d366e3
   languageName: node
   linkType: hard
 
@@ -903,12 +903,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/yargs@npm:17.0.20":
-  version: 17.0.20
-  resolution: "@types/yargs@npm:17.0.20"
+"@types/yargs@npm:17.0.22":
+  version: 17.0.22
+  resolution: "@types/yargs@npm:17.0.22"
   dependencies:
     "@types/yargs-parser": "npm:*"
-  checksum: 2200d4e22c9a3ffb14ad95d7db67b12e13722146b4f1b4ca2de8857069c7d5978b41176e8166ac7b4d2d7910065af962b8d299af562086708e47b45ccf0a4838
+  checksum: d206364a45c5ff1e29084107795a0001c4eeeecb2ea9d10a072ea31aa04f8c5b7fe49f82e198765f07c533e5c11df6133ac24020310e33fb00ba44d8359c6eaf
   languageName: node
   linkType: hard
 
@@ -5051,11 +5051,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "one-way-git-sync@workspace:."
   dependencies:
-    "@types/eslint": "npm:8.4.10"
+    "@types/eslint": "npm:8.21.0"
     "@types/fs-extra": "npm:11.0.1"
     "@types/micromatch": "npm:4.0.2"
-    "@types/semantic-release": "npm:20.0.0"
-    "@types/yargs": "npm:17.0.20"
+    "@types/semantic-release": "npm:20.0.1"
+    "@types/yargs": "npm:17.0.22"
     "@typescript-eslint/eslint-plugin": "npm:5.50.0"
     "@typescript-eslint/parser": "npm:5.50.0"
     "@willbooster/eslint-config-ts": "npm:10.0.8"
