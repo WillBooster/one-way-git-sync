@@ -860,9 +860,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 18.11.19
-  resolution: "@types/node@npm:18.11.19"
-  checksum: 72c822bd403b89a7c1fe59fd9360d29f2373459cdcf890fe6260c7413f936d89e5d154bdeb701bc833936ee88e87776ae9a4dc2b654ba111babbdebac1e67228
+  version: 18.13.0
+  resolution: "@types/node@npm:18.13.0"
+  checksum: 591b7b9a97dbeaa155c3fe1a00e22fc13241781bda02f4e96935811723e7719fe18ed003301551cfa3273488cc7cf2f99146b752abc9b60aaab57bcbc67da830
   languageName: node
   linkType: hard
 
@@ -893,6 +893,13 @@ __metadata:
   version: 7.3.13
   resolution: "@types/semver@npm:7.3.13"
   checksum: a76156ff60ddbd17bf2120c09dca3cd8ac7db4f8d8c69614a9ebc5202f05d1044def7fd8cf77415f7284ea8edfa1092b6e04dac07dc17c94762904c69dd2c85b
+  languageName: node
+  linkType: hard
+
+"@types/triple-beam@npm:^1.3.2":
+  version: 1.3.2
+  resolution: "@types/triple-beam@npm:1.3.2"
+  checksum: 75d86c5425ce28bbcbb3b1d246f521f9f0dec0350c4d0ef8cc812fa6e69f4b79886ddb7e8cb62adf9bbeecb50bed92ec3b00d53ff933b8f2589934c8b3ca51f1
   languageName: node
   linkType: hard
 
@@ -1539,9 +1546,9 @@ __metadata:
   linkType: hard
 
 "ci-info@npm:^3.6.1":
-  version: 3.7.1
-  resolution: "ci-info@npm:3.7.1"
-  checksum: ac9c61f3c9482220a88aa579dbdda68c287d635c7c61fcc7e66ebafc108133533c4e4041764c98d0fa17c6f05e81a12967c4a9b3126dd36854861feb21dbabe8
+  version: 3.8.0
+  resolution: "ci-info@npm:3.8.0"
+  checksum: cbde5915261038659da39e508b688acd0baa981a73dc34357865957403383e0475b050c2f44971a3b37523849973af345724feb8f2e4a8eddd6db41be708f4ba
   languageName: node
   linkType: hard
 
@@ -1989,12 +1996,12 @@ __metadata:
   linkType: hard
 
 "define-properties@npm:^1.1.3, define-properties@npm:^1.1.4":
-  version: 1.1.4
-  resolution: "define-properties@npm:1.1.4"
+  version: 1.2.0
+  resolution: "define-properties@npm:1.2.0"
   dependencies:
     has-property-descriptors: "npm:^1.0.0"
     object-keys: "npm:^1.1.1"
-  checksum: 94a6a24f787300c11c53b76e207e53908c86fd508f0dacf0bab49afff62b20439513e14318cebdb3223eef7a49d572eaf7f069a21af80e3ca3f898bbf22c9c8e
+  checksum: f7d87afb83055124b9c0d18d1abb349ca0741d3c5c38e79422447ac800cea5ee1d0ffbc01f121f059964fd0f17e4d80602ba5533427b9dec18df0fa6b9c91585
   languageName: node
   linkType: hard
 
@@ -2951,7 +2958,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-intrinsic@npm:^1.0.2, get-intrinsic@npm:^1.1.1, get-intrinsic@npm:^1.1.3":
+"get-intrinsic@npm:^1.0.2, get-intrinsic@npm:^1.1.1, get-intrinsic@npm:^1.1.3, get-intrinsic@npm:^1.2.0":
   version: 1.2.0
   resolution: "get-intrinsic@npm:1.2.0"
   dependencies:
@@ -2980,9 +2987,9 @@ __metadata:
   linkType: hard
 
 "get-tsconfig@npm:^4.2.0":
-  version: 4.3.0
-  resolution: "get-tsconfig@npm:4.3.0"
-  checksum: 7f2c1f873c2d483485a2e21ab7a4b99f2222ff305e85a4a9320db5b71dfac16d4941b489243d9f63780c3c9162fb289a7d7fce3fed116a869436fbb020b9cbaa
+  version: 4.4.0
+  resolution: "get-tsconfig@npm:4.4.0"
+  checksum: 461cb3ceec19d0f337a31906dc39f4d5fd66f13a53a73eeae584d8a021db553d4d463261673e75fca5d1704ecad6243ac4c5155850de24f0c7ca2411ef50bf60
   languageName: node
   linkType: hard
 
@@ -3446,13 +3453,13 @@ __metadata:
   linkType: hard
 
 "internal-slot@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "internal-slot@npm:1.0.4"
+  version: 1.0.5
+  resolution: "internal-slot@npm:1.0.5"
   dependencies:
-    get-intrinsic: "npm:^1.1.3"
+    get-intrinsic: "npm:^1.2.0"
     has: "npm:^1.0.3"
     side-channel: "npm:^1.0.4"
-  checksum: 1312c4f073cc1caec04bbd2a99933a35c11c58322c6fe1c9a67d8d641d65f62d1f4228361a32bba4bc1ee361a0e81c960c87d33e0b9c4da9fafffa5dad33505d
+  checksum: 7ba9f797e33d9f7fb623ed4eb63a8f4697da1423e8dd47a336c759707a14aebc9d2e04c7df286a493f4eac30c178c6ffad89f559beb3e9641992b6a57f933088
   languageName: node
   linkType: hard
 
@@ -4198,11 +4205,11 @@ __metadata:
   linkType: hard
 
 "locate-path@npm:^7.1.0":
-  version: 7.1.1
-  resolution: "locate-path@npm:7.1.1"
+  version: 7.2.0
+  resolution: "locate-path@npm:7.2.0"
   dependencies:
     p-locate: "npm:^6.0.0"
-  checksum: 9d9c87be22cbfe0e5e258d7e8bb94954086b2a7f3a1acf15c716684cd9aa9ce0cc916a030e2fda0d7c02b1e0dbd996391af7880245adf165faeef93cb099fbde
+  checksum: 5137d791489fd403912051d2bfc5a006f2ae177c3e7eb7e224843b358a85f7f5d030253d3e5757f3248cca6af22beb2a910c84d85267e6518436ac9e304b000b
   languageName: node
   linkType: hard
 
@@ -4282,15 +4289,16 @@ __metadata:
   linkType: hard
 
 "logform@npm:^2.3.2, logform@npm:^2.4.0":
-  version: 2.4.2
-  resolution: "logform@npm:2.4.2"
+  version: 2.5.1
+  resolution: "logform@npm:2.5.1"
   dependencies:
     "@colors/colors": "npm:1.5.0"
+    "@types/triple-beam": "npm:^1.3.2"
     fecha: "npm:^4.2.0"
     ms: "npm:^2.1.1"
     safe-stable-stringify: "npm:^2.3.1"
     triple-beam: "npm:^1.3.0"
-  checksum: 1df137f25709666a4569bb791fcb6619c42182a0bff7683f3b1143e5c3a40a5736e6c846fecbc13342b1dad2befee3b457ef2c37ad42d6e5ba9acf6a4846fcf0
+  checksum: dbcb67e42fc45e7e5b15850492066fa11712993466a6fe1c456893cb212a61f1aa1ced5aa9e99382ec1f433939b27bf048ffa50b0a97778db9c0e0e809dce599
   languageName: node
   linkType: hard
 
@@ -4476,9 +4484,9 @@ __metadata:
   linkType: hard
 
 "minimist@npm:^1.2.0, minimist@npm:^1.2.5, minimist@npm:^1.2.6":
-  version: 1.2.7
-  resolution: "minimist@npm:1.2.7"
-  checksum: 7bb50119bb59f48228a834e293a566c4b0e1b6c4648db83fb88830b4f932bfeaca72158bcdcc8a74130b339167eda92ec4cabb65faf07ab8d32542889a451676
+  version: 1.2.8
+  resolution: "minimist@npm:1.2.8"
+  checksum: 8598f846f2b7546b22b01ce486df27da216a302367afe17f2a032da12fcb8d33bfbf2c523051230864abf0b806748bd60d4cd0863fae35fe104da1ff6194a185
   languageName: node
   linkType: hard
 
@@ -4553,9 +4561,9 @@ __metadata:
   linkType: hard
 
 "minipass@npm:^4.0.0":
-  version: 4.0.2
-  resolution: "minipass@npm:4.0.2"
-  checksum: 23a79feab2394d19cecbf16dfbbc360d2eb8dc91d382c7fbbaac3e8735d66056d65483d097bff815b50867e902f2eea3f7a005ed2fdae331984a4aa4213486d4
+  version: 4.0.3
+  resolution: "minipass@npm:4.0.3"
+  checksum: f0e10358a29253eb64295f0cb2790acd2109279c2c721ea1883bfcab1bac4434cc75027d98993fade26f0ecaa984e0144b6af677a6da86aeaa96ddd317d84dbe
   languageName: node
   linkType: hard
 
@@ -5105,13 +5113,13 @@ __metadata:
   linkType: hard
 
 "open@npm:^8.4.0":
-  version: 8.4.0
-  resolution: "open@npm:8.4.0"
+  version: 8.4.1
+  resolution: "open@npm:8.4.1"
   dependencies:
     define-lazy-prop: "npm:^2.0.0"
     is-docker: "npm:^2.1.1"
     is-wsl: "npm:^2.2.0"
-  checksum: 287db1bc10b3927b247d7c125d3ef998c410f57f434619a9d93f3e1384ff025ef12c18c1cfde1cb8f23f1326fb2bfe2634c789737bb65c18183015b5de81f594
+  checksum: e96187240bd8c93ea5046ea5aef1574c35de4f26de36ecae07411974d716bb570caac55017287ca8c30af8224979495386c3a29458cc35208ff9120457cf5bec
   languageName: node
   linkType: hard
 
