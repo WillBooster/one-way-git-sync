@@ -38,7 +38,7 @@
     "micromatch": "4.0.5",
     "simple-git": "3.16.1",
     "winston": "3.8.2",
-    "yargs": "17.7.0"
+    "yargs": "17.7.1"
   },
   "devDependencies": {
     "@types/eslint": "8.21.1",
@@ -52,7 +52,7 @@
     "@willbooster/prettier-config": "9.1.1",
     "@willbooster/renovate-config": "9.5.0",
     "conventional-changelog-conventionalcommits": "5.0.0",
-    "esbuild": "0.17.8",
+    "esbuild": "0.17.10",
     "esbuild-register": "3.4.2",
     "eslint": "8.34.0",
     "eslint-config-prettier": "8.6.0",
