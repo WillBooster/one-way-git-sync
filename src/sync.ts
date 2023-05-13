@@ -8,9 +8,9 @@ import type { LogResult, TaskOptions } from 'simple-git';
 import { simpleGit, SimpleGit } from 'simple-git';
 import { InferredOptionTypes } from 'yargs';
 
-import { getGitHubCommitsUrl } from './gitHub';
-import { logger } from './logger';
-import { yargsOptions } from './yargsOptions';
+import { getGitHubCommitsUrl } from './gitHub.js';
+import { logger } from './logger.js';
+import { yargsOptions } from './yargsOptions.js';
 
 const syncDirPath = path.join('node_modules', '.temp', 'sync-git-repo');
 
