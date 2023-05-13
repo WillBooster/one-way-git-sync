@@ -138,9 +138,9 @@ function extractCommitHash(logResult: LogResult): [string, string] | [] {
   }
 
   for (const log of logResult.all) {
-    const [head, ...words] = log.message.replace(/[()]/g, '').split(/[\s/]/);
+    const [head, ...words] = log.message.replaceAll(/[()]/g, '').split(/[\s/]/);
     if (head === 'sync' && words.length > 0) {
-      return [log.message, words[words.length - 1]];
+      return [log.message, words.at(-1)];
     }
   }
   logger.verbose(`No sync commit: ${logResult.all[0].message}`);

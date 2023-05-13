@@ -6,8 +6,8 @@ export async function getGitHubCommitsUrl(git: SimpleGit): Promise<string | unde
   const remoteUrl = origin?.refs?.fetch ?? origin?.refs?.push;
   if (typeof remoteUrl === 'string' && remoteUrl.includes('github.com')) {
     const words = remoteUrl.split('/');
-    const org = words[words.length - 2];
-    const name = words[words.length - 1]?.replace(/.git$/, '');
+    const org = words.at(-2);
+    const name = words.at(-1)?.replace(/.git$/, '');
     if (org && name) return `https://github.com/${org}/${name}/commits`;
   }
 }
