@@ -31,9 +31,6 @@
     "typecheck": "tsc --noEmit --Pretty"
   },
   "prettier": "@willbooster/prettier-config",
-  "resolutions": {
-    "npm/chalk": "^4.1.2"
-  },
   "dependencies": {
     "fs-extra": "11.1.1",
     "micromatch": "4.0.5",
