@@ -28,6 +28,7 @@
     "release": "yarn build && semantic-release",
     "start": "build-ts run src/index.ts",
     "start-prod": "yarn build && yarn one-way-git-sync",
+    "test": "vitest --no-threads",
     "typecheck": "tsc --noEmit --Pretty"
   },
   "prettier": "@willbooster/prettier-config",
@@ -64,7 +65,8 @@
     "prettier": "2.8.8",
     "semantic-release": "21.0.2",
     "sort-package-json": "2.4.1",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "vitest": "0.31.1"
   },
   "packageManager": "yarn@4.0.0-rc.44",
   "engines": {
