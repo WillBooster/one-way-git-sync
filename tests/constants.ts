@@ -9,4 +9,4 @@ export const LOCAL_SRC = 'local-src';
 
 export const LOCAL_DEST = 'local-dest';
 
-export const TEMP_DIR = path.join(path.dirname(path.dirname(url.fileURLToPath(import.meta.url))), 'temp/');
+export const TEMP_DIR = path.join(path.dirname(path.dirname(url.fileURLToPath(import.meta.url))), 'temp');

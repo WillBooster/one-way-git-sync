@@ -14,7 +14,9 @@ import { yargsOptions } from './yargsOptions.js';
 
 const syncDirPath = path.join('node_modules', '.temp', 'sync-git-repo');
 
-export async function sync(opts: InferredOptionTypes<typeof yargsOptions>): Promise<void> {
+export type Options = InferredOptionTypes<typeof yargsOptions>;
+
+export async function sync(opts: Options): Promise<void> {
   await fs.mkdir(syncDirPath, { recursive: true });
   const dirPath = await fs.mkdtemp(path.join(syncDirPath, 'repo-'));
   const ret = await syncCore(dirPath, opts);
@@ -22,7 +24,7 @@ export async function sync(opts: InferredOptionTypes<typeof yargsOptions>): Prom
   process.exit(ret ? 0 : 1);
 }
 
-async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof yargsOptions>): Promise<boolean> {
+export async function syncCore(destRepoPath: string, opts: Options): Promise<boolean> {
   const cloneOpts: Record<string, any> = { '--single-branch': undefined };
   if (!opts.force) {
     cloneOpts['--depth'] = 1;

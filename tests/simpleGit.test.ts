@@ -12,7 +12,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  await fs.rmdir(TEMP_DIR, { recursive: true });
+  await fs.rm(TEMP_DIR, { force: true, recursive: true });
 });
 
 test('can execute git init, commit and log', async () => {
