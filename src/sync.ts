@@ -97,7 +97,7 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
     logger.verbose(`Created a commit: ${title}`);
     logger.verbose(`  with body: ${body}`);
   } catch (error) {
-    logger.error(`Failed to commit changes: ${(error as Error).stack}\`);`);
+    logger.error(`Failed to commit changes: ${(error as Error).stack}`);
     return false;
   }
 
@@ -106,9 +106,9 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
     try {
       await dstGit.addTag(destTag);
       logger.verbose(`Created a tag: ${destTag}`);
-    } catch (error) {
-      logger.error(`Failed to commit changes: ${(error as Error).stack}\`);`);
-      return false;
+    } catch {
+      // Ignore the error since `--abbrev=0` may yield a tag that already exists
+      logger.warn(`Failed to create a tag: ${destTag}`);
     }
   }
 
