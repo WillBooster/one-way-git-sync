@@ -4,13 +4,13 @@ import path from 'node:path';
 
 import { copy } from 'fs-extra';
 import micromatch from 'micromatch';
-import type { LogResult, TaskOptions } from 'simple-git';
-import { simpleGit, SimpleGit } from 'simple-git';
-import { InferredOptionTypes } from 'yargs';
+import type { LogResult, TaskOptions , SimpleGit } from 'simple-git';
+import { simpleGit } from 'simple-git';
+import type { InferredOptionTypes } from 'yargs';
 
 import { getGitHubCommitsUrl } from './gitHub.js';
 import { logger } from './logger.js';
-import { yargsOptions } from './yargsOptions.js';
+import type { yargsOptions } from './yargsOptions.js';
 
 const syncDirPath = path.join('node_modules', '.temp', 'sync-git-repo');
 
