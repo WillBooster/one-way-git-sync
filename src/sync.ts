@@ -4,7 +4,7 @@ import path from 'node:path';
 
 import { copy } from 'fs-extra';
 import micromatch from 'micromatch';
-import type { LogResult, TaskOptions , SimpleGit } from 'simple-git';
+import type { LogResult, TaskOptions, SimpleGit } from 'simple-git';
 import { simpleGit } from 'simple-git';
 import type { InferredOptionTypes } from 'yargs';
 
