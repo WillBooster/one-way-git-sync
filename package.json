@@ -35,7 +35,7 @@
     "fs-extra": "11.1.1",
     "micromatch": "4.0.5",
     "simple-git": "3.19.1",
-    "winston": "3.9.0",
+    "winston": "3.10.0",
     "yargs": "17.7.2"
   },
   "devDependencies": {
@@ -51,7 +51,7 @@
     "@willbooster/renovate-config": "9.5.0",
     "build-ts": "5.10.5",
     "conventional-changelog-conventionalcommits": "6.1.0",
-    "eslint": "8.44.0",
+    "eslint": "8.45.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-import-resolver-typescript": "3.5.5",
     "eslint-plugin-import": "2.27.5",
