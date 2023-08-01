@@ -4,7 +4,7 @@ import path from 'node:path';
 
 import { copy } from 'fs-extra';
 import micromatch from 'micromatch';
-import type { LogResult, TaskOptions, SimpleGit } from 'simple-git';
+import type { LogResult, TaskOptions, SimpleGit, Options } from 'simple-git';
 import { simpleGit } from 'simple-git';
 import type { InferredOptionTypes } from 'yargs';
 
@@ -23,7 +23,8 @@ export async function sync(opts: InferredOptionTypes<typeof yargsOptions>): Prom
 }
 
 async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof yargsOptions>): Promise<boolean> {
-  const cloneOpts: Record<string, any> = { '--single-branch': undefined };
+  // eslint-disable-next-line unicorn/no-null
+  const cloneOpts: Options = { '--single-branch': null };
   if (!opts.force) {
     cloneOpts['--depth'] = 1;
   }
@@ -120,6 +121,7 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
   try {
     await (opts.branch ? dstGit.push('origin', opts.branch) : dstGit.push());
     if (destTag) {
+      // eslint-disable-next-line unicorn/no-null
       await dstGit.push({ '--tags': null });
     }
   } catch (error) {
