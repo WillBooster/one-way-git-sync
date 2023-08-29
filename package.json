@@ -48,7 +48,7 @@
     "@typescript-eslint/parser": "6.5.0",
     "@willbooster/eslint-config-ts": "10.5.0",
     "@willbooster/prettier-config": "9.1.1",
-    "build-ts": "8.2.1",
+    "build-ts": "8.4.3",
     "conventional-changelog-conventionalcommits": "6.1.0",
     "eslint": "8.48.0",
     "eslint-config-prettier": "9.0.0",
@@ -61,7 +61,7 @@
     "lint-staged": "14.0.1",
     "pinst": "3.0.0",
     "prettier": "3.0.3",
-    "semantic-release": "21.0.7",
+    "semantic-release": "21.1.1",
     "sort-package-json": "2.5.1",
     "typescript": "5.2.2"
   },
