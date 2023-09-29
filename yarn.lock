@@ -2391,13 +2391,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:8.44.2":
-  version: 8.44.2
-  resolution: "@types/eslint@npm:8.44.2"
+"@types/eslint@npm:8.44.3":
+  version: 8.44.3
+  resolution: "@types/eslint@npm:8.44.3"
   dependencies:
     "@types/estree": "npm:*"
     "@types/json-schema": "npm:*"
-  checksum: 3c402215f7f495f9267a51fecd6a6d056eb8b3b031a1c472286b7d23a397257327eb03712befa7da60614dd63d31235d27dbc5c586b6a408798dafb8ee0c5eb2
+  checksum: d9d681efe461ec8934800a89773be251a200c9d4528ca2330bb99f4ca3bd6b2d053034d2b5fe645a1567331af2c89e364aed4be8c839f10a1028a3cbe2856b01
   languageName: node
   linkType: hard
 
@@ -2441,12 +2441,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/micromatch@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@types/micromatch@npm:4.0.2"
+"@types/micromatch@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@types/micromatch@npm:4.0.3"
   dependencies:
     "@types/braces": "npm:*"
-  checksum: e557324460e658283778c77d0f8995ee95e371c4fd54474b3186e947486427cc4af66b841393304b65c09a7bb36710158260db7a7cf761384e1a9a728e82e6f4
+  checksum: 29c75b4a373c59220d588626dedf9f277ab34bae5affe516415efc51db310fd14eba0c8ac8eaa57830f73810e5d6ae18adbd59b53fa7ddccad59b37341e3aef6
   languageName: node
   linkType: hard
 
@@ -2485,12 +2485,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semantic-release@npm:20.0.1":
-  version: 20.0.1
-  resolution: "@types/semantic-release@npm:20.0.1"
+"@types/semantic-release@npm:20.0.2":
+  version: 20.0.2
+  resolution: "@types/semantic-release@npm:20.0.2"
   dependencies:
     "@types/node": "npm:*"
-  checksum: d4c464336963d44e6b8df4ee90992cfe4bd59a861af0f948feaab8b205ff0d1ea61543ece337ffbb8d60bdda4a09b70fcd4257fd3e95c8981ed416eeff16b2a6
+  checksum: 0b54abc5d35cc088d0265542cb88563de43228b615b68b485332fcfb5938940e8a7491bcf370af4f79279d97c509423ce9d446d928f8a6dc4cf9f1605e3bd35d
   languageName: node
   linkType: hard
 
@@ -2522,12 +2522,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/yargs@npm:17.0.24":
-  version: 17.0.24
-  resolution: "@types/yargs@npm:17.0.24"
+"@types/yargs@npm:17.0.26":
+  version: 17.0.26
+  resolution: "@types/yargs@npm:17.0.26"
   dependencies:
     "@types/yargs-parser": "npm:*"
-  checksum: fbebf57e1d04199e5e7eb0c67a402566fa27177ee21140664e63da826408793d203d262b48f8f41d4a7665126393d2e952a463e960e761226def247d9bbcdbd0
+  checksum: 34ab6eff6dff086b1044c65d53131e1d14e87c0c6dc44cb6851d74d8a4d1ac4503f7d12d1e1ecff25f8aea62ff7a9d6b04b05870a0324d15bbb226ddfc1d6065
   languageName: node
   linkType: hard
 
@@ -7057,11 +7057,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "one-way-git-sync@workspace:."
   dependencies:
-    "@types/eslint": "npm:8.44.2"
+    "@types/eslint": "npm:8.44.3"
     "@types/fs-extra": "npm:11.0.2"
-    "@types/micromatch": "npm:4.0.2"
-    "@types/semantic-release": "npm:20.0.1"
-    "@types/yargs": "npm:17.0.24"
+    "@types/micromatch": "npm:4.0.3"
+    "@types/semantic-release": "npm:20.0.2"
+    "@types/yargs": "npm:17.0.26"
     "@typescript-eslint/eslint-plugin": "npm:6.7.3"
     "@typescript-eslint/parser": "npm:6.7.3"
     "@willbooster/eslint-config-ts": "npm:10.5.0"
@@ -7082,7 +7082,7 @@ __metadata:
     pinst: "npm:3.0.0"
     prettier: "npm:3.0.3"
     semantic-release: "npm:22.0.5"
-    simple-git: "npm:3.19.1"
+    simple-git: "npm:3.20.0"
     sort-package-json: "npm:2.6.0"
     typescript: "npm:5.2.2"
     winston: "npm:3.10.0"
@@ -8276,14 +8276,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"simple-git@npm:3.19.1":
-  version: 3.19.1
-  resolution: "simple-git@npm:3.19.1"
+"simple-git@npm:3.20.0":
+  version: 3.20.0
+  resolution: "simple-git@npm:3.20.0"
   dependencies:
     "@kwsites/file-exists": "npm:^1.1.1"
     "@kwsites/promise-deferred": "npm:^1.1.1"
     debug: "npm:^4.3.4"
-  checksum: 0f6ba68824cb97fcdd3a53dfd6e3920f00e988141f69f24ffd8ebe98c06cf963c1ebe1cf3344975e5778f26e4d093689acf3eb5aad98be05e5d3ae83036b268f
+  checksum: 8e7db8919145c523ed8d08dcd23b3ffd304e681a07bbe2f14e883bec8bab06922040e30b68ed65aad28e9953ce6df998c5c73a0a567537f837b5369753ce1e69
   languageName: node
   linkType: hard
 
