@@ -35,15 +35,15 @@
     "fs-extra": "11.1.1",
     "micromatch": "4.0.5",
     "simple-git": "3.20.0",
-    "winston": "3.10.0",
+    "winston": "3.11.0",
     "yargs": "17.7.2"
   },
   "devDependencies": {
-    "@types/eslint": "8.44.3",
+    "@types/eslint": "8.44.4",
     "@types/fs-extra": "11.0.2",
     "@types/micromatch": "4.0.3",
     "@types/semantic-release": "20.0.2",
-    "@types/yargs": "17.0.26",
+    "@types/yargs": "17.0.28",
     "@typescript-eslint/eslint-plugin": "6.7.5",
     "@typescript-eslint/parser": "6.7.5",
     "@willbooster/eslint-config-ts": "10.5.0",
