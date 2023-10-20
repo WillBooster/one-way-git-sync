@@ -2415,13 +2415,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:8.44.4":
-  version: 8.44.4
-  resolution: "@types/eslint@npm:8.44.4"
+"@types/eslint@npm:8.44.6":
+  version: 8.44.6
+  resolution: "@types/eslint@npm:8.44.6"
   dependencies:
     "@types/estree": "npm:*"
     "@types/json-schema": "npm:*"
-  checksum: dd554ee39dbc3558e04f31873d2c00d8949869b5ec2325315ae2d04acb124d91e2b434309362e55d6bc76bd9df30a927ba4ebf4b1819d8549ffadc6cf87d4240
+  checksum: fc449107eb186bdc5d30149bbcb4e673af8530afdeacca3b89f14deefcbfc67463157d6a81b42cd9df92ddeafda5351853d13310ff7ac6ab0d9769ac7cc0cc3a
   languageName: node
   linkType: hard
 
@@ -2432,13 +2432,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/fs-extra@npm:11.0.2":
-  version: 11.0.2
-  resolution: "@types/fs-extra@npm:11.0.2"
+"@types/fs-extra@npm:11.0.3":
+  version: 11.0.3
+  resolution: "@types/fs-extra@npm:11.0.3"
   dependencies:
     "@types/jsonfile": "npm:*"
     "@types/node": "npm:*"
-  checksum: 8ab94988a3376169e3daf0a546b5312039c19a7f1fb9c5a171f7602c9398155a90c0cef81ab95273e4c8c5962ab4ec280f0a1ba8e874bab2f26ca94b282c14a3
+  checksum: c3b83e6e88e0ef56de0a48b0df27a173a7e6d6a527e0e1b9692c61c186f5a4bfe0c6cb464ff02528165dd8d90acc6d09e2df1d138fdc6fae7680a73c6e714958
   languageName: node
   linkType: hard
 
@@ -2465,12 +2465,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/micromatch@npm:4.0.3":
-  version: 4.0.3
-  resolution: "@types/micromatch@npm:4.0.3"
+"@types/micromatch@npm:4.0.4":
+  version: 4.0.4
+  resolution: "@types/micromatch@npm:4.0.4"
   dependencies:
     "@types/braces": "npm:*"
-  checksum: 29c75b4a373c59220d588626dedf9f277ab34bae5affe516415efc51db310fd14eba0c8ac8eaa57830f73810e5d6ae18adbd59b53fa7ddccad59b37341e3aef6
+  checksum: 610c7303949b18f9dcae9d7804d5ef6f42bdb471289577579b8c95713abf815864540f58213d9bbaa60fa24b4bb55a1e2dc6ea0910a665102465caacb1555b76
   languageName: node
   linkType: hard
 
@@ -2511,12 +2511,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semantic-release@npm:20.0.2":
-  version: 20.0.2
-  resolution: "@types/semantic-release@npm:20.0.2"
+"@types/semantic-release@npm:20.0.4":
+  version: 20.0.4
+  resolution: "@types/semantic-release@npm:20.0.4"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 0b54abc5d35cc088d0265542cb88563de43228b615b68b485332fcfb5938940e8a7491bcf370af4f79279d97c509423ce9d446d928f8a6dc4cf9f1605e3bd35d
+  checksum: cc35867dd5374de15dc657a65af35a594d43ac79105244b6568e1098ad09b3d56847dee85bc4d9b2e5dbaef68a84f8cf4e7c5e072dd9aec7ddca9ee5c82a0aac
   languageName: node
   linkType: hard
 
@@ -2548,12 +2548,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/yargs@npm:17.0.28":
-  version: 17.0.28
-  resolution: "@types/yargs@npm:17.0.28"
+"@types/yargs@npm:17.0.29":
+  version: 17.0.29
+  resolution: "@types/yargs@npm:17.0.29"
   dependencies:
     "@types/yargs-parser": "npm:*"
-  checksum: 7dfb1c22c2f6a9fee8ebdeab44b01ca409f2cbb2fea4077a89f4fd49e7706a7fc695cfdb52fd34929ccacbdd100add32c7bca9fbb0c47c6ed9a4c3215901c08c
+  checksum: d8c965c101f7ee3e2f301c02a83dfd5680e4d999d3503c788c13f336868f03ee1498f019552e7d357635a1a36912cbe6751a563e9c339075d30cd131dc361c98
   languageName: node
   linkType: hard
 
@@ -7055,11 +7055,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "one-way-git-sync@workspace:."
   dependencies:
-    "@types/eslint": "npm:8.44.4"
-    "@types/fs-extra": "npm:11.0.2"
-    "@types/micromatch": "npm:4.0.3"
-    "@types/semantic-release": "npm:20.0.2"
-    "@types/yargs": "npm:17.0.28"
+    "@types/eslint": "npm:8.44.6"
+    "@types/fs-extra": "npm:11.0.3"
+    "@types/micromatch": "npm:4.0.4"
+    "@types/semantic-release": "npm:20.0.4"
+    "@types/yargs": "npm:17.0.29"
     "@typescript-eslint/eslint-plugin": "npm:6.8.0"
     "@typescript-eslint/parser": "npm:6.8.0"
     "@willbooster/eslint-config-ts": "npm:10.5.0"
