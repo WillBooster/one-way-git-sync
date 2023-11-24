@@ -2476,12 +2476,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/micromatch@npm:4.0.5":
-  version: 4.0.5
-  resolution: "@types/micromatch@npm:4.0.5"
+"@types/micromatch@npm:4.0.6":
+  version: 4.0.6
+  resolution: "@types/micromatch@npm:4.0.6"
   dependencies:
     "@types/braces": "npm:*"
-  checksum: 866dddc5c193d44a65d6a94f060de27b29b565ce6e2b3b8bd2f183c4026553d6b78336a45aa92f62d5202d3963faba07020ea0390ab6835ce6cb9475a4ac5e67
+  checksum: deba87b2bb740cb3f206c006baddc2d3f411fdba48e47452fb189a2a1a73cc3d6f6f2e6f52b970d1383e988afd9f12046e50f902ad740f1f8afa3faa273ab2a0
   languageName: node
   linkType: hard
 
@@ -2522,12 +2522,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semantic-release@npm:20.0.5":
-  version: 20.0.5
-  resolution: "@types/semantic-release@npm:20.0.5"
+"@types/semantic-release@npm:20.0.6":
+  version: 20.0.6
+  resolution: "@types/semantic-release@npm:20.0.6"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 470b4ef2237d134a0f2d067aebc5dd1b11144e3464d688b9aab4d4dda6b6b5f342c0358fd18823487db99811d1bbbba0f0e4cc4dede1b99066a2b37e091b0241
+  checksum: ab8525a3dff2eb3f48ccfebcfc7988cf65efcb8fe9574007bca0574ee340e409d7ecef2556cdba5278278d5e51233a372709046b28fe82518f8d94f3e79d87fb
   languageName: node
   linkType: hard
 
@@ -2559,12 +2559,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/yargs@npm:17.0.31":
-  version: 17.0.31
-  resolution: "@types/yargs@npm:17.0.31"
+"@types/yargs@npm:17.0.32":
+  version: 17.0.32
+  resolution: "@types/yargs@npm:17.0.32"
   dependencies:
     "@types/yargs-parser": "npm:*"
-  checksum: 1e04df99bd0ad8ac8b3748b6ac0e99a9a4efe20b9cd8eab69ac9503fe87ab9bec312ad56982e969cdb0e2c0679431434ad571f6934049adb15fa35b22810c867
+  checksum: 2095e8aad8a4e66b86147415364266b8d607a3b95b4239623423efd7e29df93ba81bb862784a6e08664f645cc1981b25fd598f532019174cd3e5e1e689e1cccf
   languageName: node
   linkType: hard
 
@@ -6934,9 +6934,9 @@ __metadata:
   dependencies:
     "@types/eslint": "npm:8.44.7"
     "@types/fs-extra": "npm:11.0.4"
-    "@types/micromatch": "npm:4.0.5"
-    "@types/semantic-release": "npm:20.0.5"
-    "@types/yargs": "npm:17.0.31"
+    "@types/micromatch": "npm:4.0.6"
+    "@types/semantic-release": "npm:20.0.6"
+    "@types/yargs": "npm:17.0.32"
     "@typescript-eslint/eslint-plugin": "npm:6.12.0"
     "@typescript-eslint/parser": "npm:6.12.0"
     "@willbooster/eslint-config-ts": "npm:10.5.1"
@@ -6957,7 +6957,7 @@ __metadata:
     pinst: "npm:3.0.0"
     prettier: "npm:3.1.0"
     semantic-release: "npm:22.0.8"
-    simple-git: "npm:3.20.0"
+    simple-git: "npm:3.21.0"
     sort-package-json: "npm:2.6.0"
     typescript: "npm:5.3.2"
     winston: "npm:3.11.0"
@@ -8146,14 +8146,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"simple-git@npm:3.20.0":
-  version: 3.20.0
-  resolution: "simple-git@npm:3.20.0"
+"simple-git@npm:3.21.0":
+  version: 3.21.0
+  resolution: "simple-git@npm:3.21.0"
   dependencies:
     "@kwsites/file-exists": "npm:^1.1.1"
     "@kwsites/promise-deferred": "npm:^1.1.1"
     debug: "npm:^4.3.4"
-  checksum: 8e7db8919145c523ed8d08dcd23b3ffd304e681a07bbe2f14e883bec8bab06922040e30b68ed65aad28e9953ce6df998c5c73a0a567537f837b5369753ce1e69
+  checksum: b3083da7736f1bac448cfe7d359d257cfe128091041d23c3ed9a35cddab4d454abdac8d9928b33920e4eaf328d350b68d62bac18bf6fbf3f31d8ef05b6d20f02
   languageName: node
   linkType: hard
 
