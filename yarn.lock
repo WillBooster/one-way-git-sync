@@ -2424,13 +2424,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:8.44.7":
-  version: 8.44.7
-  resolution: "@types/eslint@npm:8.44.7"
+"@types/eslint@npm:8.44.8":
+  version: 8.44.8
+  resolution: "@types/eslint@npm:8.44.8"
   dependencies:
     "@types/estree": "npm:*"
     "@types/json-schema": "npm:*"
-  checksum: 447b55ccff47668fc63466728e7e598ae16a03de8d489350e855b6020ad16f58a703e75b875376dd6cd5fcab630311a805fa7f934476637ea35819f01c9db3ca
+  checksum: 610966753add984f6ac9f00eeb766691e141e66a7e20b724a45ad077f60e8cd8fd7874b7e655e93537e54873cc5711cd6f57728474e08b478407cd942f098263
   languageName: node
   linkType: hard
 
@@ -4706,7 +4706,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:11.1.1, fs-extra@npm:^11.0.0":
+"fs-extra@npm:11.2.0":
+  version: 11.2.0
+  resolution: "fs-extra@npm:11.2.0"
+  dependencies:
+    graceful-fs: "npm:^4.2.0"
+    jsonfile: "npm:^6.0.1"
+    universalify: "npm:^2.0.0"
+  checksum: d77a9a9efe60532d2e790e938c81a02c1b24904ef7a3efb3990b835514465ba720e99a6ea56fd5e2db53b4695319b644d76d5a0e9988a2beef80aa7b1da63398
+  languageName: node
+  linkType: hard
+
+"fs-extra@npm:^11.0.0":
   version: 11.1.1
   resolution: "fs-extra@npm:11.1.1"
   dependencies:
@@ -6923,7 +6934,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "one-way-git-sync@workspace:."
   dependencies:
-    "@types/eslint": "npm:8.44.7"
+    "@types/eslint": "npm:8.44.8"
     "@types/fs-extra": "npm:11.0.4"
     "@types/micromatch": "npm:4.0.6"
     "@types/semantic-release": "npm:20.0.6"
@@ -6941,7 +6952,7 @@ __metadata:
     eslint-plugin-sort-class-members: "npm:1.19.0"
     eslint-plugin-sort-destructure-keys: "npm:1.5.0"
     eslint-plugin-unicorn: "npm:49.0.0"
-    fs-extra: "npm:11.1.1"
+    fs-extra: "npm:11.2.0"
     husky: "npm:8.0.3"
     lint-staged: "npm:15.1.0"
     micromatch: "npm:4.0.5"
