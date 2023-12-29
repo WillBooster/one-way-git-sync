@@ -34,7 +34,7 @@
   "dependencies": {
     "fs-extra": "11.2.0",
     "micromatch": "4.0.5",
-    "simple-git": "3.21.0",
+    "simple-git": "3.22.0",
     "winston": "3.11.0",
     "yargs": "17.7.2"
   },
