@@ -35,7 +35,7 @@ test('can execute git clone', async () => {
   expect(isGitRepo).toBe(true);
 });
 
-test.only('can execute git push', async () => {
+test('can execute git push', async () => {
   const [localGit, remoteGit] = await setupLocalAndRemoteRepos();
 
   await fs.writeFile(path.join(LOCAL_SRC_DIR, 'file.txt'), 'Hello World!');
