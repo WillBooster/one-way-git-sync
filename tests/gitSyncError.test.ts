@@ -7,6 +7,7 @@ import { beforeEach, expect, test } from 'vitest';
 import { syncCore } from '../src/sync.js';
 
 import { DEFAULT_OPTIONS, LOCAL_DEST_DIR, LOCAL_SRC_DIR, REMOTE_DEST_DIR, TEMP_DIR } from './constants.js';
+import { setUpRepo } from './shared.js';
 
 beforeEach(async () => {
   await fs.rm(TEMP_DIR, { force: true, recursive: true });
@@ -16,13 +17,16 @@ beforeEach(async () => {
 
   const remoteDestGit = simpleGit(REMOTE_DEST_DIR);
   await remoteDestGit.init(true, ['--initial-branch=main']);
+  await setUpRepo(remoteDestGit);
 
   const localDestGit = simpleGit(LOCAL_DEST_DIR);
   await localDestGit.init(false, ['--initial-branch=main']);
   await localDestGit.remote(['add', 'origin', REMOTE_DEST_DIR]);
+  await setUpRepo(localDestGit);
 
   const localSrcGit = simpleGit(LOCAL_SRC_DIR);
   await localSrcGit.init(false, ['--initial-branch=main']);
+  await setUpRepo(localSrcGit);
 });
 
 test.skip.each<{ label: string; force: boolean }>([

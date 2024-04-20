@@ -15,6 +15,7 @@ import {
   REMOTE_SRC_DIR,
   TEMP_DIR,
 } from './constants.js';
+import { createRepoDir, setUpRepo } from './shared.js';
 
 beforeEach(async () => {
   console.log(TEMP_DIR);
@@ -26,9 +27,11 @@ beforeEach(async () => {
 
   const remoteDestGit = simpleGit(REMOTE_DEST_DIR);
   await remoteDestGit.init(true, ['--initial-branch=main']);
+  await setUpRepo(remoteDestGit);
 
   const localDestGit = simpleGit(LOCAL_DEST_DIR);
   await localDestGit.clone(REMOTE_DEST_DIR, LOCAL_DEST_DIR);
+  await setUpRepo(localDestGit);
 
   await fs.writeFile(path.join(LOCAL_DEST_DIR, 'dest.txt'), 'Dest Repository');
   await localDestGit.add('.');
@@ -37,9 +40,11 @@ beforeEach(async () => {
 
   const remoteSrcGit = simpleGit(REMOTE_SRC_DIR);
   await remoteSrcGit.init(true, ['--initial-branch=main']);
+  await setUpRepo(remoteSrcGit);
 
   const localSrcGit = simpleGit(LOCAL_SRC_DIR);
   await localSrcGit.clone(REMOTE_SRC_DIR, LOCAL_SRC_DIR);
+  await setUpRepo(localSrcGit);
 
   await fs.writeFile(path.join(LOCAL_SRC_DIR, 'src.txt'), 'Src Repository');
   await localSrcGit.add('.');
@@ -477,7 +482,3 @@ test('can git sync with dry option', async () => {
   const destTags = await localDestGit.tags();
   expect(destTags.latest).toBeUndefined();
 });
-
-function createRepoDir(): Promise<string> {
-  return fs.mkdtemp(path.join(TEMP_DIR, 'repo-'));
-}
