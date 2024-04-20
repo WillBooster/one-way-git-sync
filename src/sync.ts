@@ -4,7 +4,7 @@ import path from 'node:path';
 
 import { copy } from 'fs-extra';
 import micromatch from 'micromatch';
-import type { LogResult, TaskOptions, SimpleGit, Options } from 'simple-git';
+import type { LogResult, Options, SimpleGit, TaskOptions } from 'simple-git';
 import { simpleGit } from 'simple-git';
 import type { InferredOptionTypes } from 'yargs';
 
@@ -14,7 +14,9 @@ import type { yargsOptions } from './yargsOptions.js';
 
 const syncDirPath = path.join('node_modules', '.temp', 'sync-git-repo');
 
-export async function sync(opts: InferredOptionTypes<typeof yargsOptions>): Promise<void> {
+export type YargsOptions = InferredOptionTypes<typeof yargsOptions>;
+
+export async function sync(opts: YargsOptions): Promise<void> {
   await fs.mkdir(syncDirPath, { recursive: true });
   const dirPath = await fs.mkdtemp(path.join(syncDirPath, 'repo-'));
   const ret = await syncCore(dirPath, opts);
@@ -22,7 +24,11 @@ export async function sync(opts: InferredOptionTypes<typeof yargsOptions>): Prom
   process.exit(ret ? 0 : 1);
 }
 
-async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof yargsOptions>): Promise<boolean> {
+export async function syncCore(
+  destRepoPath: string,
+  opts: YargsOptions,
+  srcRepoPath = process.cwd()
+): Promise<boolean> {
   // eslint-disable-next-line unicorn/no-null
   const cloneOpts: Options = { '--single-branch': null };
   if (!opts.force) {
@@ -32,28 +38,28 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
     cloneOpts['--branch'] = opts.branch;
   }
   try {
-    await simpleGit().clone(opts.dest, destRepoPath, cloneOpts);
+    await simpleGit(srcRepoPath).clone(opts.dest, destRepoPath, cloneOpts);
   } catch {
     delete cloneOpts['--branch'];
     delete cloneOpts['--single-branch'];
-    await simpleGit().clone(opts.dest, destRepoPath, cloneOpts);
+    await simpleGit(srcRepoPath).clone(opts.dest, destRepoPath, cloneOpts);
     simpleGit(destRepoPath).checkout(['-b', opts.branch] as TaskOptions);
   }
-  logger.verbose(`Cloned destination repo on ${destRepoPath}`);
+  logger.debug(`Cloned destination repo on ${destRepoPath}`);
 
   const dstGit: SimpleGit = simpleGit(destRepoPath);
   const dstLog = await dstGit.log();
 
   const [head, from] = extractCommitHash(dstLog);
   if (from) {
-    logger.verbose(`Extracted a valid commit: ${from}`);
-    logger.verbose(`(${head})`);
+    logger.debug(`Extracted a valid commit: ${from}`);
+    logger.debug(`(${head})`);
   } else if (!opts.force) {
     logger.error('No valid commit in destination repo');
     return false;
   }
 
-  const srcGit: SimpleGit = simpleGit();
+  const srcGit: SimpleGit = simpleGit(srcRepoPath);
   let srcLog: LogResult;
   try {
     // '--first-parent' hides children commits of merge commits
@@ -69,12 +75,14 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
     return true;
   }
 
-  const [destFiles, srcFiles] = await Promise.all([fs.readdir(destRepoPath), fs.readdir('.')]);
-  for (const destFile of micromatch.not(destFiles, opts['ignore-patterns'])) {
+  const [destFiles, srcFiles] = await Promise.all([fs.readdir(destRepoPath), fs.readdir(srcRepoPath)]);
+  // Force to ignore .git directory
+  const ignorePatterns = [...new Set([...opts['ignore-patterns'].map(String), '.git'])];
+  for (const destFile of micromatch.not(destFiles, ignorePatterns)) {
     await fs.rm(path.join(destRepoPath, destFile), { recursive: true, force: true });
   }
-  for (const srcFile of micromatch.not(srcFiles, opts['ignore-patterns'])) {
-    await copy(srcFile, path.join(destRepoPath, srcFile));
+  for (const srcFile of micromatch.not(srcFiles, ignorePatterns)) {
+    await copy(path.join(srcRepoPath, srcFile), path.join(destRepoPath, srcFile));
   }
   await dstGit.add('-A');
 
@@ -82,7 +90,7 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
   if (opts['tag-hash'] || opts['tag-version']) {
     // e.g. `--abbrev=0` changes `v1.31.5-2-gcdde507` to `v1.31.5`
     const describeCommand = `git describe --tags --always ${opts['tag-version'] ? '--abbrev=0' : ''}`;
-    srcTag = child_process.execSync(describeCommand).toString().trim();
+    srcTag = child_process.execSync(describeCommand, { cwd: srcRepoPath }).toString().trim();
   }
   let prefix = opts.prefix ?? (await getGitHubCommitsUrl(srcGit)) ?? '';
   if (prefix && !prefix.endsWith('/')) {
@@ -95,8 +103,8 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
     : `Replace all the files with those of ${opts.dest} due to missing sync commit.`;
   try {
     await dstGit.commit(`${title}\n\n${body}`);
-    logger.verbose(`Created a commit: ${title}`);
-    logger.verbose(`  with body: ${body}`);
+    logger.debug(`Created a commit: ${title}`);
+    logger.debug(`  with body: ${body}`);
   } catch (error) {
     logger.error(`Failed to commit changes: ${(error as Error).stack}`);
     return false;
@@ -106,7 +114,7 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
   if (destTag) {
     try {
       await dstGit.addTag(destTag);
-      logger.verbose(`Created a tag: ${destTag}`);
+      logger.debug(`Created a tag: ${destTag}`);
     } catch {
       // Ignore the error since `--abbrev=0` may yield a tag that already exists
       logger.warn(`Failed to create a tag: ${destTag}`);
@@ -114,7 +122,7 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
   }
 
   if (opts.dry) {
-    logger.verbose('Finished dry run');
+    logger.debug('Finished dry run');
     return true;
   }
 
@@ -129,13 +137,13 @@ async function syncCore(destRepoPath: string, opts: InferredOptionTypes<typeof y
     return false;
   }
 
-  logger.verbose('Pushed the commit');
+  logger.debug('Pushed the commit');
   return true;
 }
 
 function extractCommitHash(logResult: LogResult): [string, string] | [] {
   if (logResult.all.length === 0) {
-    logger.verbose('No commit history');
+    logger.debug('No commit history');
     return [];
   }
 
@@ -145,6 +153,6 @@ function extractCommitHash(logResult: LogResult): [string, string] | [] {
       return [log.message, words.at(-1) as string];
     }
   }
-  logger.verbose(`No sync commit: ${logResult.all[0].message}`);
+  logger.debug(`No sync commit: ${logResult.all[0].message}`);
   return [];
 }
