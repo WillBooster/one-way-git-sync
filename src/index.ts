@@ -9,7 +9,7 @@ const argv = await yargs(hideBin(process.argv))
   .scriptName('one-way-git-sync')
   .options(yargsOptions)
   .middleware((argv) => {
-    logger.level = argv.verbose ? 'verbose' : 'info';
+    logger.level = argv.verbose ? 'trace' : 'info';
   })
   .strict()
   .help().argv;
