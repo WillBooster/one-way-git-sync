@@ -9,7 +9,7 @@ import { simpleGit } from 'simple-git';
 import type { InferredOptionTypes } from 'yargs';
 
 import { getGitHubCommitsUrl } from './gitHub.js';
-// import { logger } from './console.js';
+import { logger } from './logger.js';
 import type { yargsOptions } from './yargsOptions.js';
 
 const syncDirPath = path.join('node_modules', '.temp', 'sync-git-repo');
@@ -45,17 +45,17 @@ export async function syncCore(
     await simpleGit(srcRepoPath).clone(opts.dest, destRepoPath, cloneOpts);
     simpleGit(destRepoPath).checkout(['-b', opts.branch] as TaskOptions);
   }
-  console.debug(`Cloned destination repo on ${destRepoPath}`);
+  logger.debug(`Cloned destination repo on ${destRepoPath}`);
 
   const dstGit: SimpleGit = simpleGit(destRepoPath);
   const dstLog = await dstGit.log();
 
   const [head, from] = extractCommitHash(dstLog);
   if (from) {
-    console.debug(`Extracted a valid commit: ${from}`);
-    console.debug(`(${head})`);
+    logger.debug(`Extracted a valid commit: ${from}`);
+    logger.debug(`(${head})`);
   } else if (!opts.force) {
-    console.error('No valid commit in destination repo');
+    logger.error('No valid commit in destination repo');
     return false;
   }
 
@@ -65,13 +65,13 @@ export async function syncCore(
     // '--first-parent' hides children commits of merge commits
     srcLog = await srcGit.log(from ? { from, to: 'HEAD', '--first-parent': undefined } : undefined);
   } catch (error) {
-    console.error(`Failed to get source commit history: ${(error as Error).stack}`);
+    logger.error(`Failed to get source commit history: ${(error as Error).stack}`);
     return false;
   }
 
   const latestHash = srcLog.latest?.hash;
   if (!latestHash) {
-    console.info('No synchronizable commit');
+    logger.info('No synchronizable commit');
     return true;
   }
 
@@ -103,10 +103,10 @@ export async function syncCore(
     : `Replace all the files with those of ${opts.dest} due to missing sync commit.`;
   try {
     await dstGit.commit(`${title}\n\n${body}`);
-    console.debug(`Created a commit: ${title}`);
-    console.debug(`  with body: ${body}`);
+    logger.debug(`Created a commit: ${title}`);
+    logger.debug(`  with body: ${body}`);
   } catch (error) {
-    console.error(`Failed to commit changes: ${(error as Error).stack}`);
+    logger.error(`Failed to commit changes: ${(error as Error).stack}`);
     return false;
   }
 
@@ -114,15 +114,15 @@ export async function syncCore(
   if (destTag) {
     try {
       await dstGit.addTag(destTag);
-      console.debug(`Created a tag: ${destTag}`);
+      logger.debug(`Created a tag: ${destTag}`);
     } catch {
       // Ignore the error since `--abbrev=0` may yield a tag that already exists
-      console.warn(`Failed to create a tag: ${destTag}`);
+      logger.warn(`Failed to create a tag: ${destTag}`);
     }
   }
 
   if (opts.dry) {
-    console.debug('Finished dry run');
+    logger.debug('Finished dry run');
     return true;
   }
 
@@ -133,17 +133,17 @@ export async function syncCore(
       await dstGit.push({ '--tags': null });
     }
   } catch (error) {
-    console.error(`Failed to push the commit: ${(error as Error).stack}`);
+    logger.error(`Failed to push the commit: ${(error as Error).stack}`);
     return false;
   }
 
-  console.debug('Pushed the commit');
+  logger.debug('Pushed the commit');
   return true;
 }
 
 function extractCommitHash(logResult: LogResult): [string, string] | [] {
   if (logResult.all.length === 0) {
-    console.debug('No commit history');
+    logger.debug('No commit history');
     return [];
   }
 
@@ -153,6 +153,6 @@ function extractCommitHash(logResult: LogResult): [string, string] | [] {
       return [log.message, words.at(-1) as string];
     }
   }
-  console.debug(`No sync commit: ${logResult.all[0].message}`);
+  logger.debug(`No sync commit: ${logResult.all[0].message}`);
   return [];
 }
