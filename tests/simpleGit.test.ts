@@ -6,21 +6,22 @@ import { simpleGit } from 'simple-git';
 import { beforeEach, expect, test } from 'vitest';
 
 import { LOCAL_SRC_DIR, REMOTE_SRC_DIR, TEMP_DIR } from './constants.js';
-import { setUpRepo } from './shared.js';
+import { setUpGit } from './shared.js';
 
 beforeEach(async () => {
   await fs.rm(TEMP_DIR, { force: true, recursive: true });
   await fs.mkdir(TEMP_DIR, { recursive: true });
+
+  await setUpGit();
 });
 
 test('can execute git init, commit and log', async () => {
   const git = simpleGit(TEMP_DIR);
-  await git.init();
-  await setUpRepo(git);
+  await git.init(false, ['--initial-branch=main']);
   const isGitRepo = await git.checkIsRepo();
   expect(isGitRepo).toBe(true);
 
-  await fs.writeFile(path.join('file.txt'), 'Hello World!');
+  await fs.writeFile(path.join(TEMP_DIR, 'file.txt'), 'Hello World!');
   await git.add('.');
   await git.commit('Initial commit');
 
@@ -53,11 +54,9 @@ export async function setupLocalAndRemoteRepos(): Promise<[SimpleGit, SimpleGit]
 
   const remoteGit = simpleGit(REMOTE_SRC_DIR);
   await remoteGit.init(true, ['--initial-branch=main']);
-  await setUpRepo(remoteGit);
 
   const localGit = simpleGit(LOCAL_SRC_DIR);
   await localGit.clone(REMOTE_SRC_DIR, LOCAL_SRC_DIR);
-  await setUpRepo(localGit);
 
   return [localGit, remoteGit];
 }

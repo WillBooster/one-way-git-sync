@@ -15,23 +15,22 @@ import {
   REMOTE_SRC_DIR,
   TEMP_DIR,
 } from './constants.js';
-import { createRepoDir, setUpRepo } from './shared.js';
+import { createRepoDir, setUpGit } from './shared.js';
 
 beforeEach(async () => {
-  console.log(TEMP_DIR);
   await fs.rm(TEMP_DIR, { force: true, recursive: true });
   await fs.mkdir(LOCAL_SRC_DIR, { recursive: true });
   await fs.mkdir(LOCAL_DEST_DIR, { recursive: true });
   await fs.mkdir(REMOTE_SRC_DIR, { recursive: true });
   await fs.mkdir(REMOTE_DEST_DIR, { recursive: true });
 
+  await setUpGit();
+
   const remoteDestGit = simpleGit(REMOTE_DEST_DIR);
   await remoteDestGit.init(true, ['--initial-branch=main']);
-  await setUpRepo(remoteDestGit);
 
   const localDestGit = simpleGit(LOCAL_DEST_DIR);
   await localDestGit.clone(REMOTE_DEST_DIR, LOCAL_DEST_DIR);
-  await setUpRepo(localDestGit);
 
   await fs.writeFile(path.join(LOCAL_DEST_DIR, 'dest.txt'), 'Dest Repository');
   await localDestGit.add('.');
@@ -40,11 +39,9 @@ beforeEach(async () => {
 
   const remoteSrcGit = simpleGit(REMOTE_SRC_DIR);
   await remoteSrcGit.init(true, ['--initial-branch=main']);
-  await setUpRepo(remoteSrcGit);
 
   const localSrcGit = simpleGit(LOCAL_SRC_DIR);
   await localSrcGit.clone(REMOTE_SRC_DIR, LOCAL_SRC_DIR);
-  await setUpRepo(localSrcGit);
 
   await fs.writeFile(path.join(LOCAL_SRC_DIR, 'src.txt'), 'Src Repository');
   await localSrcGit.add('.');
