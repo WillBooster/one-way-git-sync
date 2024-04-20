@@ -1,7 +1,7 @@
 import path from 'node:path';
 import url from 'node:url';
 
-import { Options } from '../src/sync.js';
+import type { YargsOptions } from '../src/sync.js';
 
 export const REMOTE_SRC = 'remote-src';
 
@@ -13,7 +13,7 @@ export const LOCAL_DEST = 'local-dest';
 
 export const TEMP_DIR = path.join(path.dirname(path.dirname(url.fileURLToPath(import.meta.url))), 'temp');
 
-export const DEFAULT_OPTIONS: Options = {
+export const DEFAULT_OPTIONS: YargsOptions = {
   dest: path.join(TEMP_DIR, REMOTE_DEST),
   'ignore-patterns': ['.git', '.github', 'node_modules', '.renovaterc.*'],
   prefix: undefined,

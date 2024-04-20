@@ -4,19 +4,19 @@ import path from 'node:path';
 
 import { copy } from 'fs-extra';
 import micromatch from 'micromatch';
-import type { LogResult, TaskOptions } from 'simple-git';
-import { simpleGit, SimpleGit } from 'simple-git';
-import { InferredOptionTypes } from 'yargs';
+import type { LogResult, TaskOptions, SimpleGit, Options } from 'simple-git';
+import { simpleGit } from 'simple-git';
+import type { InferredOptionTypes } from 'yargs';
 
 import { getGitHubCommitsUrl } from './gitHub.js';
 import { logger } from './logger.js';
-import { yargsOptions } from './yargsOptions.js';
+import type { yargsOptions } from './yargsOptions.js';
 
 const syncDirPath = path.join('node_modules', '.temp', 'sync-git-repo');
 
-export type Options = InferredOptionTypes<typeof yargsOptions>;
+export type YargsOptions = InferredOptionTypes<typeof yargsOptions>;
 
-export async function sync(opts: Options): Promise<void> {
+export async function sync(opts: YargsOptions): Promise<void> {
   await fs.mkdir(syncDirPath, { recursive: true });
   const dirPath = await fs.mkdtemp(path.join(syncDirPath, 'repo-'));
   const ret = await syncCore(dirPath, opts);
@@ -24,8 +24,9 @@ export async function sync(opts: Options): Promise<void> {
   process.exit(ret ? 0 : 1);
 }
 
-export async function syncCore(destRepoPath: string, opts: Options): Promise<boolean> {
-  const cloneOpts: Record<string, any> = { '--single-branch': undefined };
+export async function syncCore(destRepoPath: string, opts: YargsOptions): Promise<boolean> {
+  // eslint-disable-next-line unicorn/no-null
+  const cloneOpts: Options = { '--single-branch': null };
   if (!opts.force) {
     cloneOpts['--depth'] = 1;
   }
@@ -99,7 +100,7 @@ export async function syncCore(destRepoPath: string, opts: Options): Promise<boo
     logger.verbose(`Created a commit: ${title}`);
     logger.verbose(`  with body: ${body}`);
   } catch (error) {
-    logger.error(`Failed to commit changes: ${(error as Error).stack}\`);`);
+    logger.error(`Failed to commit changes: ${(error as Error).stack}`);
     return false;
   }
 
@@ -108,9 +109,9 @@ export async function syncCore(destRepoPath: string, opts: Options): Promise<boo
     try {
       await dstGit.addTag(destTag);
       logger.verbose(`Created a tag: ${destTag}`);
-    } catch (error) {
-      logger.error(`Failed to commit changes: ${(error as Error).stack}\`);`);
-      return false;
+    } catch {
+      // Ignore the error since `--abbrev=0` may yield a tag that already exists
+      logger.warn(`Failed to create a tag: ${destTag}`);
     }
   }
 
@@ -122,6 +123,7 @@ export async function syncCore(destRepoPath: string, opts: Options): Promise<boo
   try {
     await (opts.branch ? dstGit.push('origin', opts.branch) : dstGit.push());
     if (destTag) {
+      // eslint-disable-next-line unicorn/no-null
       await dstGit.push({ '--tags': null });
     }
   } catch (error) {

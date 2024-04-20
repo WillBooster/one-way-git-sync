@@ -1,4 +1,4 @@
-import { SimpleGit } from 'simple-git';
+import type { SimpleGit } from 'simple-git';
 
 export async function getGitHubCommitsUrl(git: SimpleGit): Promise<string | undefined> {
   const remotes = await git.getRemotes(true);
