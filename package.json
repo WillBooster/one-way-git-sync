@@ -28,15 +28,16 @@
     "release": "yarn build && semantic-release",
     "start": "build-ts run src/index.ts",
     "start-prod": "yarn build && yarn one-way-git-sync",
-    "test": "vitest --pool=forks",
+    "test": "vitest --poolOptions.threads.singleThread",
     "typecheck": "tsc --noEmit --Pretty"
   },
   "prettier": "@willbooster/prettier-config",
   "dependencies": {
     "fs-extra": "11.2.0",
     "micromatch": "4.0.5",
+    "pino": "8.20.0",
+    "pino-pretty": "11.0.0",
     "simple-git": "3.24.0",
-    "winston": "3.13.0",
     "yargs": "17.7.2"
   },
   "devDependencies": {

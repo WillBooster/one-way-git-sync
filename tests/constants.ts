@@ -1,20 +1,16 @@
+import os from 'node:os';
 import path from 'node:path';
-import url from 'node:url';
 
 import type { YargsOptions } from '../src/sync.js';
 
-export const REMOTE_SRC = 'remote-src';
-
-export const REMOTE_DEST = 'remote-dest';
-
-export const LOCAL_SRC = 'local-src';
-
-export const LOCAL_DEST = 'local-dest';
-
-export const TEMP_DIR = path.join(path.dirname(path.dirname(url.fileURLToPath(import.meta.url))), 'temp');
+export const TEMP_DIR = path.join(os.tmpdir(), 'one-way-git-sync');
+export const REMOTE_SRC_DIR = path.join(TEMP_DIR, 'remote-src');
+export const REMOTE_DEST_DIR = path.join(TEMP_DIR, 'remote-dest');
+export const LOCAL_SRC_DIR = path.join(TEMP_DIR, 'local-src');
+export const LOCAL_DEST_DIR = path.join(TEMP_DIR, 'local-dest');
 
 export const DEFAULT_OPTIONS: YargsOptions = {
-  dest: path.join(TEMP_DIR, REMOTE_DEST),
+  dest: REMOTE_DEST_DIR,
   'ignore-patterns': ['.git', '.github', 'node_modules', '.renovaterc.*'],
   prefix: undefined,
   branch: undefined,
@@ -23,5 +19,5 @@ export const DEFAULT_OPTIONS: YargsOptions = {
   'tag-version': undefined,
   dry: undefined,
   force: undefined,
-  verbose: undefined,
+  verbose: true,
 } as const;

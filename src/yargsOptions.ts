@@ -30,7 +30,7 @@ export const yargsOptions = {
     describe: 'Create version tag (e.g. v1.31.5). It could be a non-unique tag.',
   },
   'ignore-patterns': {
-    type: 'string',
+    type: 'array',
     alias: 'i',
     describe: `Exclude the files whose path matches one of the given patterns.
                The patterns are processed by micromatch (https://github.com/micromatch/micromatch).

@@ -1,9 +1,10 @@
-import { createLogger, format, transports } from 'winston';
+import { pino } from 'pino';
 
-export const logger = createLogger({
-  transports: [
-    new transports.Console({
-      format: format.cli({ colors: { error: 'red' } }),
-    }),
-  ],
+export const logger = pino({
+  transport: {
+    target: 'pino-pretty',
+    options: {
+      colorize: true,
+    },
+  },
 });
