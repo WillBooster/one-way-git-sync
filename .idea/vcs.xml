@@ -2,31 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/local-dest/local-dest" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-0CP1QiMBDzkg" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-3xCelIZhnCRg" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-7UbkJE6Wfj96" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-99TBem8DYZAq" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-AVI8LwyEdA03" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-AdayIfbtABia" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-BNL0MW1cprQo" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-GIfmWSKVmDAt" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-Hllp7RBwD1Kc" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-MZmEDlKjrbZ8" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-MkdZd6aBsWzd" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-Q01qkK5VzM09" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-QcUm857ZgT2A" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-Sk2gF0tyNcXR" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-X6qliZAoD58G" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-XNmZU3I4DpDH" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-XR6L4TSgV0QI" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-e8QqwX1odQSd" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-m14aZltS2wIj" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-pyNgWvJwHu5g" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-q783OVN2lXU1" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-qYsplMFrJ7eG" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-vthNPvdam7mU" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-yzbSeGSLYyo3" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/repo-zhYbZI5GoUP1" vcs="Git" />
   </component>
 </project>
