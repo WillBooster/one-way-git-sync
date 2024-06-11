@@ -47,8 +47,8 @@
     "@types/micromatch": "4.0.7",
     "@types/semantic-release": "20.0.6",
     "@types/yargs": "17.0.32",
-    "@typescript-eslint/eslint-plugin": "7.12.0",
-    "@typescript-eslint/parser": "7.12.0",
+    "@typescript-eslint/eslint-plugin": "7.13.0",
+    "@typescript-eslint/parser": "7.13.0",
     "@willbooster/eslint-config-ts": "10.6.0",
     "@willbooster/prettier-config": "9.1.2",
     "build-ts": "13.1.8",
@@ -63,13 +63,13 @@
     "husky": "9.0.11",
     "lint-staged": "15.2.5",
     "pinst": "3.0.0",
-    "prettier": "3.3.1",
+    "prettier": "3.3.2",
     "semantic-release": "24.0.0",
     "sort-package-json": "2.10.0",
     "typescript": "5.4.5",
     "vitest": "1.6.0"
   },
-  "packageManager": "yarn@4.2.2",
+  "packageManager": "yarn@4.3.0",
   "engines": {
     "node": ">=18"
   },
