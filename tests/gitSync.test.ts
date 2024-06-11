@@ -61,10 +61,10 @@ test('can initialize git sync', async () => {
   const destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
   expect(fs.lstat(destFilePath)).rejects.toThrow();
 
-  const syncSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(syncSrcFilePath)).resolves.not.toThrow();
-  const syncSrcFileContent = await fs.readFile(syncSrcFilePath, 'utf8');
-  expect(syncSrcFileContent).toBe('Src Repository');
+  const syncedSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
+  expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
+  const syncedSrcFileContent = await fs.readFile(syncedSrcFilePath, 'utf8');
+  expect(syncedSrcFileContent).toBe('Src Repository');
 
   const srcLog = await localSrcGit.log();
   const destLog = await localDestGit.log();
@@ -92,10 +92,10 @@ test('can git sync without additional commits', async () => {
   const destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
   expect(fs.lstat(destFilePath)).rejects.toThrow();
 
-  const syncSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(syncSrcFilePath)).resolves.not.toThrow();
-  const syncSrcFileContent = await fs.readFile(syncSrcFilePath, 'utf8');
-  expect(syncSrcFileContent).toBe('Src Repository');
+  const syncedSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
+  expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
+  const syncedSrcFileContent = await fs.readFile(syncedSrcFilePath, 'utf8');
+  expect(syncedSrcFileContent).toBe('Src Repository');
 
   const srcLog = await localSrcGit.log();
   const destLog = await localDestGit.log();
@@ -227,10 +227,10 @@ test.each<{ label: string; createBranch: (git: SimpleGit, branchName: string) =>
   let destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
   expect(fs.lstat(destFilePath)).rejects.toThrow();
 
-  let syncSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(syncSrcFilePath)).resolves.not.toThrow();
-  const syncSrcFileContent = await fs.readFile(syncSrcFilePath, 'utf8');
-  expect(syncSrcFileContent).toBe('Src Repository');
+  let syncedSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
+  expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
+  const syncedSrcFileContent = await fs.readFile(syncedSrcFilePath, 'utf8');
+  expect(syncedSrcFileContent).toBe('Src Repository');
 
   let destLog = await localDestGit.log();
   expect(destLog.latest?.message).toBe(`sync ${srcLog.latest?.hash}`);
@@ -241,8 +241,8 @@ test.each<{ label: string; createBranch: (git: SimpleGit, branchName: string) =>
   destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
   expect(fs.lstat(destFilePath)).rejects.toThrow();
 
-  syncSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(syncSrcFilePath)).rejects.toThrow();
+  syncedSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
+  expect(fs.lstat(syncedSrcFilePath)).rejects.toThrow();
 
   srcLog = await localSrcGit.log();
   destLog = await localDestGit.log();
@@ -466,10 +466,10 @@ test('can git sync with dry option', async () => {
   const destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
   expect(fs.lstat(destFilePath)).rejects.toThrow();
 
-  const syncSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(syncSrcFilePath)).resolves.not.toThrow();
-  const syncSrcFileContent = await fs.readFile(syncSrcFilePath, 'utf8');
-  expect(syncSrcFileContent).toBe('Src Repository');
+  const syncedSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
+  expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
+  const syncedSrcFileContent = await fs.readFile(syncedSrcFilePath, 'utf8');
+  expect(syncedSrcFileContent).toBe('Src Repository');
 
   const src2FilePath = path.join(LOCAL_DEST_DIR, 'src2.txt');
   expect(fs.lstat(src2FilePath)).rejects.toThrow();

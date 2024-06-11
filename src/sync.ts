@@ -48,9 +48,14 @@ export async function syncCore(
   logger.debug(`Cloned destination repo on ${destRepoPath}`);
 
   const dstGit: SimpleGit = simpleGit(destRepoPath);
-  const dstLog = await dstGit.log();
-
-  const [head, from] = extractCommitHash(dstLog);
+  let commitHashResult: [string, string] | [] = [];
+  try {
+    const dstLog = await dstGit.log();
+    commitHashResult = extractCommitHash(dstLog);
+  } catch {
+    // do nothing
+  }
+  const [head, from] = commitHashResult;
   if (from) {
     logger.debug(`Extracted a valid commit: ${from}`);
     logger.debug(`(${head})`);
