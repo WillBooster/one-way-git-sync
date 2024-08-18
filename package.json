@@ -42,7 +42,7 @@
     "yargs": "17.7.2"
   },
   "devDependencies": {
-    "@types/eslint": "8.56.11",
+    "@types/eslint": "9.6.0",
     "@types/fs-extra": "11.0.4",
     "@types/micromatch": "4.0.9",
     "@types/semantic-release": "20.0.6",
@@ -53,7 +53,7 @@
     "@willbooster/prettier-config": "9.1.2",
     "build-ts": "13.1.8",
     "conventional-changelog-conventionalcommits": "8.0.0",
-    "eslint": "8.57.0",
+    "eslint": "9.9.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-import-resolver-typescript": "3.6.1",
     "eslint-plugin-import": "2.29.1",
