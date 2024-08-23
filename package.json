@@ -35,7 +35,7 @@
   "prettier": "@willbooster/prettier-config",
   "dependencies": {
     "fs-extra": "11.2.0",
-    "micromatch": "4.0.7",
+    "micromatch": "4.0.8",
     "pino": "9.3.2",
     "pino-pretty": "11.2.2",
     "simple-git": "3.25.0",
