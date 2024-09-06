@@ -36,9 +36,9 @@
   "dependencies": {
     "fs-extra": "11.2.0",
     "micromatch": "4.0.8",
-    "pino": "9.3.2",
+    "pino": "9.4.0",
     "pino-pretty": "11.2.2",
-    "simple-git": "3.25.0",
+    "simple-git": "3.26.0",
     "yargs": "17.7.2"
   },
   "devDependencies": {

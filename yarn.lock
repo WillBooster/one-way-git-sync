@@ -7748,12 +7748,12 @@ __metadata:
     husky: "npm:9.1.5"
     lint-staged: "npm:15.2.10"
     micromatch: "npm:4.0.8"
-    pino: "npm:9.3.2"
+    pino: "npm:9.4.0"
     pino-pretty: "npm:11.2.2"
     pinst: "npm:3.0.0"
     prettier: "npm:3.3.3"
     semantic-release: "npm:24.1.0"
-    simple-git: "npm:3.25.0"
+    simple-git: "npm:3.26.0"
     sort-package-json: "npm:2.10.1"
     typescript: "npm:5.5.4"
     vitest: "npm:1.6.0"
@@ -8186,9 +8186,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino@npm:9.3.2":
-  version: 9.3.2
-  resolution: "pino@npm:9.3.2"
+"pino@npm:9.4.0":
+  version: 9.4.0
+  resolution: "pino@npm:9.4.0"
   dependencies:
     atomic-sleep: "npm:^1.0.0"
     fast-redact: "npm:^3.1.1"
@@ -8203,7 +8203,7 @@ __metadata:
     thread-stream: "npm:^3.0.0"
   bin:
     pino: bin.js
-  checksum: 10c0/698eb2ebfcc4252da9d035fcf9c999bf27615b66ebc47f9b3d7e942750e50ebe38429e6457abcf8014d70125964ddf114e696cb8225b480d9930271708e3fb52
+  checksum: 10c0/12a3d74968964d92b18ca7d6095a3c5b86478dc22264a37486d64e102085ed08820fcbe75e640acc3542fdf2937a34e5050b624f98e6ac62dd10f5e1328058a2
   languageName: node
   linkType: hard
 
@@ -9244,14 +9244,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"simple-git@npm:3.25.0":
-  version: 3.25.0
-  resolution: "simple-git@npm:3.25.0"
+"simple-git@npm:3.26.0":
+  version: 3.26.0
+  resolution: "simple-git@npm:3.26.0"
   dependencies:
     "@kwsites/file-exists": "npm:^1.1.1"
     "@kwsites/promise-deferred": "npm:^1.1.1"
     debug: "npm:^4.3.5"
-  checksum: 10c0/2087dddac041eac6330cbb7fafea21f3e45786ea54e50ae07a49ba6a7134298e12727e5e4b6580310b679c7cb4f2a83804c04e7eab247eeabcd48d33b7885e16
+  checksum: 10c0/fa45c9ff26c45aa7390f69610e27c1ae474b3881977828009fe41b7ffe8ce371cc108b818b2153815299deffefed591e9148cfdad92d8ddb60ca29eaefaf5827
   languageName: node
   linkType: hard
 
