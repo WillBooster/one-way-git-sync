@@ -38,7 +38,7 @@
     "micromatch": "4.0.8",
     "pino": "9.4.0",
     "pino-pretty": "11.2.2",
-    "simple-git": "3.26.0",
+    "simple-git": "3.27.0",
     "yargs": "17.7.2"
   },
   "devDependencies": {
