@@ -80,13 +80,17 @@ export async function syncCore(
     return true;
   }
 
-  const [destFiles, srcFiles] = await Promise.all([fs.readdir(destRepoPath), fs.readdir(srcRepoPath)]);
   // Force to ignore .git directory
   const ignorePatterns = [...new Set([...opts['ignore-patterns'].map(String), '.git'])];
-  for (const destFile of micromatch.not(destFiles, ignorePatterns)) {
+  let [destFiles, srcFiles] = await Promise.all([fs.readdir(destRepoPath), fs.readdir(srcRepoPath)]);
+  destFiles = micromatch.not(destFiles, ignorePatterns);
+  srcFiles = micromatch.not(srcFiles, ignorePatterns);
+  logger.debug('destFiles: %o', destFiles);
+  logger.debug('srcFiles: %o', srcFiles);
+  for (const destFile of destFiles) {
     await fs.rm(path.join(destRepoPath, destFile), { recursive: true, force: true });
   }
-  for (const srcFile of micromatch.not(srcFiles, ignorePatterns)) {
+  for (const srcFile of srcFiles) {
     await copy(path.join(srcRepoPath, srcFile), path.join(destRepoPath, srcFile));
   }
   await dstGit.add('-A');
@@ -107,8 +111,9 @@ export async function syncCore(
     ? srcLog.all.map((l) => `* ${l.message}`).join('\n\n')
     : `Replace all the files with those of ${opts.dest} due to missing sync commit.`;
   try {
-    await dstGit.commit(`${title}\n\n${body}`);
-    logger.debug(`Created a commit: ${title}`);
+    const ret = await dstGit.commit(`${title}\n\n${body}`);
+    logger.debug(`Created a commit: %o`, ret);
+    logger.debug(title);
     logger.debug(`  with body: ${body}`);
   } catch (error) {
     logger.error(`Failed to commit changes: ${(error as Error).stack}`);
