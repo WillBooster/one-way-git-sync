@@ -59,10 +59,10 @@ test('can initialize git sync', async () => {
   await localDestGit.pull();
 
   const destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
-  expect(fs.lstat(destFilePath)).rejects.toThrow();
+  await expect(fs.lstat(destFilePath)).rejects.toThrow();
 
   const syncedSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
+  await expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
   const syncedSrcFileContent = await fs.readFile(syncedSrcFilePath, 'utf8');
   expect(syncedSrcFileContent).toBe('Src Repository');
 
@@ -90,10 +90,10 @@ test('can git sync without additional commits', async () => {
   await localDestGit.pull();
 
   const destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
-  expect(fs.lstat(destFilePath)).rejects.toThrow();
+  await expect(fs.lstat(destFilePath)).rejects.toThrow();
 
   const syncedSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
+  await expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
   const syncedSrcFileContent = await fs.readFile(syncedSrcFilePath, 'utf8');
   expect(syncedSrcFileContent).toBe('Src Repository');
 
@@ -129,12 +129,12 @@ test('can git sync without options', async () => {
   await localDestGit.pull();
 
   const destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
-  expect(fs.lstat(destFilePath)).rejects.toThrow();
+  await expect(fs.lstat(destFilePath)).rejects.toThrow();
   const srcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(srcFilePath)).rejects.toThrow();
+  await expect(fs.lstat(srcFilePath)).rejects.toThrow();
 
   const syncSrc2FilePath = path.join(LOCAL_DEST_DIR, 'src2.txt');
-  expect(fs.lstat(syncSrc2FilePath)).resolves.not.toThrow();
+  await expect(fs.lstat(syncSrc2FilePath)).resolves.not.toThrow();
   const syncSrc2FileContent = await fs.readFile(syncSrc2FilePath, 'utf8');
   expect(syncSrc2FileContent).toBe('Src Repository 2');
 
@@ -175,9 +175,9 @@ test.each<{ label: string; prefix: string; expectedSyncCommitMessage: (syncCommi
   await localDestGit.pull();
 
   const destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
-  expect(fs.lstat(destFilePath)).rejects.toThrow();
+  await expect(fs.lstat(destFilePath)).rejects.toThrow();
   const srcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(srcFilePath)).rejects.toThrow();
+  await expect(fs.lstat(srcFilePath)).rejects.toThrow();
 
   const srcLog = await localSrcGit.log();
   const destLog = await localDestGit.log();
@@ -225,10 +225,10 @@ test.each<{ label: string; createBranch: (git: SimpleGit, branchName: string) =>
   await localDestGit.pull();
 
   let destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
-  expect(fs.lstat(destFilePath)).rejects.toThrow();
+  await expect(fs.lstat(destFilePath)).rejects.toThrow();
 
   let syncedSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
+  await expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
   const syncedSrcFileContent = await fs.readFile(syncedSrcFilePath, 'utf8');
   expect(syncedSrcFileContent).toBe('Src Repository');
 
@@ -239,10 +239,10 @@ test.each<{ label: string; createBranch: (git: SimpleGit, branchName: string) =>
   await localDestGit.pull();
 
   destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
-  expect(fs.lstat(destFilePath)).rejects.toThrow();
+  await expect(fs.lstat(destFilePath)).rejects.toThrow();
 
   syncedSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(syncedSrcFilePath)).rejects.toThrow();
+  await expect(fs.lstat(syncedSrcFilePath)).rejects.toThrow();
 
   srcLog = await localSrcGit.log();
   destLog = await localDestGit.log();
@@ -270,9 +270,9 @@ test('can git sync with tag option', async () => {
   await localDestGit.pull();
 
   const destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
-  expect(fs.lstat(destFilePath)).rejects.toThrow();
+  await expect(fs.lstat(destFilePath)).rejects.toThrow();
   const srcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(srcFilePath)).rejects.toThrow();
+  await expect(fs.lstat(srcFilePath)).rejects.toThrow();
 
   const srcLog = await localSrcGit.log();
   const destLog = await localDestGit.log();
@@ -304,11 +304,11 @@ test('can git sync with tag-hash option', async () => {
   await localDestGit.pull();
 
   const destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
-  expect(fs.lstat(destFilePath)).rejects.toThrow();
+  await expect(fs.lstat(destFilePath)).rejects.toThrow();
   const srcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(srcFilePath)).rejects.toThrow();
+  await expect(fs.lstat(srcFilePath)).rejects.toThrow();
   const syncSrc2FilePath = path.join(LOCAL_DEST_DIR, 'src2.txt');
-  expect(fs.lstat(syncSrc2FilePath)).resolves.not.toThrow();
+  await expect(fs.lstat(syncSrc2FilePath)).resolves.not.toThrow();
   const syncSrc2FileContent = await fs.readFile(syncSrc2FilePath, 'utf8');
   expect(syncSrc2FileContent).toBe('Src Repository 2');
 
@@ -350,11 +350,11 @@ test.each<{ label: string; tagHash: boolean }>([
   await localDestGit.pull();
 
   const destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
-  expect(fs.lstat(destFilePath)).rejects.toThrow();
+  await expect(fs.lstat(destFilePath)).rejects.toThrow();
   const srcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(srcFilePath)).rejects.toThrow();
+  await expect(fs.lstat(srcFilePath)).rejects.toThrow();
   const syncSrc2FilePath = path.join(LOCAL_DEST_DIR, 'src2.txt');
-  expect(fs.lstat(syncSrc2FilePath)).resolves.not.toThrow();
+  await expect(fs.lstat(syncSrc2FilePath)).resolves.not.toThrow();
   const syncSrc2FileContent = await fs.readFile(syncSrc2FilePath, 'utf8');
   expect(syncSrc2FileContent).toBe('Src Repository 2');
 
@@ -391,9 +391,9 @@ test.each<{ label: string; tagHash: boolean; tagVersion: boolean }>([
   await localDestGit.pull();
 
   const destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
-  expect(fs.lstat(destFilePath)).rejects.toThrow();
+  await expect(fs.lstat(destFilePath)).rejects.toThrow();
   const srcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(srcFilePath)).rejects.toThrow();
+  await expect(fs.lstat(srcFilePath)).rejects.toThrow();
 
   const srcLog = await localSrcGit.log();
   const destLog = await localDestGit.log();
@@ -426,11 +426,11 @@ test('can git sync with ignore-patterns option', async () => {
   await localDestGit.pull();
 
   const destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
-  expect(fs.lstat(destFilePath)).rejects.toThrow();
+  await expect(fs.lstat(destFilePath)).rejects.toThrow();
   const srcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(srcFilePath)).rejects.toThrow();
+  await expect(fs.lstat(srcFilePath)).rejects.toThrow();
   const syncSrc2FilePath = path.join(LOCAL_DEST_DIR, 'src2.txt');
-  expect(fs.lstat(syncSrc2FilePath)).rejects.toThrow();
+  await expect(fs.lstat(syncSrc2FilePath)).rejects.toThrow();
 
   const srcLog = await localSrcGit.log();
   const destLog = await localDestGit.log();
@@ -464,15 +464,15 @@ test('can git sync with dry option', async () => {
   await localDestGit.pull();
 
   const destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
-  expect(fs.lstat(destFilePath)).rejects.toThrow();
+  await expect(fs.lstat(destFilePath)).rejects.toThrow();
 
   const syncedSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
+  await expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
   const syncedSrcFileContent = await fs.readFile(syncedSrcFilePath, 'utf8');
   expect(syncedSrcFileContent).toBe('Src Repository');
 
   const src2FilePath = path.join(LOCAL_DEST_DIR, 'src2.txt');
-  expect(fs.lstat(src2FilePath)).rejects.toThrow();
+  await expect(fs.lstat(src2FilePath)).rejects.toThrow();
 
   const destLog = await localDestGit.log();
   expect(destLog.latest?.message).toBe(`sync ${srcLog.latest?.hash}`);

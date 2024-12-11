@@ -56,7 +56,7 @@ test('Work one-way-git-sync --force to an empty repo', async () => {
   await localDestGit.pull();
 
   const syncedSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
-  expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
+  await expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
   const syncedSrcFileContent = await fs.readFile(syncedSrcFilePath, 'utf8');
   expect(syncedSrcFileContent).toBe('Src Repository');
 
