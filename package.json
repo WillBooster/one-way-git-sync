@@ -17,6 +17,7 @@
   ],
   "scripts": {
     "build": "build-ts app",
+    "check-all": "yarn cleanup && yarn typecheck && yarn test",
     "cleanup": "yarn format && yarn lint-fix",
     "format": "sort-package-json && yarn prettify",
     "postinstall": "husky || true",
@@ -59,7 +60,7 @@
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-sort-class-members": "1.21.0",
     "eslint-plugin-sort-destructure-keys": "2.0.0",
-    "eslint-plugin-unicorn": "56.0.1",
+    "eslint-plugin-unicorn": "57.0.0",
     "husky": "9.1.7",
     "lint-staged": "15.4.3",
     "pinst": "3.0.0",
@@ -69,7 +70,7 @@
     "typescript": "5.8.2",
     "vitest": "3.0.7"
   },
-  "packageManager": "yarn@4.6.0",
+  "packageManager": "yarn@4.7.0",
   "engines": {
     "node": ">=18"
   },
