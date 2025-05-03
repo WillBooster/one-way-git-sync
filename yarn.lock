@@ -3299,13 +3299,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@willbooster/shared-lib-node@npm:6.1.16":
-  version: 6.1.16
-  resolution: "@willbooster/shared-lib-node@npm:6.1.16"
+"@willbooster/shared-lib-node@npm:6.1.17":
+  version: 6.1.17
+  resolution: "@willbooster/shared-lib-node@npm:6.1.17"
   dependencies:
     dotenv: "npm:16.5.0"
     tree-kill: "npm:1.2.2"
-  checksum: 10c0/2b9546cb5b78e8350b43ec12937926c63cdd7b4454b6918112e48bb51754c1328385fce32791d1284b5278e0899087549701b970e7f0e72e6352922d04308839
+  checksum: 10c0/5494ee683160e90c9f6c6d35434668815660ebc0d1ffbfe52f853d0ba6f680a88c0a77b09e8d39d58ac460c50873b32bcf22e2c2e7b71932925956a2397e6aca
   languageName: node
   linkType: hard
 
@@ -3741,9 +3741,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"build-ts@npm:13.2.2":
-  version: 13.2.2
-  resolution: "build-ts@npm:13.2.2"
+"build-ts@npm:13.2.3":
+  version: 13.2.3
+  resolution: "build-ts@npm:13.2.3"
   dependencies:
     "@babel/core": "npm:7.27.1"
     "@babel/plugin-proposal-decorators": "npm:7.27.1"
@@ -3760,7 +3760,7 @@ __metadata:
     "@rollup/plugin-replace": "npm:6.0.2"
     "@rollup/plugin-terser": "npm:0.4.4"
     "@rollup/pluginutils": "npm:5.1.4"
-    "@willbooster/shared-lib-node": "npm:6.1.16"
+    "@willbooster/shared-lib-node": "npm:6.1.17"
     babel-plugin-polyfill-corejs3: "npm:0.12.0"
     babel-plugin-transform-remove-console: "npm:6.9.4"
     chalk: "npm:5.4.1"
@@ -3781,7 +3781,7 @@ __metadata:
     yargs: "npm:17.7.2"
   bin:
     build-ts: bin/index.js
-  checksum: 10c0/061c6dfca496099bad02bd19cf293ae9a47e79846f6900571fc4b1646839a6cfc7ffe8bee042db173dd107110735a62b5a5f9c2458a83f119fea2bc3169dbbbe
+  checksum: 10c0/22b802fed05e7b3b1306c85d7a5022a3712e286ff7f43cc47a4d868a408221b17e7194e7db92f655f5baaad30bbe85cb411955254d9fb08b999663231fde00b7
   languageName: node
   linkType: hard
 
@@ -7731,7 +7731,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:8.31.1"
     "@willbooster/eslint-config-ts": "npm:10.6.1"
     "@willbooster/prettier-config": "npm:9.1.3"
-    build-ts: "npm:13.2.2"
+    build-ts: "npm:13.2.3"
     conventional-changelog-conventionalcommits: "npm:8.0.0"
     eslint: "npm:8.57.0"
     eslint-config-prettier: "npm:10.1.2"
