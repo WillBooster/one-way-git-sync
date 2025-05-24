@@ -64,7 +64,7 @@
     "lint-staged": "15.5.2",
     "pinst": "3.0.0",
     "prettier": "3.5.3",
-    "semantic-release": "24.2.4",
+    "semantic-release": "24.2.5",
     "sort-package-json": "2.15.1",
     "typescript": "5.8.3",
     "vitest": "3.1.4"
