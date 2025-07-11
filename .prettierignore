@@ -8,15 +8,19 @@ android/
 ios/
 no-format/
 test-fixtures/
+test/fixtures/
 *.d.ts
 *.min.js
 .yarn/
 .pnp.js
 !.keep
+.aider*
 .env.production
-*/mount/*.hash
+.idea/AugmentWebviewStateStore.xml
 .idea/copilot/chatSessions/
 .devcontainer/
+*/mount/*.hash
+__generated__/
 dist/
 temp/
 
