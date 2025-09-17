@@ -1,6 +1,8 @@
 name: Force to Sync
 on:
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   sync-force:
     uses: WillBooster/reusable-workflows/.github/workflows/sync.yml@main
