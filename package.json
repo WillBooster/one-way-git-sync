@@ -38,21 +38,20 @@
   "dependencies": {
     "fs-extra": "11.3.2",
     "micromatch": "4.0.8",
-    "pino": "9.14.0",
+    "pino": "10.1.0",
     "pino-pretty": "13.1.2",
     "simple-git": "3.30.0",
-    "yargs": "17.7.2"
+    "yargs": "18.0.0"
   },
   "devDependencies": {
-    "@types/eslint": "8.56.11",
+    "@types/eslint": "9.6.1",
     "@types/fs-extra": "11.0.4",
     "@types/micromatch": "4.0.10",
-    "@types/semantic-release": "20.0.6",
     "@types/yargs": "17.0.35",
     "@willbooster/eslint-config-ts": "11.4.10",
     "@willbooster/prettier-config": "10.2.1",
-    "build-ts": "13.2.3",
-    "conventional-changelog-conventionalcommits": "8.0.0",
+    "build-ts": "17.0.2",
+    "conventional-changelog-conventionalcommits": "9.1.0",
     "eslint": "9.39.1",
     "eslint-config-flat-gitignore": "2.1.0",
     "eslint-config-prettier": "10.1.8",
@@ -68,15 +67,15 @@
     "pinst": "3.0.0",
     "prettier": "3.6.2",
     "prettier-plugin-java": "2.7.7",
-    "semantic-release": "24.2.9",
+    "semantic-release": "25.0.2",
     "sort-package-json": "3.4.0",
     "typescript": "5.9.3",
     "typescript-eslint": "8.47.0",
-    "vitest": "3.2.4"
+    "vitest": "4.0.10"
   },
   "packageManager": "yarn@4.11.0",
   "engines": {
-    "node": ">=18"
+    "node": ">=24"
   },
   "publishConfig": {
     "access": "public"
