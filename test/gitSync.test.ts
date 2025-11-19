@@ -314,7 +314,7 @@ test('can git sync with tag-hash option', async () => {
 
   const srcLog = await localSrcGit.log();
   const destLog = await localDestGit.log();
-  const hashShortCommitHash = srcLog.latest?.hash?.slice?.(0, 7);
+  const hashShortCommitHash = srcLog.latest ? srcLog.latest.hash.slice(0, 7) : undefined;
   expect(destLog.latest?.message).toBe(`sync v0.1.0-1-g${hashShortCommitHash} (${srcLog.latest?.hash})`);
   expect(destLog.latest?.body).toBe(['* add src2.txt', '', '* delete src.txt', ''].join('\n'));
 

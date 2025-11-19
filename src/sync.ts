@@ -43,7 +43,7 @@ export async function syncCore(
     delete cloneOpts['--branch'];
     delete cloneOpts['--single-branch'];
     await simpleGit(srcRepoPath).clone(opts.dest, destRepoPath, cloneOpts);
-    simpleGit(destRepoPath).checkout(['-b', opts.branch] as TaskOptions);
+    await simpleGit(destRepoPath).checkout(['-b', opts.branch] as TaskOptions);
   }
   logger.debug(`Cloned destination repo on ${destRepoPath}`);
 
@@ -163,6 +163,9 @@ function extractCommitHash(logResult: LogResult): [string, string] | [] {
       return [log.message, words.at(-1) as string];
     }
   }
-  logger.debug(`No sync commit: ${logResult.all[0].message}`);
+  const [firstLog] = logResult.all;
+  if (firstLog) {
+    logger.debug(`No sync commit: ${firstLog.message}`);
+  }
   return [];
 }
