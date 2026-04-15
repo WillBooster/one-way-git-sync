@@ -70,3 +70,33 @@ test('Work one-way-git-sync --force to an empty repo', async () => {
   const destTags = await localDestGit.tags();
   expect(destTags.latest).toBeUndefined();
 });
+
+test('Work one-way-git-sync --force when the destination sync hash is missing from source', async () => {
+  const localDestGit = simpleGit(LOCAL_DEST_DIR);
+  const localSrcGit = simpleGit(LOCAL_SRC_DIR);
+
+  await fs.writeFile(path.join(LOCAL_DEST_DIR, 'dest.txt'), 'Dest Repository');
+  await localDestGit.add('.');
+  await localDestGit.commit(`sync ${'a'.repeat(40)}`);
+  await localDestGit.push(['-u', 'origin', 'main']);
+
+  const ret = await syncCore(await createRepoDir(), { ...DEFAULT_OPTIONS, verbose: true, force: true }, LOCAL_SRC_DIR);
+  expect(ret).toBe(true);
+
+  await localDestGit.pull();
+
+  const destFilePath = path.join(LOCAL_DEST_DIR, 'dest.txt');
+  await expect(fs.lstat(destFilePath)).rejects.toThrow();
+
+  const syncedSrcFilePath = path.join(LOCAL_DEST_DIR, 'src.txt');
+  await expect(fs.lstat(syncedSrcFilePath)).resolves.not.toThrow();
+  const syncedSrcFileContent = await fs.readFile(syncedSrcFilePath, 'utf8');
+  expect(syncedSrcFileContent).toBe('Src Repository');
+
+  const srcLog = await localSrcGit.log();
+  const destLog = await localDestGit.log();
+  expect(destLog.latest?.message).toBe(`sync ${srcLog.latest?.hash}`);
+  expect(destLog.latest?.body).toBe(
+    `Replace all the files with those of ${DEFAULT_OPTIONS.dest} due to missing sync commit.\n`
+  );
+});

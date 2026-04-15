@@ -56,6 +56,7 @@ export async function syncCore(
     // do nothing
   }
   const [head, from] = commitHashResult;
+  let logFrom = from;
   if (from) {
     logger.debug(`Extracted a valid commit: ${from}`);
     logger.debug(`(${head})`);
@@ -68,10 +69,16 @@ export async function syncCore(
   let srcLog: LogResult;
   try {
     // '--first-parent' hides children commits of merge commits
-    srcLog = await srcGit.log(from ? { from, to: 'HEAD', '--first-parent': undefined } : undefined);
+    srcLog = await srcGit.log(logFrom ? { from: logFrom, to: 'HEAD', '--first-parent': undefined } : undefined);
   } catch (error) {
-    logger.error(`Failed to get source commit history: ${(error as Error).stack}`);
-    return false;
+    if (opts.force) {
+      logger.warn(`Failed to get source commit history from ${from}; falling back to full sync`);
+      srcLog = await srcGit.log();
+      logFrom = undefined;
+    } else {
+      logger.error(`Failed to get source commit history: ${(error as Error).stack}`);
+      return false;
+    }
   }
 
   const latestHash = srcLog.latest?.hash;
@@ -107,7 +114,7 @@ export async function syncCore(
   }
   const link = `${prefix}${latestHash}`;
   const title = srcTag ? `sync ${srcTag} (${link})` : `sync ${link}`;
-  const body = from
+  const body = logFrom
     ? srcLog.all.map((l) => `* ${l.message}`).join('\n\n')
     : `Replace all the files with those of ${opts.dest} due to missing sync commit.`;
   try {
