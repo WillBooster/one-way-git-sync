@@ -47,7 +47,7 @@
     "@tsconfig/node-ts": "23.6.4",
     "@types/fs-extra": "11.0.4",
     "@types/micromatch": "4.0.10",
-    "@types/node": "25.9.1",
+    "@types/node": "25.9.2",
     "@types/yargs": "17.0.35",
     "@typescript/native-preview": "7.0.0-dev.20260527.2",
     "@willbooster/oxfmt-config": "1.2.2",
