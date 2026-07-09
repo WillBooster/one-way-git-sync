@@ -54,7 +54,7 @@
     "@willbooster/oxlint-config": "1.4.8",
     "@willbooster/wb": "13.23.1",
     "build-ts": "17.1.31",
-    "conventional-changelog-conventionalcommits": "9.3.1",
+    "conventional-changelog-conventionalcommits": "10.2.0",
     "lefthook": "2.1.9",
     "oxfmt": "0.58.0",
     "oxlint": "1.73.0",
