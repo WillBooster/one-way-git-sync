@@ -1264,10 +1264,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@conventional-changelog/template@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "@conventional-changelog/template@npm:1.2.0"
-  checksum: 10c0/c0e8a5fb4fc04770a9ba259cad782f96e512da4f9ff6bc9a634272700494b397759fde67a757684ef216056749ca42bcade00f149a8958039854d40806390e97
+"@conventional-changelog/template@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "@conventional-changelog/template@npm:1.2.1"
+  checksum: 10c0/5a391c5fa8f740d892aac8d5ee14e255625d6c1938e6c3c04c104129a58b5baff3c9c04592744ba0dbbbce7b421ca906af378f194b10d7803c4906b23028e0b4
   languageName: node
   linkType: hard
 
@@ -3772,12 +3772,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-changelog-conventionalcommits@npm:10.2.0":
-  version: 10.2.0
-  resolution: "conventional-changelog-conventionalcommits@npm:10.2.0"
+"conventional-changelog-conventionalcommits@npm:10.2.1":
+  version: 10.2.1
+  resolution: "conventional-changelog-conventionalcommits@npm:10.2.1"
   dependencies:
-    "@conventional-changelog/template": "npm:^1.2.0"
-  checksum: 10c0/8a1bf93c8336846c934b16e601c07d7a7321772c81fefb877e70c9e8ba2400f0f8029f28417b708f2608faad2abf513027353db3234428abf540a0f5b8a7db5d
+    "@conventional-changelog/template": "npm:^1.2.1"
+  checksum: 10c0/cb90f59908cba4d463258093b4a0e1d3ffe81234d032dbcbf857bfe6c8d959597b3a2c01fa69b45a4937f2059e43d9343d39636fc484ff89a624927c77cdf05d
   languageName: node
   linkType: hard
 
@@ -4371,18 +4371,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:11.3.5":
-  version: 11.3.5
-  resolution: "fs-extra@npm:11.3.5"
-  dependencies:
-    graceful-fs: "npm:^4.2.0"
-    jsonfile: "npm:^6.0.1"
-    universalify: "npm:^2.0.0"
-  checksum: 10c0/33e80bad6b5d17308faa197e5ede99ecba4b6f6cb4aa4645d52745476c75afc57665bdf39ec75b2ebb38b97b7110f634a8dcc0a546e248eb4de059275cf5ac90
-  languageName: node
-  linkType: hard
-
-"fs-extra@npm:^11.0.0":
+"fs-extra@npm:11.3.6, fs-extra@npm:^11.0.0":
   version: 11.3.6
   resolution: "fs-extra@npm:11.3.6"
   dependencies:
@@ -6114,8 +6103,8 @@ __metadata:
     "@willbooster/oxlint-config": "npm:1.4.8"
     "@willbooster/wb": "npm:13.26.0"
     build-ts: "npm:17.1.32"
-    conventional-changelog-conventionalcommits: "npm:10.2.0"
-    fs-extra: "npm:11.3.5"
+    conventional-changelog-conventionalcommits: "npm:10.2.1"
+    fs-extra: "npm:11.3.6"
     lefthook: "npm:2.1.9"
     micromatch: "npm:4.0.8"
     oxfmt: "npm:0.58.0"
