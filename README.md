@@ -23,11 +23,11 @@ The sample command is as follows:
 
 ```
 yarn dlx one-way-git-sync --force \
-  -d git@github.com:WillBooster/sample-of-one-way-git-sync.git
+  -d git@github.com:<owner>/<dest-repo>.git
 ```
 
-If you have no permission to write `git@github.com:WillBooster/sample-of-one-way-git-sync.git`,
-please try `https://oauth2:<GitHub Personal Access Token>@github.com/WillBooster/sample-of-one-way-git-sync.git`.
+If you have no permission to write `git@github.com:<owner>/<dest-repo>.git`,
+please try `https://oauth2:<GitHub Personal Access Token>@github.com/<owner>/<dest-repo>.git`.
 `<GitHub Personal Access Token>` should be like `ghp_...m4rh`.
 
 ### Usual Usage
@@ -38,7 +38,7 @@ So, you don't need `--force` option. The sample command is as follows:
 
 ```
 yarn dlx one-way-git-sync \
-  -d git@github.com:WillBooster/sample-of-one-way-git-sync.git
+  -d git@github.com:<owner>/<dest-repo>.git
 ```
 
 ### Deal with Conflicts
@@ -50,16 +50,13 @@ then, you need to run `one-way-git-sync` with `--force` option.
 The sample commands are as follows:
 
 1. `yarn dlx one-way-git-sync` fails, then you notice there are missing commits
-2. (for merging) `git remote add upstream git@github.com:WillBooster/sample-of-one-way-git-sync.git`
+2. (for merging) `git remote add upstream git@github.com:<owner>/<dest-repo>.git`
 3. (for merging) `git merge --allow-unrelated-histories upstream/main`
 4. ```
    yarn dlx one-way-git-sync --force \
-     -d git@github.com:WillBooster/sample-of-one-way-git-sync.git
+     -d git@github.com:<owner>/<dest-repo>.git
    ```
 
-## Example Repository and Example GitHub Actions Workflows
+## Example GitHub Actions Workflow
 
-- [sample-of-one-way-git-sync](https://github.com/WillBooster/sample-of-one-way-git-sync): an example synchronized repository.
 - [release.yml](.github/workflows/release.yml): releases a new npm package and add a tag automatically in this repository using `semantic-release`.
-- [sync.yml](.github/workflows/sync.yml): it synchronizes `sample-of-one-way-git-sync` repository using `one-way-git-sync` when a new version is released.
-- [force-sync.yml](.github/workflows/sync-force.yml): we can manually trigger this workflow which forces synchronizing `sample-of-one-way-git-sync` repository.
