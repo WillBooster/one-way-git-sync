@@ -4,7 +4,7 @@ import path from 'node:path';
 
 import { copy } from 'fs-extra';
 import micromatch from 'micromatch';
-import type { LogResult, Options, SimpleGit, TaskOptions } from 'simple-git';
+import type { LogResult, Options, SimpleGit } from 'simple-git';
 import { simpleGit } from 'simple-git';
 import type { InferredOptionTypes } from 'yargs';
 
@@ -39,11 +39,25 @@ export async function syncCore(
   }
   try {
     await simpleGit(srcRepoPath).clone(opts.dest, destRepoPath, cloneOpts);
-  } catch {
+  } catch (error) {
+    // This fallback exists for one case: --branch names a branch the destination does not have yet,
+    // so the narrow clone cannot find it and the branch has to be created locally instead. The
+    // clone can equally fail for unrelated reasons (a flaky network, a bad URL, missing auth),
+    // which is why creating the branch is conditional on one actually having been REQUESTED.
+    // Creating it unconditionally used to read `checkout(['-b', undefined])` — simple-git renders
+    // that as `-b undefined`, so a transient network error silently turned into a commit pushed to
+    // a branch literally named "undefined" while the real branch stayed behind. simple-git's
+    // permissive `checkout` overloads accept the undefined, so the compiler does not catch it.
     delete cloneOpts['--branch'];
     delete cloneOpts['--single-branch'];
     await simpleGit(srcRepoPath).clone(opts.dest, destRepoPath, cloneOpts);
-    await simpleGit(destRepoPath).checkout(['-b', opts.branch] as TaskOptions);
+    if (opts.branch) {
+      await simpleGit(destRepoPath).checkout(['-b', opts.branch]);
+    } else {
+      // Nothing was requested, so this was the unrelated-failure case. The retry may well have
+      // succeeded, but say so: a silently swallowed clone error is how the bug above went unnoticed.
+      logger.warn(`Retried cloning ${opts.dest} without --single-branch/--depth after: ${(error as Error).message}`);
+    }
   }
   logger.debug(`Cloned destination repo on ${destRepoPath}`);
 
