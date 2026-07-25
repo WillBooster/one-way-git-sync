@@ -121,6 +121,44 @@ test('a clone failure with --branch naming an existing non-default branch fails 
   expect(releasedLog.latest?.message).toBe(syncCommitMessage);
 });
 
+test('a branch whose name is the tail of another branch is still treated as absent', async () => {
+  // `ls-remote --heads origin released` also matches refs/heads/feature/released, so a bare
+  // pattern would report the requested branch as existing and refuse to create it.
+  const localDestGit = simpleGit(LOCAL_DEST_DIR);
+  await localDestGit.checkoutLocalBranch('feature/released');
+  await localDestGit.push(['-u', 'origin', 'feature/released']);
+  await localDestGit.checkout('main');
+
+  failNextClone = true;
+
+  const { syncCore } = await import('../src/sync.js');
+  const ret = await syncCore(await createRepoDir(), { ...DEFAULT_OPTIONS, branch: 'released' }, LOCAL_SRC_DIR);
+  expect(failNextClone).toBe(false);
+  expect(ret).toBe(true);
+
+  const branches = await simpleGit(REMOTE_DEST_DIR).branch();
+  expect(branches.all).toContain('released');
+});
+
+test('a destination with no commits at all does not crash the fallback', async () => {
+  // --force --branch <new> bootstrapping an empty mirror is a supported entry point, and there the
+  // retry clone lands on an unborn HEAD. No mock: the first clone really fails because the branch
+  // does not exist on the destination.
+  const emptyRemoteDir = await fs.mkdtemp(path.join(TEMP_DIR, 'remote-empty-'));
+  await simpleGit(emptyRemoteDir).init(true, ['--initial-branch=main']);
+
+  const { syncCore } = await import('../src/sync.js');
+  const ret = await syncCore(
+    await createRepoDir(),
+    { ...DEFAULT_OPTIONS, dest: emptyRemoteDir, branch: 'released', force: true },
+    LOCAL_SRC_DIR
+  );
+  expect(ret).toBe(true);
+
+  const branches = await simpleGit(emptyRemoteDir).branch();
+  expect(branches.all).toContain('released');
+});
+
 test('a clone failure with --branch pointing at an existing branch still succeeds', async () => {
   failNextClone = true;
 

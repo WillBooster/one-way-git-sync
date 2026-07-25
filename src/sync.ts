@@ -64,7 +64,11 @@ export async function syncCore(
       const retryGit = simpleGit(destRepoPath);
       // The retry dropped --branch, so it landed on the destination's DEFAULT branch. When that is
       // the requested branch (--branch main, the common case) there is nothing left to do.
-      const headRef = await retryGit.revparse(['--abbrev-ref', 'HEAD']);
+      // `branch --show-current`, not `rev-parse --abbrev-ref HEAD`: the latter exits 128 on an
+      // unborn HEAD, and an empty destination is one of the cases this fallback exists for
+      // (--force --branch <new> bootstraps a fresh mirror). Inside a catch, that rejection would
+      // escape syncCore entirely instead of returning false.
+      const headRef = await retryGit.raw(['branch', '--show-current']);
       const currentBranch = headRef.trim();
       if (currentBranch !== opts.branch) {
         // The requested branch existing on the remote means the first clone did not fail because it
@@ -72,7 +76,10 @@ export async function syncCore(
         // it at the default branch's tip. That silently syncs from the wrong history: a diverged
         // branch is rejected on push with a misleading error, and one that is an ancestor of the
         // default branch fast-forwards and absorbs its commits while reporting success.
-        const remoteHeads = await retryGit.listRemote(['--heads', 'origin', opts.branch]);
+        // Fully qualified: `ls-remote --heads origin released` matches by ref TAIL with complete
+        // path components, so it also returns refs/heads/feature/released and would wrongly
+        // report the branch as existing.
+        const remoteHeads = await retryGit.listRemote(['--heads', 'origin', `refs/heads/${opts.branch}`]);
         if (remoteHeads.trim()) {
           logger.error(`Cloning failed and branch ${opts.branch} already exists on the destination: ${reason}`);
           return false;
