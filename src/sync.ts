@@ -55,13 +55,32 @@ export async function syncCore(
     // reason ends up syncing from the wrong history with no other trace of why.
     // Only --branch is named because --depth (set for every non-force run) implies --single-branch,
     // so deleting the latter changes nothing unless --force also dropped --depth.
-    logger.warn(`Retrying the clone without --branch after: ${redactUrlCredentials((error as Error).message)}`);
+    // `error` is whatever simple-git rejected with, which is always a GitError (an Error subclass);
+    // the cast documents that rather than guarding an unreachable shape.
+    const reason = redactUrlCredentials((error as Error).message);
+    logger.warn(`Retrying the clone ${opts.branch ? 'without --branch ' : ''}after: ${reason}`);
     await simpleGit(srcRepoPath).clone(opts.dest, destRepoPath, cloneOpts);
     if (opts.branch) {
-      // -B, not -b: the retry clone checks out the destination's default branch, so a requested
-      // branch that already exists there (--branch main is the common case) would make -b fail with
-      // `fatal: a branch named 'main' already exists`.
-      await simpleGit(destRepoPath).checkout(['-B', opts.branch]);
+      const retryGit = simpleGit(destRepoPath);
+      // The retry dropped --branch, so it landed on the destination's DEFAULT branch. When that is
+      // the requested branch (--branch main, the common case) there is nothing left to do.
+      const headRef = await retryGit.revparse(['--abbrev-ref', 'HEAD']);
+      const currentBranch = headRef.trim();
+      if (currentBranch !== opts.branch) {
+        // The requested branch existing on the remote means the first clone did not fail because it
+        // was missing — so this was an unrelated failure, and creating the branch here would point
+        // it at the default branch's tip. That silently syncs from the wrong history: a diverged
+        // branch is rejected on push with a misleading error, and one that is an ancestor of the
+        // default branch fast-forwards and absorbs its commits while reporting success.
+        const remoteHeads = await retryGit.listRemote(['--heads', 'origin', opts.branch]);
+        if (remoteHeads.trim()) {
+          logger.error(`Cloning failed and branch ${opts.branch} already exists on the destination: ${reason}`);
+          return false;
+        }
+        // Absent from the remote, so this is the case the fallback exists for. -b would do here too;
+        // -B just avoids depending on the fresh clone never having the branch locally.
+        await retryGit.checkout(['-B', opts.branch]);
+      }
     }
   }
   logger.debug(`Cloned destination repo on ${destRepoPath}`);

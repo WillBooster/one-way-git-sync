@@ -31,6 +31,7 @@ vi.mock('simple-git', async () => {
 });
 
 let failNextClone = false;
+let syncCommitMessage = '';
 
 beforeEach(async () => {
   // vitest.config.ts sets `isolate: false`, and sibling test files import src/sync.ts
@@ -64,7 +65,8 @@ beforeEach(async () => {
   await localDestGit.remote(['add', 'origin', REMOTE_DEST_DIR]);
   await fs.writeFile(path.join(LOCAL_DEST_DIR, 'dest.txt'), 'Dest Repository');
   await localDestGit.add('.');
-  await localDestGit.commit(`sync https://github.com/WillBooster/one-way-git-sync/commits/${syncedHash}`);
+  syncCommitMessage = `sync https://github.com/WillBooster/one-way-git-sync/commits/${syncedHash}`;
+  await localDestGit.commit(syncCommitMessage);
   await localDestGit.push(['-u', 'origin', 'main']);
 
   // Something for this run to actually synchronize.
@@ -97,6 +99,26 @@ test('a clone failure with --branch creates and pushes that branch', async () =>
   const branches = await simpleGit(REMOTE_DEST_DIR).branch();
   expect(branches.all).toContain('released');
   expect(branches.all).not.toContain('undefined');
+});
+
+test('a clone failure with --branch naming an existing non-default branch fails instead of rewriting it', async () => {
+  // Give the destination a second branch that is NOT its default, which is the shape that made the
+  // old `-B` repoint it at the default branch's tip and sync from the wrong history.
+  const localDestGit = simpleGit(LOCAL_DEST_DIR);
+  await localDestGit.checkoutLocalBranch('released');
+  await localDestGit.push(['-u', 'origin', 'released']);
+  await localDestGit.checkout('main');
+
+  failNextClone = true;
+
+  const { syncCore } = await import('../src/sync.js');
+  const ret = await syncCore(await createRepoDir(), { ...DEFAULT_OPTIONS, branch: 'released' }, LOCAL_SRC_DIR);
+  expect(failNextClone).toBe(false);
+  // A transient failure must surface, not be turned into a sync onto the wrong history.
+  expect(ret).toBe(false);
+
+  const releasedLog = await simpleGit(REMOTE_DEST_DIR).log(['released']);
+  expect(releasedLog.latest?.message).toBe(syncCommitMessage);
 });
 
 test('a clone failure with --branch pointing at an existing branch still succeeds', async () => {
