@@ -4,7 +4,7 @@ import path from 'node:path';
 
 import { copy } from 'fs-extra';
 import micromatch from 'micromatch';
-import type { LogResult, Options, SimpleGit, TaskOptions } from 'simple-git';
+import type { LogResult, Options, SimpleGit } from 'simple-git';
 import { simpleGit } from 'simple-git';
 import type { InferredOptionTypes } from 'yargs';
 
@@ -39,11 +39,56 @@ export async function syncCore(
   }
   try {
     await simpleGit(srcRepoPath).clone(opts.dest, destRepoPath, cloneOpts);
-  } catch {
+  } catch (error) {
+    // This fallback exists for one case: --branch names a branch the destination does not have yet,
+    // so the narrow clone cannot find it and the branch has to be created locally instead. The
+    // clone can equally fail for unrelated reasons (a flaky network, a bad URL, missing auth), in
+    // which case there is no branch to create — hence the conditional below. Creating it
+    // unconditionally used to read `checkout(['-b', undefined])`, which simple-git renders as
+    // `-b undefined`, so a transient network error silently turned into a commit pushed to a branch
+    // literally named "undefined" while the real branch stayed behind. simple-git's permissive
+    // `checkout` overloads accept the undefined, so the compiler does not catch it.
     delete cloneOpts['--branch'];
     delete cloneOpts['--single-branch'];
+    // Reported for BOTH cases, before the retry: whichever one this was, discarding the original
+    // error is what let the bug above go unnoticed, and a --branch run that fails for an unrelated
+    // reason ends up syncing from the wrong history with no other trace of why.
+    // Only --branch is named because --depth (set for every non-force run) implies --single-branch,
+    // so deleting the latter changes nothing unless --force also dropped --depth.
+    // `error` is whatever simple-git rejected with, which is always a GitError (an Error subclass);
+    // the cast documents that rather than guarding an unreachable shape.
+    const reason = redactUrlCredentials((error as Error).message);
+    logger.warn(`Retrying the clone ${opts.branch ? 'without --branch ' : ''}after: ${reason}`);
     await simpleGit(srcRepoPath).clone(opts.dest, destRepoPath, cloneOpts);
-    await simpleGit(destRepoPath).checkout(['-b', opts.branch] as TaskOptions);
+    if (opts.branch) {
+      const retryGit = simpleGit(destRepoPath);
+      // The retry dropped --branch, so it landed on the destination's DEFAULT branch. When that is
+      // the requested branch (--branch main, the common case) there is nothing left to do.
+      // `branch --show-current`, not `rev-parse --abbrev-ref HEAD`: the latter exits 128 on an
+      // unborn HEAD, and an empty destination is one of the cases this fallback exists for
+      // (--force --branch <new> bootstraps a fresh mirror). Inside a catch, that rejection would
+      // escape syncCore entirely instead of returning false.
+      const headRef = await retryGit.raw(['branch', '--show-current']);
+      const currentBranch = headRef.trim();
+      if (currentBranch !== opts.branch) {
+        // The requested branch existing on the remote means the first clone did not fail because it
+        // was missing — so this was an unrelated failure, and creating the branch here would point
+        // it at the default branch's tip. That silently syncs from the wrong history: a diverged
+        // branch is rejected on push with a misleading error, and one that is an ancestor of the
+        // default branch fast-forwards and absorbs its commits while reporting success.
+        // Fully qualified: `ls-remote --heads origin released` matches by ref TAIL with complete
+        // path components, so it also returns refs/heads/feature/released and would wrongly
+        // report the branch as existing.
+        const remoteHeads = await retryGit.listRemote(['--heads', 'origin', `refs/heads/${opts.branch}`]);
+        if (remoteHeads.trim()) {
+          logger.error(`Cloning failed and branch ${opts.branch} already exists on the destination: ${reason}`);
+          return false;
+        }
+        // Absent from the remote, so this is the case the fallback exists for. -b would do here too;
+        // -B just avoids depending on the fresh clone never having the branch locally.
+        await retryGit.checkout(['-B', opts.branch]);
+      }
+    }
   }
   logger.debug(`Cloned destination repo on ${destRepoPath}`);
 
@@ -175,4 +220,13 @@ function extractCommitHash(logResult: LogResult): [string, string] | [] {
     logger.debug(`No sync commit: ${firstLog.message}`);
   }
   return [];
+}
+
+/**
+ * Replaces the `user:password@` part of every URL in the text. The README recommends passing the
+ * destination as `https://oauth2:<PAT>@github.com/...`, and git echoes the URL back in its error
+ * messages, so logging either one verbatim would print the token into console and CI logs.
+ */
+export function redactUrlCredentials(text: string): string {
+  return text.replaceAll(/([A-Za-z][\w+.-]*:\/\/)[^/\s]*@/g, '$1***@');
 }
