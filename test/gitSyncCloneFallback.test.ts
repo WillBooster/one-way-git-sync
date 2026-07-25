@@ -33,6 +33,12 @@ vi.mock('simple-git', async () => {
 let failNextClone = false;
 
 beforeEach(async () => {
+  // vitest.config.ts sets `isolate: false`, and sibling test files import src/sync.ts
+  // statically. Without this reset the dynamic import below can resolve to an already-evaluated
+  // copy bound to the REAL simple-git, so the injected failure never fires and these tests pass
+  // while asserting nothing. Each test also asserts the injection fired, so it cannot degrade
+  // back into a silent no-op.
+  vi.resetModules();
   failNextClone = false;
   await fs.rm(TEMP_DIR, { force: true, recursive: true });
   await fs.mkdir(LOCAL_SRC_DIR, { recursive: true });
@@ -72,6 +78,7 @@ test('a clone failure without --branch never pushes to a branch named "undefined
 
   const { syncCore } = await import('../src/sync.js');
   const ret = await syncCore(await createRepoDir(), { ...DEFAULT_OPTIONS, branch: undefined }, LOCAL_SRC_DIR);
+  expect(failNextClone).toBe(false);
   expect(ret).toBe(true);
 
   const branches = await simpleGit(REMOTE_DEST_DIR).branch();
@@ -84,9 +91,24 @@ test('a clone failure with --branch creates and pushes that branch', async () =>
 
   const { syncCore } = await import('../src/sync.js');
   const ret = await syncCore(await createRepoDir(), { ...DEFAULT_OPTIONS, branch: 'released' }, LOCAL_SRC_DIR);
+  expect(failNextClone).toBe(false);
   expect(ret).toBe(true);
 
   const branches = await simpleGit(REMOTE_DEST_DIR).branch();
   expect(branches.all).toContain('released');
   expect(branches.all).not.toContain('undefined');
+});
+
+test('a clone failure with --branch pointing at an existing branch still succeeds', async () => {
+  failNextClone = true;
+
+  const { syncCore } = await import('../src/sync.js');
+  // The retry clone checks out the destination's default branch, so `checkout -b main` would fail
+  // with "a branch named 'main' already exists". This is the shape reusable-workflows uses.
+  const ret = await syncCore(await createRepoDir(), { ...DEFAULT_OPTIONS, branch: 'main' }, LOCAL_SRC_DIR);
+  expect(failNextClone).toBe(false);
+  expect(ret).toBe(true);
+
+  const branches = await simpleGit(REMOTE_DEST_DIR).branch();
+  expect(branches.all).toEqual(['main']);
 });

@@ -42,21 +42,26 @@ export async function syncCore(
   } catch (error) {
     // This fallback exists for one case: --branch names a branch the destination does not have yet,
     // so the narrow clone cannot find it and the branch has to be created locally instead. The
-    // clone can equally fail for unrelated reasons (a flaky network, a bad URL, missing auth),
-    // which is why creating the branch is conditional on one actually having been REQUESTED.
-    // Creating it unconditionally used to read `checkout(['-b', undefined])` — simple-git renders
-    // that as `-b undefined`, so a transient network error silently turned into a commit pushed to
-    // a branch literally named "undefined" while the real branch stayed behind. simple-git's
-    // permissive `checkout` overloads accept the undefined, so the compiler does not catch it.
+    // clone can equally fail for unrelated reasons (a flaky network, a bad URL, missing auth), in
+    // which case there is no branch to create — hence the conditional below. Creating it
+    // unconditionally used to read `checkout(['-b', undefined])`, which simple-git renders as
+    // `-b undefined`, so a transient network error silently turned into a commit pushed to a branch
+    // literally named "undefined" while the real branch stayed behind. simple-git's permissive
+    // `checkout` overloads accept the undefined, so the compiler does not catch it.
     delete cloneOpts['--branch'];
     delete cloneOpts['--single-branch'];
+    // Reported for BOTH cases, before the retry: whichever one this was, discarding the original
+    // error is what let the bug above go unnoticed, and a --branch run that fails for an unrelated
+    // reason ends up syncing from the wrong history with no other trace of why.
+    // Only --branch is named because --depth (set for every non-force run) implies --single-branch,
+    // so deleting the latter changes nothing unless --force also dropped --depth.
+    logger.warn(`Retrying the clone without --branch after: ${redactUrlCredentials((error as Error).message)}`);
     await simpleGit(srcRepoPath).clone(opts.dest, destRepoPath, cloneOpts);
     if (opts.branch) {
-      await simpleGit(destRepoPath).checkout(['-b', opts.branch]);
-    } else {
-      // Nothing was requested, so this was the unrelated-failure case. The retry may well have
-      // succeeded, but say so: a silently swallowed clone error is how the bug above went unnoticed.
-      logger.warn(`Retried cloning ${opts.dest} without --single-branch/--depth after: ${(error as Error).message}`);
+      // -B, not -b: the retry clone checks out the destination's default branch, so a requested
+      // branch that already exists there (--branch main is the common case) would make -b fail with
+      // `fatal: a branch named 'main' already exists`.
+      await simpleGit(destRepoPath).checkout(['-B', opts.branch]);
     }
   }
   logger.debug(`Cloned destination repo on ${destRepoPath}`);
@@ -189,4 +194,13 @@ function extractCommitHash(logResult: LogResult): [string, string] | [] {
     logger.debug(`No sync commit: ${firstLog.message}`);
   }
   return [];
+}
+
+/**
+ * Replaces the `user:password@` part of every URL in the text. The README recommends passing the
+ * destination as `https://oauth2:<PAT>@github.com/...`, and git echoes the URL back in its error
+ * messages, so logging either one verbatim would print the token into console and CI logs.
+ */
+export function redactUrlCredentials(text: string): string {
+  return text.replaceAll(/([A-Za-z][\w+.-]*:\/\/)[^/\s]*@/g, '$1***@');
 }
