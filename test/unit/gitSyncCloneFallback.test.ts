@@ -5,8 +5,8 @@ import type * as SimpleGitModule from 'simple-git';
 import { simpleGit } from 'simple-git';
 import { beforeEach, expect, test, vi } from 'vitest';
 
-import { DEFAULT_OPTIONS, LOCAL_DEST_DIR, LOCAL_SRC_DIR, REMOTE_DEST_DIR, TEMP_DIR } from './constants.js';
-import { createRepoDir, setUpGit } from './shared.js';
+import { DEFAULT_OPTIONS, LOCAL_DEST_DIR, LOCAL_SRC_DIR, REMOTE_DEST_DIR, TEMP_DIR } from '../helpers/constants.js';
+import { createRepoDir, setUpGit } from '../helpers/shared.js';
 
 // The clone fallback is only reachable when the first clone throws, which a local-path clone never
 // does on its own, so the first call is failed deliberately. Without that injection the branch
@@ -78,7 +78,7 @@ beforeEach(async () => {
 test('a clone failure without --branch never pushes to a branch named "undefined"', async () => {
   failNextClone = true;
 
-  const { syncCore } = await import('../src/sync.js');
+  const { syncCore } = await import('../../src/sync.js');
   const ret = await syncCore(await createRepoDir(), { ...DEFAULT_OPTIONS, branch: undefined }, LOCAL_SRC_DIR);
   expect(failNextClone).toBe(false);
   expect(ret).toBe(true);
@@ -91,7 +91,7 @@ test('a clone failure without --branch never pushes to a branch named "undefined
 test('a clone failure with --branch creates and pushes that branch', async () => {
   failNextClone = true;
 
-  const { syncCore } = await import('../src/sync.js');
+  const { syncCore } = await import('../../src/sync.js');
   const ret = await syncCore(await createRepoDir(), { ...DEFAULT_OPTIONS, branch: 'released' }, LOCAL_SRC_DIR);
   expect(failNextClone).toBe(false);
   expect(ret).toBe(true);
@@ -111,7 +111,7 @@ test('a clone failure with --branch naming an existing non-default branch fails 
 
   failNextClone = true;
 
-  const { syncCore } = await import('../src/sync.js');
+  const { syncCore } = await import('../../src/sync.js');
   const ret = await syncCore(await createRepoDir(), { ...DEFAULT_OPTIONS, branch: 'released' }, LOCAL_SRC_DIR);
   expect(failNextClone).toBe(false);
   // A transient failure must surface, not be turned into a sync onto the wrong history.
@@ -131,7 +131,7 @@ test('a branch whose name is the tail of another branch is still treated as abse
 
   failNextClone = true;
 
-  const { syncCore } = await import('../src/sync.js');
+  const { syncCore } = await import('../../src/sync.js');
   const ret = await syncCore(await createRepoDir(), { ...DEFAULT_OPTIONS, branch: 'released' }, LOCAL_SRC_DIR);
   expect(failNextClone).toBe(false);
   expect(ret).toBe(true);
@@ -147,7 +147,7 @@ test('a destination with no commits at all does not crash the fallback', async (
   const emptyRemoteDir = await fs.mkdtemp(path.join(TEMP_DIR, 'remote-empty-'));
   await simpleGit(emptyRemoteDir).init(true, ['--initial-branch=main']);
 
-  const { syncCore } = await import('../src/sync.js');
+  const { syncCore } = await import('../../src/sync.js');
   const ret = await syncCore(
     await createRepoDir(),
     { ...DEFAULT_OPTIONS, dest: emptyRemoteDir, branch: 'released', force: true },
@@ -162,7 +162,7 @@ test('a destination with no commits at all does not crash the fallback', async (
 test('a clone failure with --branch pointing at an existing branch still succeeds', async () => {
   failNextClone = true;
 
-  const { syncCore } = await import('../src/sync.js');
+  const { syncCore } = await import('../../src/sync.js');
   // The retry clone checks out the destination's default branch, so `checkout -b main` would fail
   // with "a branch named 'main' already exists". This is the shape reusable-workflows uses.
   const ret = await syncCore(await createRepoDir(), { ...DEFAULT_OPTIONS, branch: 'main' }, LOCAL_SRC_DIR);

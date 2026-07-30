@@ -4,10 +4,10 @@ import path from 'node:path';
 import { simpleGit } from 'simple-git';
 import { beforeEach, expect, test } from 'vitest';
 
-import { syncCore } from '../src/sync.js';
+import { syncCore } from '../../src/sync.js';
 
-import { DEFAULT_OPTIONS, LOCAL_DEST_DIR, LOCAL_SRC_DIR, REMOTE_DEST_DIR, TEMP_DIR } from './constants.js';
-import { setUpGit } from './shared.js';
+import { DEFAULT_OPTIONS, LOCAL_DEST_DIR, LOCAL_SRC_DIR, REMOTE_DEST_DIR, TEMP_DIR } from '../helpers/constants.js';
+import { setUpGit } from '../helpers/shared.js';
 
 beforeEach(async () => {
   await fs.rm(TEMP_DIR, { force: true, recursive: true });
