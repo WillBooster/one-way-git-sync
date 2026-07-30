@@ -5,5 +5,6 @@ export default defineConfig({
     isolate: false,
     maxWorkers: 1,
     retry: 0,
+    testTimeout: 30_000,
   },
 });

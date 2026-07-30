@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 
-import { redactUrlCredentials } from '../src/sync.js';
+import { redactUrlCredentials } from '../../src/sync.js';
 
 // The README recommends passing the destination as `https://oauth2:<PAT>@github.com/...`, and git
 // echoes that URL back in its error text, so anything logged from a clone failure can carry a token.

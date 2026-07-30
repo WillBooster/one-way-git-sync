@@ -5,8 +5,8 @@ import type { SimpleGit } from 'simple-git';
 import { simpleGit } from 'simple-git';
 import { beforeEach, expect, test } from 'vitest';
 
-import { LOCAL_SRC_DIR, REMOTE_SRC_DIR, TEMP_DIR } from './constants.js';
-import { setUpGit } from './shared.js';
+import { LOCAL_SRC_DIR, REMOTE_SRC_DIR, TEMP_DIR } from '../helpers/constants.js';
+import { setUpGit } from '../helpers/shared.js';
 
 beforeEach(async () => {
   await fs.rm(TEMP_DIR, { force: true, recursive: true });

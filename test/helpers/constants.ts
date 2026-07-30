@@ -1,7 +1,7 @@
 import os from 'node:os';
 import path from 'node:path';
 
-import type { YargsOptions } from '../src/sync.js';
+import type { YargsOptions } from '../../src/sync.js';
 
 export const TEMP_DIR = path.join(os.tmpdir(), 'one-way-git-sync');
 export const REMOTE_SRC_DIR = path.join(TEMP_DIR, 'remote-src');

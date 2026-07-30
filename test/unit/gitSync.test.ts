@@ -5,7 +5,7 @@ import type { SimpleGit } from 'simple-git';
 import { simpleGit } from 'simple-git';
 import { beforeEach, expect, test } from 'vitest';
 
-import { syncCore } from '../src/sync.js';
+import { syncCore } from '../../src/sync.js';
 
 import {
   DEFAULT_OPTIONS,
@@ -14,8 +14,8 @@ import {
   REMOTE_DEST_DIR,
   REMOTE_SRC_DIR,
   TEMP_DIR,
-} from './constants.js';
-import { createRepoDir, setUpGit } from './shared.js';
+} from '../helpers/constants.js';
+import { createRepoDir, setUpGit } from '../helpers/shared.js';
 
 beforeEach(async () => {
   await fs.rm(TEMP_DIR, { force: true, recursive: true });
