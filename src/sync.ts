@@ -132,7 +132,6 @@ export async function syncCore(
     return true;
   }
 
-  // Force to ignore .git directory
   const ignorePatterns = [...new Set([...opts['ignore-patterns'].map(String), '.git'])];
   let [destFiles, srcFiles] = await Promise.all([fs.readdir(destRepoPath), fs.readdir(srcRepoPath)]);
   destFiles = micromatch.not(destFiles, ignorePatterns);
