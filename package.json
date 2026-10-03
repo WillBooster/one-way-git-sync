@@ -35,7 +35,7 @@
     "verify-full": "bun wb verify --full"
   },
   "dependencies": {
-    "fs-extra": "11.4.0",
+    "fs-extra": "11.4.1",
     "micromatch": "4.0.8",
     "pino": "10.3.1",
     "pino-pretty": "13.1.3",
