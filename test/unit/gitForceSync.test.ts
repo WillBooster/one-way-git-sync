@@ -5,7 +5,6 @@ import { simpleGit } from 'simple-git';
 import { beforeEach, expect, test } from 'vitest';
 
 import { syncCore } from '../../src/sync.js';
-
 import {
   DEFAULT_OPTIONS,
   LOCAL_DEST_DIR,
